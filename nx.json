@@ -16,6 +16,12 @@
     },
     "mfe-shell-e2e": {
       "tags": []
+    },
+    "shared-ui": {
+      "tags": []
+    },
+    "shared-utils": {
+      "tags": []
     }
   }
 }
