@@ -17,6 +17,18 @@
     "mfe-shell-e2e": {
       "tags": []
     },
+    "mfe-feature-a": {
+      "tags": []
+    },
+    "mfe-feature-a-e2e": {
+      "tags": []
+    },
+    "mfe-feature-b": {
+      "tags": []
+    },
+    "mfe-feature-b-e2e": {
+      "tags": []
+    },
     "shared-ui": {
       "tags": []
     },

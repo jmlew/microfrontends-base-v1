@@ -163,6 +163,237 @@
           }
         }
       }
+    },
+    "mfe-feature-b": {
+      "root": "apps/mfe-feature-b",
+      "sourceRoot": "apps/mfe-feature-b/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/mfe-feature-b",
+            "index": "apps/mfe-feature-b/src/index.html",
+            "main": "apps/mfe-feature-b/src/main.tsx",
+            "polyfills": "apps/mfe-feature-b/src/polyfills.ts",
+            "tsConfig": "apps/mfe-feature-b/tsconfig.app.json",
+            "assets": [
+              "apps/mfe-feature-b/src/favicon.ico",
+              "apps/mfe-feature-b/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/mfe-feature-b/src/environments/environment.ts",
+                  "with": "apps/mfe-feature-b/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "mfe-feature-b:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "mfe-feature-b:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/mfe-feature-b/.eslintrc",
+            "tsConfig": [
+              "apps/mfe-feature-b/tsconfig.app.json",
+              "apps/mfe-feature-b/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/mfe-feature-b/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/mfe-feature-b/jest.config.js",
+            "tsConfig": "apps/mfe-feature-b/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "mfe-feature-b-e2e": {
+      "root": "apps/mfe-feature-b-e2e",
+      "sourceRoot": "apps/mfe-feature-b-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/mfe-feature-b-e2e/cypress.json",
+            "tsConfig": "apps/mfe-feature-b-e2e/tsconfig.e2e.json",
+            "devServerTarget": "mfe-feature-b:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mfe-feature-b:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/mfe-feature-b-e2e/.eslintrc",
+            "tsConfig": ["apps/mfe-feature-b-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/mfe-feature-b-e2e/**"]
+          }
+        }
+      }
+    },
+    "mfe-feature-a": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/mfe-feature-a",
+      "sourceRoot": "apps/mfe-feature-a/src",
+      "prefix": "microfr",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/mfe-feature-a",
+            "index": "apps/mfe-feature-a/src/index.html",
+            "main": "apps/mfe-feature-a/src/main.ts",
+            "polyfills": "apps/mfe-feature-a/src/polyfills.ts",
+            "tsConfig": "apps/mfe-feature-a/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/mfe-feature-a/src/favicon.ico",
+              "apps/mfe-feature-a/src/assets"
+            ],
+            "styles": ["apps/mfe-feature-a/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/mfe-feature-a/src/environments/environment.ts",
+                  "with": "apps/mfe-feature-a/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "mfe-feature-a:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mfe-feature-a:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mfe-feature-a:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/mfe-feature-a/tsconfig.app.json",
+              "apps/mfe-feature-a/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/mfe-feature-a/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/mfe-feature-a/jest.config.js",
+            "tsConfig": "apps/mfe-feature-a/tsconfig.spec.json",
+            "setupFile": "apps/mfe-feature-a/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "mfe-feature-a-e2e": {
+      "root": "apps/mfe-feature-a-e2e",
+      "sourceRoot": "apps/mfe-feature-a-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/mfe-feature-a-e2e/cypress.json",
+            "tsConfig": "apps/mfe-feature-a-e2e/tsconfig.e2e.json",
+            "devServerTarget": "mfe-feature-a:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mfe-feature-a:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/mfe-feature-a-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/mfe-feature-a-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -181,9 +412,15 @@
     },
     "@nrwl/react": {
       "application": {
-        "linter": "eslint"
+        "style": "styled-components",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "styled-components"
       },
       "library": {
+        "style": "styled-components",
         "linter": "eslint"
       }
     },
@@ -211,6 +448,13 @@
       "application": {
         "linter": "eslint"
       }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
     }
   }
 }
