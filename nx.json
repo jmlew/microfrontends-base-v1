@@ -1,5 +1,5 @@
 {
-  "npmScope": "microfr-base",
+  "npmScope": "microfr",
   "implicitDependencies": {
     "workspace.json": "*",
     "package.json": {
@@ -11,10 +11,10 @@
     "nx.json": "*"
   },
   "projects": {
-    "mfe": {
+    "mfe-shell": {
       "tags": []
     },
-    "mfe-e2e": {
+    "mfe-shell-e2e": {
       "tags": []
     }
   }

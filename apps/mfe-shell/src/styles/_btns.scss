@@ -1,0 +1,14 @@
+@mixin btn-hover {
+  transition: $transition-btn;
+  opacity: 0.8;
+
+  &:not(:disabled) {
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.btn-hover {
+  @include btn-hover();
+}

@@ -1,0 +1,17 @@
+@import 'variables';
+@import 'colors';
+@import 'btns';
+@import 'layout';
+@import 'partials';
+@import 'resets';
+@import 'text';
+@import 'typography';
+@import 'utils';
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  font-family: $font-family-body;
+}

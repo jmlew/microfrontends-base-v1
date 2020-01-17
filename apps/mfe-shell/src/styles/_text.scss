@@ -1,0 +1,33 @@
+// Text layout and alignment
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+// Text wrapping and truncation.
+
+@mixin no-wrap() {
+  white-space: nowrap;
+}
+
+.no-wrap {
+  @include no-wrap();
+}
+
+@mixin text-ellipsis() {
+  @include no-wrap();
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-ellipsis {
+  @include text-ellipsis();
+}

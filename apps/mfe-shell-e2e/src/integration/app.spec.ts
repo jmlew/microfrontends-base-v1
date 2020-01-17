@@ -1,6 +1,6 @@
 import { getGreeting } from '../support/app.po';
 
-describe('mfe', () => {
+describe('mfe-shell', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {
@@ -8,6 +8,6 @@ describe('mfe', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to mfe!');
+    getGreeting().contains('Welcome to mfe-shell!');
   });
 });

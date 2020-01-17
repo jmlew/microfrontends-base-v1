@@ -1,31 +1,34 @@
 {
   "version": 1,
-  "defaultProject": "mfe",
+  "defaultProject": "mfe-shell",
   "projects": {
-    "mfe": {
-      "root": "apps/mfe",
-      "sourceRoot": "apps/mfe/src",
+    "mfe-shell": {
+      "root": "apps/mfe-shell",
+      "sourceRoot": "apps/mfe-shell/src",
       "projectType": "application",
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/web:build",
           "options": {
-            "outputPath": "dist/apps/mfe",
-            "index": "apps/mfe/src/index.html",
-            "main": "apps/mfe/src/main.ts",
-            "polyfills": "apps/mfe/src/polyfills.ts",
-            "tsConfig": "apps/mfe/tsconfig.app.json",
-            "assets": ["apps/mfe/src/favicon.ico", "apps/mfe/src/assets"],
-            "styles": ["apps/mfe/src/styles.scss"],
+            "outputPath": "dist/apps/mfe-shell",
+            "index": "apps/mfe-shell/src/index.html",
+            "main": "apps/mfe-shell/src/main.ts",
+            "polyfills": "apps/mfe-shell/src/polyfills.ts",
+            "tsConfig": "apps/mfe-shell/tsconfig.app.json",
+            "assets": [
+              "apps/mfe-shell/src/favicon.ico",
+              "apps/mfe-shell/src/assets"
+            ],
+            "styles": ["apps/mfe-shell/src/styles/global.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/mfe/src/environments/environment.ts",
-                  "with": "apps/mfe/src/environments/environment.prod.ts"
+                  "replace": "apps/mfe-shell/src/environments/environment.ts",
+                  "with": "apps/mfe-shell/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -48,11 +51,11 @@
         "serve": {
           "builder": "@nrwl/web:dev-server",
           "options": {
-            "buildTarget": "mfe:build"
+            "buildTarget": "mfe-shell:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "mfe:build:production"
+              "buildTarget": "mfe-shell:build:production"
             }
           }
         },
@@ -60,39 +63,39 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/mfe/.eslintrc",
+            "config": "apps/mfe-shell/.eslintrc",
             "tsConfig": [
-              "apps/mfe/tsconfig.app.json",
-              "apps/mfe/tsconfig.spec.json"
+              "apps/mfe-shell/tsconfig.app.json",
+              "apps/mfe-shell/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/mfe/**"]
+            "exclude": ["**/node_modules/**", "!apps/mfe-shell/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/mfe/jest.config.js",
-            "tsConfig": "apps/mfe/tsconfig.spec.json",
-            "setupFile": "apps/mfe/src/test-setup.ts"
+            "jestConfig": "apps/mfe-shell/jest.config.js",
+            "tsConfig": "apps/mfe-shell/tsconfig.spec.json",
+            "setupFile": "apps/mfe-shell/src/test-setup.ts"
           }
         }
       }
     },
-    "mfe-e2e": {
-      "root": "apps/mfe-e2e",
-      "sourceRoot": "apps/mfe-e2e/src",
+    "mfe-shell-e2e": {
+      "root": "apps/mfe-shell-e2e",
+      "sourceRoot": "apps/mfe-shell-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/mfe-e2e/cypress.json",
-            "tsConfig": "apps/mfe-e2e/tsconfig.e2e.json",
-            "devServerTarget": "mfe:serve"
+            "cypressConfig": "apps/mfe-shell-e2e/cypress.json",
+            "tsConfig": "apps/mfe-shell-e2e/tsconfig.e2e.json",
+            "devServerTarget": "mfe-shell:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mfe:serve:production"
+              "devServerTarget": "mfe-shell:serve:production"
             }
           }
         },
@@ -100,9 +103,9 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/mfe-e2e/.eslintrc",
-            "tsConfig": ["apps/mfe-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/mfe-e2e/**"]
+            "config": "apps/mfe-shell-e2e/.eslintrc",
+            "tsConfig": ["apps/mfe-shell-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/mfe-shell-e2e/**"]
           }
         }
       }
