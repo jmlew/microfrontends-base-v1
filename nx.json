@@ -17,16 +17,16 @@
     "mfe-shell-e2e": {
       "tags": []
     },
-    "mfe-feature-a": {
+    "mfe-client-a": {
       "tags": []
     },
-    "mfe-feature-a-e2e": {
+    "mfe-client-a-e2e": {
       "tags": []
     },
-    "mfe-feature-b": {
+    "mfe-client-b": {
       "tags": []
     },
-    "mfe-feature-b-e2e": {
+    "mfe-client-b-e2e": {
       "tags": []
     },
     "shared-ui": {

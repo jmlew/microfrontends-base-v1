@@ -10,15 +10,15 @@ interface ClientConfig {
 }
 
 const clientsConfig: { [name: string]: ClientConfig } = {
-  'mfe-feature-a': {
+  'mfe-client-a': {
     isLoaded: false,
-    path: 'mfe-feature-a/main-es5.js',
-    element: 'mfe-feature-a'
+    path: 'mfe-client-a/main-es5.js',
+    element: 'mfe-client-a'
   },
-  'mfe-feature-b': {
+  'mfe-client-b': {
     isLoaded: false,
-    path: 'mfe-feature-b/main.es5.js',
-    element: 'mfe-feature-b'
+    path: 'mfe-client-b/main.es5.js',
+    element: 'mfe-client-b'
   }
 };
 
