@@ -1,6 +1,18 @@
 @import '../styles/variables';
 
-.sample-style {
-  font-size: 60px;
-  color: $color-app-dark;
+.main-panel {
+  background-color: #f4f3ef;
+  position: relative;
+  width: calc(100% - 200px);
+  min-height: 100%;
+
+  & > .content {
+    padding: 30px 15px;
+    min-height: calc(100% - 100px);
+  }
+
+  & .heading {
+    font-size: 60px;
+    color: $color-app-dark;
+  }
 }

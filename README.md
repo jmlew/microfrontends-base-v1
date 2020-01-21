@@ -1,4 +1,8 @@
-# MicrofrBase
+# Microfrontends Base
+
+A POC collection of apps using a microfontends monorepo architecture with NX.
+
+---
 
 This project was generated using [Nx](https://nx.dev).
 
