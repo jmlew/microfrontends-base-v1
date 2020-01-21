@@ -60,3 +60,6 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+// For browsers that don't support Web Components.
+import '@webcomponents/custom-elements/custom-elements.min';

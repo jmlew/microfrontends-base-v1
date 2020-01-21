@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'microfr-root',
+  // selector: 'client-a', Tagname is defined in customElements.define.
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'mfe-client-a';
-}
+export class AppComponent {}
