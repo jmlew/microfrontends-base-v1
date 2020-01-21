@@ -10,4 +10,7 @@ if (environment.production) {
 
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
+  // Version excluding Zone which reduces bundle-size as well as avoiding potential
+  // conflicts in other apps with Zone's monkey-patched native methods.
+  // .bootstrapModule(AppModule, { ngZone: 'noop' })
   .catch(err => console.error(err));

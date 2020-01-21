@@ -6,13 +6,15 @@ import { Route, Link } from 'react-router-dom';
 
 const StyledApp = styled.div`
   main {
-    padding: 0 20px;
+    padding: 20px;
+    background-color: grey;
+    text-align: center;
   }
 
   h3 {
-    text-align: center;
-    font-size: 20px;
-    margin: 40px 0 10px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    color: pink;
   }
 `;
 
@@ -20,9 +22,9 @@ export const App = () => {
   return (
     <StyledApp>
       <main>
-        <h3>Angular App content</h3>
+        <h3>React App content: Client-B</h3>
       </main>
-      <div role="navigation">
+      {/* <div role="navigation">
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -50,7 +52,7 @@ export const App = () => {
             <Link to="/">Click here to go back to root page.</Link>
           </div>
         )}
-      />
+      /> */}
     </StyledApp>
   );
 };

@@ -9,5 +9,5 @@ ReactDOM.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-  document.getElementById('root')
+  document.getElementById('mfe-client-b')
 );

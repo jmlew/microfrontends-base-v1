@@ -20,6 +20,7 @@ export class AppModule {
   constructor(private readonly injector: Injector) {}
 
   ngDoBootstrap() {
+    console.log('ngDoBootstrap :', this);
     const appTagName = 'mfe-client-a';
     const appElement: NgElementConstructor<void> = createCustomElement(
       AppComponent,
