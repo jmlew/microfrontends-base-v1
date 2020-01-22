@@ -1,20 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement, NgElementConstructor } from '@angular/elements';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
     // RouterModule.forRoot([], { initialNavigation: 'enabled' })
   ],
   // schemas: [CUSTOM_ELEMENTS_SCHEMA], // Required if this project is loading non-angular custom elements.
   providers: [],
   bootstrap: [],
+  entryComponents: [AppComponent],
   declarations: [AppComponent],
-  entryComponents: [AppComponent]
 })
 export class AppModule {
   constructor(private readonly injector: Injector) {}
@@ -22,12 +22,9 @@ export class AppModule {
   ngDoBootstrap() {
     console.log('ngDoBootstrap :', this);
     const appTagName = 'mfe-client-a';
-    const appElement: NgElementConstructor<void> = createCustomElement(
-      AppComponent,
-      {
-        injector: this.injector
-      }
-    );
+    const appElement: NgElementConstructor<void> = createCustomElement(AppComponent, {
+      injector: this.injector,
+    });
     customElements.define(appTagName, appElement);
   }
 }

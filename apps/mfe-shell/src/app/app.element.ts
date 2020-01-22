@@ -6,7 +6,7 @@ import * as fromSharedUtils from '@microfr/shared/utils';
 enum ElementName {
   Shell = 'mfe-shell',
   ClientA = 'mfe-client-a',
-  ClientB = 'mfe-client-b'
+  ClientB = 'mfe-client-b',
 }
 
 interface ClientConfig {
@@ -20,21 +20,21 @@ const clientsConfig: { [name: string]: ClientConfig } = {
     isLoaded: false,
     scripts: [
       'mfe-client-a/main.js',
-      'mfe-client-a/polyfills.js'
+      'mfe-client-a/polyfills.js',
       // Below scripts are combined into main.js when using ngx-build-plus
       // 'mfe-client-a/runtime.js',
     ],
-    element: ElementName.ClientA
+    element: ElementName.ClientA,
   },
   [ElementName.ClientB]: {
     isLoaded: false,
     scripts: [
       'mfe-client-b/main.es5.js',
       'mfe-client-b/polyfills.es5.js',
-      'mfe-client-b/runtime.js'
+      'mfe-client-b/runtime.js',
     ],
-    element: ElementName.ClientB
-  }
+    element: ElementName.ClientB,
+  },
 };
 
 function loadClient(name: string) {
@@ -53,7 +53,7 @@ function loadClient(name: string) {
   const element: HTMLElement = document.createElement(config.element);
   content.appendChild(element);
 
-  element.addEventListener('message', msg => this.handleMessage(msg));
+  element.addEventListener('message', (msg) => this.handleMessage(msg));
   // element.setAttribute('state', 'init');
 }
 
@@ -82,8 +82,8 @@ export class AppElement extends HTMLElement {
 
     const uiFoo: string = fromSharedUi.getFoo();
     const utilsFoo: string = fromSharedUtils.getFoo();
-    console.log('uiFoo from shell :', uiFoo);
-    console.log('utilsFoo from shell :', utilsFoo);
+    console.log('Shell :', uiFoo);
+    console.log('Shell :', utilsFoo);
 
     // Load all clients defined in config.
     const clientNames: string[] = [ElementName.ClientA];

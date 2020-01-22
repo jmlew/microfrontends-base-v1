@@ -93,9 +93,11 @@
     "jest-preset-angular": "7.0.0",
     "live-server": "^1.2.1",
     "prettier": "1.18.2",
+    "rxjs-tslint": "^0.1.7",
     "ts-jest": "24.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.5.3"
   }
 }
