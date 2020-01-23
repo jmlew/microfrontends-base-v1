@@ -62,5 +62,5 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
  */
 
 // For browsers that don't support Web Components.
-// Either include here or in the shell project's build options scripts collection.
+// Either include here or in the shell project's polyfills collection.
 // import '@webcomponents/custom-elements/custom-elements.min';

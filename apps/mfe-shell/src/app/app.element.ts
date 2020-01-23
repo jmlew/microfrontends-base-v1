@@ -1,7 +1,7 @@
 import './app.element.scss';
 
-import * as fromSharedUi from '@microfr/shared/ui';
-import * as fromSharedUtils from '@microfr/shared/utils';
+// import * as fromSharedUi from '@microfr/shared/ui';
+// import * as fromSharedUtils from '@microfr/shared/util';
 
 enum ElementName {
   Shell = 'mfe-shell',
@@ -19,8 +19,10 @@ const clientsConfig: { [name: string]: ClientConfig } = {
   [ElementName.ClientA]: {
     isLoaded: false,
     scripts: [
-      'mfe-client-a/main.js',
+      // Using ngx-build-plus:
       'mfe-client-a/polyfills.js',
+      'mfe-client-a/main.js',
+
       // Below scripts are combined into main.js when using ngx-build-plus
       // 'mfe-client-a/runtime.js',
     ],
@@ -37,9 +39,11 @@ const clientsConfig: { [name: string]: ClientConfig } = {
   },
 };
 
-function loadClient(name: string) {
+function loadClient(name: ElementName) {
   const config: ClientConfig = clientsConfig[name];
-  if (config.isLoaded) return;
+  if (config.isLoaded) {
+    return;
+  }
 
   const content: HTMLElement = document.getElementById('content');
 
@@ -54,24 +58,19 @@ function loadClient(name: string) {
   content.appendChild(element);
 
   element.addEventListener('message', (msg) => this.handleMessage(msg));
-  // element.setAttribute('state', 'init');
+  element.setAttribute('state', 'init');
 }
 
 function getCustomElementTemplate() {
   return `
     <main class="main-panel">
       <h1 class="heading">Microfrontends Root Element</h1>
+      <p class="shell-global-style-example">A sample app</p>
       <div id="content" class="content">
         <!-- Web Components go here -->
       </div>
     </main>
   `;
-}
-
-function defineCustomElement(name: ElementName, element: Function) {
-  if (!customElements.get(name)) {
-    customElements.define(name, element);
-  }
 }
 
 export class AppElement extends HTMLElement {
@@ -80,10 +79,12 @@ export class AppElement extends HTMLElement {
   connectedCallback() {
     this.innerHTML = getCustomElementTemplate();
 
-    const uiFoo: string = fromSharedUi.getFoo();
-    const utilsFoo: string = fromSharedUtils.getFoo();
-    console.log('Shell :', uiFoo);
-    console.log('Shell :', utilsFoo);
+    // const uiFoo: string = fromSharedUi.getFoo();
+    // const utilsFoo: string = fromSharedUtils.getFoo();
+    // console.log('Shell :', uiFoo);
+    // console.log('Shell :', utilsFoo);
+
+    console.log('Shell AppElement :', this);
 
     // Load all clients defined in config.
     const clientNames: string[] = [ElementName.ClientA];
@@ -91,4 +92,10 @@ export class AppElement extends HTMLElement {
   }
 }
 
-defineCustomElement(ElementName.Shell, AppElement);
+console.log(
+  '!customElements.get(ElementName.Shell) :',
+  customElements.get(ElementName.Shell)
+);
+if (!customElements.get(ElementName.Shell)) {
+  customElements.define(ElementName.Shell, AppElement);
+}

@@ -32,7 +32,13 @@
     "shared-ui": {
       "tags": []
     },
-    "shared-utils": {
+    "shared-util": {
+      "tags": []
+    },
+    "shared-ui-angular": {
+      "tags": []
+    },
+    "shared-ui-styles": {
       "tags": []
     }
   }

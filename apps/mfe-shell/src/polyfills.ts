@@ -1,3 +1,2 @@
-/**
- * This file contains polyfills loaded on all browsers
- **/
+// For browsers that don't support Web Components.
+// import '@webcomponents/custom-elements/custom-elements.min';

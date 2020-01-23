@@ -1,0 +1,17 @@
+@import '~material-design-icons/iconfont/material-icons.css';
+
+// Override default icon styles.
+.material-icons {
+  &.md-18 {
+    font-size: 18px;
+  }
+  &.md-24 {
+    font-size: 24px;
+  }
+  &.md-30 {
+    font-size: 30px;
+  }
+  &.md-36 {
+    font-size: 36px;
+  }
+}

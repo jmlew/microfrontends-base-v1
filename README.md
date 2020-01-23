@@ -32,11 +32,27 @@ Or run each separately as separate apps:
 
 ### Building Angular Apps
 
-Uses the builder `ngx-build-plus:build` which extends the Angular CLI and combines scripts
-into a single bundle.
+Uses the builder `ngx-build-plus:build` (instead of the default `@nrwl/web:build`)
+which extends the Angular CLI and combines scripts into a single bundle.
 
 Add this to all Angular apps created in workspace.json: architect > build > builder config.
 
 See [here](https://www.npmjs.com/package/ngx-build-plus) for details.
 
 ### Build React Apps
+
+## Styling
+
+### Include shared SASS styles
+
+Shared SASS files are managed in the shared-ui-styles library.
+
+After creating a new lib or app which relies on common styling, add the path to this
+library to its SASS paths in order to import the styes:
+
+Paste into /architect/build/options:\
+`"stylePreprocessorOptions": {"includePaths": ["libs/shared/ui-styles/src/lib"]}`
+
+Import all styles at once into the global sass file of the library as `@import 'shared-ui-styles/all`;
+
+Then access specific modules as `@import 'shared-ui-styles/variables';`

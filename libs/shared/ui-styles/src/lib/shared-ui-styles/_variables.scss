@@ -1,0 +1,58 @@
+// MAT Grey colours
+$color-grey-50: #fafafa;
+$color-grey-100: #f7f7f7;
+$color-grey-200: #f1f1f1;
+$color-grey-300: #e6e6e6;
+$color-grey-400: #c9c9c9;
+$color-grey-500: #aeaeae;
+$color-grey-600: #888;
+$color-grey-700: #747474;
+$color-grey-800: #545454;
+$color-grey-900: #2c2c2c;
+
+// Project-specific colours:
+$color-app-dark: #14232f;
+$color-app-light: #556170;
+$color-app-lighter: desaturate(lighten($color-app-light, 6%), 3%);
+
+$color-primary: $color-app-dark;
+$color-secondary: #fdb62b; // Trinity logo yellow.
+
+// Generic colours
+$color-white: #fff;
+$color-black: #000;
+$color-red: #f4511e;
+$color-green: #20f355;
+
+// Opacity colours
+$color-black-low-opacity: rgba(0, 0, 0, 0.3);
+$color-black-half-opacity: rgba(0, 0, 0, 0.5);
+$color-black-high-opacity: rgba(0, 0, 0, 0.8);
+$color-white-low-opacity: rgba(255, 255, 255, 0.3);
+$color-white-half-opacity: rgba(255, 255, 255, 0.5);
+$color-white-high-opacity: rgba(255, 255, 255, 0.8);
+
+// Shadows.
+$color-box-shadow: rgba(0, 0, 0, 0.3);
+$box-shadow-card: 0.7px 1px 2.5px $color-box-shadow;
+
+// Transitions.
+$transition-btn: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, opacity 0.1s ease-in-out !default;
+
+// Fonts
+$font-family-default: -apple-system, sans-serif;
+$font-family-body: 'Roboto', $font-family-default;
+
+// Font dimensions
+$font-size-base: 1em;
+$line-height-base: 1.25;
+
+// Font weights (see index.html).
+$font-weight-light: 300;
+$font-weight-reg: 400;
+$font-weight-med: 500;
+$font-weight-heavy: 700;
+
+// Shell dimensions
+$height-header: 70px;
+$height-footer: 20px;

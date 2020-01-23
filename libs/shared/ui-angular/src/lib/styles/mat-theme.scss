@@ -1,0 +1,110 @@
+@import 'shared-ui-styles/variables';
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// $app-angular-base-primary: mat-palette($mat-indigo);
+// $app-angular-base-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$app-pallet-primary: (
+  50: lighten($color-primary, 50%),
+  100: lighten($color-primary, 40%),
+  200: lighten($color-primary, 30%),
+  300: lighten($color-primary, 20%),
+  400: lighten($color-primary, 10%),
+  500: lighten($color-primary, 5%),
+  600: $color-primary,
+  700: darken($color-primary, 5%),
+  800: darken($color-primary, 10%),
+  900: darken($color-primary, 30%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+
+$app-pallet-secondary: (
+  50: lighten($color-secondary, 50%),
+  100: lighten($color-secondary, 40%),
+  200: lighten($color-secondary, 30%),
+  300: lighten($color-secondary, 20%),
+  400: lighten($color-secondary, 10%),
+  500: lighten($color-secondary, 5%),
+  600: $color-secondary,
+  700: darken($color-secondary, 5%),
+  800: darken($color-secondary, 10%),
+  900: darken($color-secondary, 30%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+
+$primary: mat-palette($app-pallet-primary, 600, 800, 100);
+$accent: mat-palette($app-pallet-secondary, 600, 800, 100);
+$warn: mat-palette($mat-red);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+$success: mat-palette($mat-green, 400);
+$warning: mat-palette($mat-amber, 400);
+
+@include angular-material-theme($theme);
+
+// Example of an alternative theme, applied to a base element (app-root).
+
+.alt-theme {
+  $generic-primary: mat-palette($mat-cyan, 700, 900, A100);
+  $generic-accent: mat-palette($mat-orange);
+  $generic-warn: mat-palette($mat-red);
+
+  $generic-theme: mat-light-theme($generic-primary, $generic-accent, $generic-warn);
+
+  @include angular-material-theme($generic-theme);
+}
+
+// Extra global styles applied to theme.
+
+.notification-error {
+  color: mat-color($warn, default-contrast);
+  background-color: mat-color($warn);
+}
+
+.notification-info {
+  color: mat-color($accent, default-contrast);
+  background-color: $color-primary;
+}
+
+.notification-success {
+  color: mat-color($success, default-contrast);
+  background-color: mat-color($success);
+}
+
+.notification-warning {
+  color: mat-color($warning, default-contrast);
+  background-color: mat-color($warning);
+}

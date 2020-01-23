@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@microfr/shared/ui": ["libs/shared/ui/src/index.ts"],
-      "@microfr/shared/utils": ["libs/shared/utils/src/index.ts"]
+      "@microfr/shared/util": ["libs/shared/util/src/index.ts"],
+      "@microfr/shared/ui-angular": ["libs/shared/ui-angular/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

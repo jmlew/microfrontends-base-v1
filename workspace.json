@@ -20,7 +20,11 @@
             "styles": ["apps/mfe-shell/src/styles/global.scss"],
             "scripts": [
               "node_modules/@webcomponents/custom-elements/custom-elements.min.js"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs/shared/ui-styles/src/lib"]
+            },
+            "extractCss": true
           },
           "configurations": {
             "production": {
@@ -124,7 +128,10 @@
               "libs/shared/ui/tsconfig.lib.json",
               "libs/shared/ui/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/ui/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/ui/**"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs/shared/ui-styles/src/lib"]
+            }
           }
         },
         "test": {
@@ -136,7 +143,7 @@
         }
       }
     },
-    "shared-utils": {
+    "shared-util": {
       "root": "libs/shared/utils",
       "sourceRoot": "libs/shared/utils/src",
       "projectType": "library",
@@ -187,8 +194,15 @@
               "apps/mfe-client-a/src/favicon.ico",
               "apps/mfe-client-a/src/assets"
             ],
-            "styles": ["apps/mfe-client-a/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "styles": [
+              "apps/mfe-client-a/src/styles/global.scss",
+              "libs/shared/ui-angular/src/lib/styles/mat-theme.scss",
+              "libs/shared/ui-angular/src/lib/styles/mat-icons.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs/shared/ui-styles/src/lib"]
+            }
           },
           "configurations": {
             "production": {
@@ -301,6 +315,9 @@
             ],
             "styles": [],
             "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs/shared/ui-styles/src/lib"]
+            },
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
           "configurations": {
@@ -388,6 +405,43 @@
           }
         }
       }
+    },
+    "shared-ui-angular": {
+      "root": "libs/shared/ui-angular",
+      "sourceRoot": "libs/shared/ui-angular/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/ui-angular/.eslintrc",
+            "tsConfig": [
+              "libs/shared/ui-angular/tsconfig.lib.json",
+              "libs/shared/ui-angular/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui-angular/**"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs/shared/ui-styles/src/lib"]
+            }
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/ui-angular/jest.config.js",
+            "tsConfig": "libs/shared/ui-angular/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "shared-ui-styles": {
+      "root": "libs/shared/ui-styles",
+      "sourceRoot": "libs/shared/ui-styles/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {}
     }
   },
   "cli": {
