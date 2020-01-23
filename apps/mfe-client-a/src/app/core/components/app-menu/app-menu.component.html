@@ -1,0 +1,18 @@
+<mat-card>
+  <nav
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px">
+    <button
+      *ngFor="let route of routes"
+      mat-raised-button
+      color="primary"
+      (click)="onItemClick(route)">
+      <mat-icon class="mr-2">{{ route.icon }}</mat-icon>
+      <span>{{ route.label }}</span>
+    </button>
+  </nav>
+</mat-card>
+
+<div class="content-fill mat-typography">
+  <router-outlet></router-outlet>
+</div>

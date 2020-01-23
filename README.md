@@ -1,74 +1,64 @@
-# MicrofrBase
+# Microfrontends Base
+
+A POC collection of Angular and ReactJS apps using a microfontends monorepo architecture with NX.
 
 This project was generated using [Nx](https://nx.dev).
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+## Build & Serve
 
-## Adding capabilities to your workspace
+### Build Shell & Apps
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+- Run `npm run build` to build the shell and all apps.
+- Run `npm run build:shell` to build only the shell.
+- Run `npm run build:clients` to build only the client apps.
+- Run `npm run build:client-a` to build only the client-a app.
+- Run `npm run build:client-b` to build only the client-b app.
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+### Serve Shell & Apps
 
-Below are some plugins which you can add to your workspace:
+Serving via the default @nrwl/web:dev-server server does not serve files for all apps
+in runtime, and therefore live-server is used.
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+This requires first ensuring the shell and apps have been built on changes.
 
-## Generate an application
+Run `npm start`
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+Or run each separately as separate apps:
 
-> You can use any of the plugins above to generate applications as well.
+- Run `npm run serve` to serve the shell and all apps.
+- Run `npm run serve:shell` to serve only the shell.
+- Run `npm run serve:client-a` to serve only the client-a app.
+- Run `npm run serve:client-b` to serve only the client-b app.
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+### Building Angular Apps
 
-## Generate a library
+Uses the builder `ngx-build-plus:build` (instead of the default `@nrwl/web:build`)
+which extends the Angular CLI and combines scripts into a single bundle.
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+Add this to all Angular apps created in workspace.json: architect > build > builder config.
 
-> You can also use any of the plugins above to generate libraries as well.
+See [here](https://www.npmjs.com/package/ngx-build-plus) for details.
 
-Libraries are sharable across libraries and applications. They can be imported from `@microfr/mylib`.
+Note: Until using Ivy as the CLI builder, do not lazy load modules.
 
-## Development server
+Note: to ensure assets are accessible set the outputPath to that of the shell in the build options,
+and glob all files with input as the app's asset loc and output to '/assets', then set the
+--output-path flag in the build rule defined in package.json to the app subdir within the shell dir.
 
-Run `nx serve my-app` for a dev server. Navigate to `http://localhost:4200/.` The app will automatically reload if you change any of the source files.
+### Build React Apps
 
-## Code scaffolding
+## Styling
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+### Include shared SASS styles
 
-## Build
+Shared SASS files are managed in the shared-ui-styles library.
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+After creating a new lib or app which relies on common styling, add the path to this
+library to its SASS paths in order to import the styes:
 
-## Running unit tests
+Paste into /architect/build/options:\
+`"stylePreprocessorOptions": {"includePaths": ["libs/shared/ui-styles/src/lib"]}`
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+Import all styles at once into the global sass file of the library as `@import 'shared-ui-styles/all`;
 
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
+Then access specific modules as `@import 'shared-ui-styles/variables';`

@@ -1,17 +1,19 @@
-@import 'variables';
-@import 'colors';
-@import 'btns';
-@import 'layout';
-@import 'partials';
-@import 'resets';
-@import 'text';
-@import 'typography';
-@import 'utils';
+@import 'shared-ui-styles/variables';
 
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+.main-panel {
+  background-color: #ccc;
+  position: relative;
+  width: calc(100% - 200px);
+  min-height: 100%;
 
-  font-family: $font-family-body;
+  & > .content {
+    padding: 30px 15px;
+    min-height: calc(100% - 100px);
+    border: 1px solid grey;
+  }
+
+  & .heading {
+    font-size: 30px;
+    color: $color-green;
+  }
 }

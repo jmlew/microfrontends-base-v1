@@ -1,6 +1,10 @@
 {
   "recommendations": [
+    "esbenp.prettier-vscode",
     "ms-vscode.vscode-typescript-tslint-plugin",
-    "esbenp.prettier-vscode"
+    "nrwl.angular-console",
+    "angular.ng-template",
+    "ghaschel.vscode-angular-html",
+    "stringham.angular-template-formatter"
   ]
 }
