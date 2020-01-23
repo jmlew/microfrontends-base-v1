@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import * as fromSharedUi from '@microfr/shared/ui';
 import * as fromSharedUtils from '@microfr/shared/util';
@@ -14,7 +14,7 @@ import { RouteItem } from '../../../shared/models';
 export class AppMenuComponent implements OnInit {
   routes: RouteItem[];
 
-  constructor(private readonly router: Router) {
+  constructor(private readonly router: Router, private readonly route: ActivatedRoute) {
     this.routes = [rootRouteConfig.featureA, rootRouteConfig.featureB];
   }
 
@@ -27,7 +27,7 @@ export class AppMenuComponent implements OnInit {
 
   onItemClick(item: RouteItem) {
     if (item.path) {
-      this.router.navigate([item.path]);
+      this.router.navigate([item.name], { relativeTo: this.route });
     }
   }
 }

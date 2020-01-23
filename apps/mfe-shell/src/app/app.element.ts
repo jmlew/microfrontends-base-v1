@@ -1,7 +1,7 @@
 import './app.element.scss';
 
-// import * as fromSharedUi from '@microfr/shared/ui';
-// import * as fromSharedUtils from '@microfr/shared/util';
+import * as fromSharedUi from '@microfr/shared/ui';
+import * as fromSharedUtils from '@microfr/shared/util';
 
 enum ElementName {
   Shell = 'mfe-shell',
@@ -79,10 +79,10 @@ export class AppElement extends HTMLElement {
   connectedCallback() {
     this.innerHTML = getCustomElementTemplate();
 
-    // const uiFoo: string = fromSharedUi.getFoo();
-    // const utilsFoo: string = fromSharedUtils.getFoo();
-    // console.log('Shell :', uiFoo);
-    // console.log('Shell :', utilsFoo);
+    const uiFoo: string = fromSharedUi.getFoo();
+    const utilsFoo: string = fromSharedUtils.getFoo();
+    console.log('Shell :', uiFoo);
+    console.log('Shell :', utilsFoo);
 
     console.log('Shell AppElement :', this);
 
@@ -92,10 +92,6 @@ export class AppElement extends HTMLElement {
   }
 }
 
-console.log(
-  '!customElements.get(ElementName.Shell) :',
-  customElements.get(ElementName.Shell)
-);
 if (!customElements.get(ElementName.Shell)) {
   customElements.define(ElementName.Shell, AppElement);
 }

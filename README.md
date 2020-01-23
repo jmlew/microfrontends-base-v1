@@ -39,6 +39,8 @@ Add this to all Angular apps created in workspace.json: architect > build > buil
 
 See [here](https://www.npmjs.com/package/ngx-build-plus) for details.
 
+Note: Until using Ivy as the CLI builder, do not lazy load modules.
+
 ### Build React Apps
 
 ## Styling

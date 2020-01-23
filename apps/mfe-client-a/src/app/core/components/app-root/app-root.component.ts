@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
+  // selector: 'mfe-client-a', // Element name defined as custom element on ngDoBootstrap.
   template: `
     <router-outlet></router-outlet>
   `,

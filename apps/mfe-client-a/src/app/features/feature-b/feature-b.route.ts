@@ -5,11 +5,6 @@ import { routeConfig } from './constants';
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: routeConfig.main.name,
-    pathMatch: 'full',
-  },
-  {
     path: routeConfig.main.name,
     component: fromComponents.MainComponent,
   },

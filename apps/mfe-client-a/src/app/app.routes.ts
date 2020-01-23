@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
 
 import { AppMenuComponent } from './core/components';
-import { EmptyComponent } from './shared/components';
+import * as fromFeatureAComps from './features/feature-a/components';
+import * as fromFeatureBComps from './features/feature-b/components';
+import * as fromSharedComps from './shared/components';
 import { rootRouteConfig } from './shared/constants';
 
 /**
@@ -11,25 +13,22 @@ import { rootRouteConfig } from './shared/constants';
  * All others are caught by other apps and therefore load an empty component as a simple
  * method of allowing the shell to switch between apps.
  */
-export const rootRoutes: Routes = [
+export const appRoutes: Routes = [
   {
-    path: '',
-    // path: rootRouteConfig.app.name,
+    path: rootRouteConfig.app.name,
     component: AppMenuComponent,
     children: [
       {
         path: rootRouteConfig.featureA.name,
-        loadChildren: () =>
-          import('./features/feature-a/feature-a.module').then((m) => m.FeatureAModule),
+        component: fromFeatureAComps.MainComponent,
       },
       {
         path: rootRouteConfig.featureB.name,
-        loadChildren: () =>
-          import('./features/feature-b/feature-b.module').then((m) => m.FeatureBModule),
+        component: fromFeatureBComps.MainComponent,
       },
     ],
   },
 
   // Detach this app through an empty coponent for paths which exclude this app's prefix.
-  { path: '**', component: EmptyComponent },
+  { path: '**', component: fromSharedComps.EmptyComponent },
 ];

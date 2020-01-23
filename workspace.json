@@ -9,7 +9,7 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/web:build",
+          "builder": "ngx-build-plus:build",
           "options": {
             "outputPath": "dist/apps/mfe-shell",
             "index": "apps/mfe-shell/src/index.html",
@@ -18,9 +18,7 @@
             "tsConfig": "apps/mfe-shell/tsconfig.app.json",
             "assets": ["apps/mfe-shell/src/favicon.ico", "apps/mfe-shell/src/assets"],
             "styles": ["apps/mfe-shell/src/styles/global.scss"],
-            "scripts": [
-              "node_modules/@webcomponents/custom-elements/custom-elements.min.js"
-            ],
+            "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["libs/shared/ui-styles/src/lib"]
             },
