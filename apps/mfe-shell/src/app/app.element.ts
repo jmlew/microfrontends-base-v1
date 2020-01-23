@@ -1,5 +1,3 @@
-import './app.element.scss';
-
 import * as fromSharedUi from '@microfr/shared/ui';
 import * as fromSharedUtils from '@microfr/shared/util';
 

@@ -17,7 +17,12 @@
             "polyfills": "apps/mfe-shell/src/polyfills.ts",
             "tsConfig": "apps/mfe-shell/tsconfig.app.json",
             "assets": ["apps/mfe-shell/src/favicon.ico", "apps/mfe-shell/src/assets"],
-            "styles": ["apps/mfe-shell/src/styles/global.scss"],
+            "styles": [
+              "libs/shared/ui-angular/src/lib/styles/mat-theme.scss",
+              "libs/shared/ui-angular/src/lib/styles/mat-icons.scss",
+              "libs/shared/ui-styles/src/lib/shared-ui-styles/index.scss",
+              "apps/mfe-shell/src/styles/global.scss"
+            ],
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["libs/shared/ui-styles/src/lib"]
@@ -182,7 +187,7 @@
         "build": {
           "builder": "ngx-build-plus:build",
           "options": {
-            "outputPath": "dist/apps/mfe-client-a",
+            "outputPath": "dist/apps/mfe-shell/mfe-client-a",
             "index": "apps/mfe-client-a/src/index.html",
             "main": "apps/mfe-client-a/src/main.ts",
             "polyfills": "apps/mfe-client-a/src/polyfills.ts",
@@ -194,7 +199,7 @@
             ],
             "scripts": [],
             "styles": [
-              "apps/mfe-client-a/src/styles/global.scss",
+              "libs/shared/ui-styles/src/lib/shared-ui-styles/index.scss",
               "libs/shared/ui-angular/src/lib/styles/mat-theme.scss",
               "libs/shared/ui-angular/src/lib/styles/mat-icons.scss"
             ],
@@ -302,7 +307,7 @@
         "build": {
           "builder": "@nrwl/web:build",
           "options": {
-            "outputPath": "dist/apps/mfe-client-b",
+            "outputPath": "dist/apps/mfe-shell/mfe-client-b",
             "index": "apps/mfe-client-b/src/index.html",
             "main": "apps/mfe-client-b/src/main.tsx",
             "polyfills": "apps/mfe-client-b/src/polyfills.ts",
@@ -311,7 +316,6 @@
               "apps/mfe-client-b/src/favicon.ico",
               "apps/mfe-client-b/src/assets"
             ],
-            "styles": [],
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["libs/shared/ui-styles/src/lib"]

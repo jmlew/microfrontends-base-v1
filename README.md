@@ -41,6 +41,10 @@ See [here](https://www.npmjs.com/package/ngx-build-plus) for details.
 
 Note: Until using Ivy as the CLI builder, do not lazy load modules.
 
+Note: to ensure assets are accessible set the outputPath to that of the shell in the build options,
+and glob all files with input as the app's asset loc and output to '/assets', then set the
+--output-path flag in the build rule defined in package.json to the app subdir within the shell dir.
+
 ### Build React Apps
 
 ## Styling
