@@ -11,6 +11,7 @@ import { appRoutes } from './app.routes';
 import { AppRootComponent } from './core/components';
 import { FeatureAModule } from './features/feature-a/feature-a.module';
 import { FeatureBModule } from './features/feature-b/feature-b.module';
+import { appConfig } from './shared/constants';
 
 @NgModule({
   imports: [
@@ -38,12 +39,10 @@ export class AppModule {
   constructor(private readonly injector: Injector) {}
 
   ngDoBootstrap() {
-    console.log('ngDoBootstrap :', this);
-    // TODO: Get client app tag name form global store.
-    const appTagName = 'mfe-client-a';
     const appElement: NgElementConstructor<void> = createCustomElement(AppRootComponent, {
       injector: this.injector,
     });
-    customElements.define(appTagName, appElement);
+    console.log('ngDoBootstrap :', appConfig.element);
+    customElements.define(appConfig.element, appElement);
   }
 }

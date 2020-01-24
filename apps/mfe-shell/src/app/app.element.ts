@@ -1,62 +1,20 @@
-import * as fromSharedUi from '@microfr/shared/ui';
-import * as fromSharedUtils from '@microfr/shared/util';
+import { ClientConfig, clientsConfig, ElementName, loadClient } from '@microfr/shell';
 
-enum ElementName {
-  Shell = 'mfe-shell',
-  ClientA = 'mfe-client-a',
-  ClientB = 'mfe-client-b',
-}
+export class AppElement extends HTMLElement {
+  public static observedAttributes = [];
 
-interface ClientConfig {
-  isLoaded: boolean;
-  scripts: string[];
-  element: string;
-}
+  connectedCallback() {
+    this.innerHTML = getCustomElementTemplate();
+    const container: HTMLElement = document.getElementById('content');
 
-const clientsConfig: { [name: string]: ClientConfig } = {
-  [ElementName.ClientA]: {
-    isLoaded: false,
-    scripts: [
-      // Using ngx-build-plus:
-      'mfe-client-a/polyfills.js',
-      'mfe-client-a/main.js',
-
-      // Below scripts are combined into main.js when using ngx-build-plus
-      // 'mfe-client-a/runtime.js',
-    ],
-    element: ElementName.ClientA,
-  },
-  [ElementName.ClientB]: {
-    isLoaded: false,
-    scripts: [
-      'mfe-client-b/main.es5.js',
-      'mfe-client-b/polyfills.es5.js',
-      'mfe-client-b/runtime.js',
-    ],
-    element: ElementName.ClientB,
-  },
-};
-
-function loadClient(name: ElementName) {
-  const config: ClientConfig = clientsConfig[name];
-  if (config.isLoaded) {
-    return;
+    // Load relevant clients into top-level view.
+    const clientConfigs: ClientConfig[] = [clientsConfig.clientA];
+    clientConfigs.forEach((config: ClientConfig) => loadClient(config, container));
   }
+}
 
-  const content: HTMLElement = document.getElementById('content');
-
-  config.scripts.forEach((path: string) => {
-    const script: HTMLScriptElement = document.createElement('script');
-    script.src = path;
-    script.onerror = () => console.error(`error loading ${path}`);
-    content.appendChild(script);
-  });
-
-  const element: HTMLElement = document.createElement(config.element);
-  content.appendChild(element);
-
-  element.addEventListener('message', (msg) => this.handleMessage(msg));
-  element.setAttribute('state', 'init');
+if (!customElements.get(ElementName.Shell)) {
+  customElements.define(ElementName.Shell, AppElement);
 }
 
 function getCustomElementTemplate() {
@@ -69,27 +27,4 @@ function getCustomElementTemplate() {
       </div>
     </main>
   `;
-}
-
-export class AppElement extends HTMLElement {
-  public static observedAttributes = [];
-
-  connectedCallback() {
-    this.innerHTML = getCustomElementTemplate();
-
-    const uiFoo: string = fromSharedUi.getFoo();
-    const utilsFoo: string = fromSharedUtils.getFoo();
-    console.log('Shell :', uiFoo);
-    console.log('Shell :', utilsFoo);
-
-    console.log('Shell AppElement :', this);
-
-    // Load all clients defined in config.
-    const clientNames: string[] = [ElementName.ClientA];
-    clientNames.forEach(loadClient);
-  }
-}
-
-if (!customElements.get(ElementName.Shell)) {
-  customElements.define(ElementName.Shell, AppElement);
 }

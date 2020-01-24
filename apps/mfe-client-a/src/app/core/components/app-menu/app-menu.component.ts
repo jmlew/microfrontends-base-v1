@@ -26,8 +26,6 @@ export class AppMenuComponent implements OnInit {
   }
 
   onItemClick(item: RouteItem) {
-    if (item.path) {
-      this.router.navigate([item.name], { relativeTo: this.route });
-    }
+    this.router.navigate([item.name], { relativeTo: this.route });
   }
 }

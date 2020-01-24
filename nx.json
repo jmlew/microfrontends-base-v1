@@ -40,6 +40,9 @@
     },
     "shared-ui-styles": {
       "tags": []
+    },
+    "shell": {
+      "tags": []
     }
   }
 }

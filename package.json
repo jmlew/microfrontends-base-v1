@@ -5,7 +5,7 @@
   "scripts": {
     "nx": "nx",
     "----- SERVE --------------------": "",
-    "start": "live-server dist/apps/mfe-shell --port=4200",
+    "start": "live-server dist/apps/mfe-shell --no-browser --port=4200",
     "serve:shell": "nx serve --project=mfe-shell --port=4210",
     "serve:client-a": "nx serve --project=mfe-client-a --port=4220",
     "serve:client-b": "nx serve --project=mfe-client-b --port=4230",
@@ -54,6 +54,7 @@
     "@angular/platform-browser": "^8.2.0",
     "@angular/platform-browser-dynamic": "^8.2.0",
     "@angular/router": "^8.2.0",
+    "@nrwl/nx": "^7.8.7",
     "@webcomponents/custom-elements": "^1.3.2",
     "core-js": "^2.5.4",
     "document-register-element": "1.13.1",
