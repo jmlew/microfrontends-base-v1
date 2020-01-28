@@ -1,0 +1,70 @@
+@mixin btn-reset {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: none;
+  text-decoration: none;
+  background-color: transparent;
+  line-height: 1;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+@mixin btn-hover($opacity: 0.8) {
+  &:not(:disabled) {
+    opacity: $opacity;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.btn-hover {
+  @include btn-hover();
+}
+
+.btn-generic {
+  @include btn-reset();
+  @include btn-hover();
+}
+
+.btn-expander {
+  padding-left: 4px;
+
+  @include btn-reset();
+  @include btn-hover();
+
+  i {
+    font-size: 13px;
+    vertical-align: middle;
+    padding-left: 3px;
+  }
+}
+
+.btn-icon {
+  @include btn-reset();
+  @include btn-hover();
+  vertical-align: middle;
+
+  &.hover-faint {
+    @include btn-hover(0.5);
+  }
+
+  &.disabled-faint {
+    opacity: 0.2;
+  }
+
+  &:enabled {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
