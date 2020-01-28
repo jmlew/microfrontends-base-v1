@@ -1,8 +1,7 @@
 # Microfrontends Base
 
-A POC collection of Angular and ReactJS apps using a microfontends monorepo architecture with NX.
-
-This project was generated using [Nx](https://nx.dev).
+A POC collection of Angular and ReactJS apps using a microfontends monorepo architecture,
+generated with [Nx](https://nx.dev).
 
 ## Build & Serve
 
@@ -11,8 +10,8 @@ This project was generated using [Nx](https://nx.dev).
 - Run `npm run build` to build the shell and all apps.
 - Run `npm run build:shell` to build only the shell.
 - Run `npm run build:clients` to build only the client apps.
-- Run `npm run build:client-a` to build only the client-a app.
-- Run `npm run build:client-b` to build only the client-b app.
+- Run `npm run build:client-ng-a` to build only the Angular client example A app.
+- Run `npm run build:client-ng-b` to build only the Angular client example B app.
 
 ### Serve Shell & Apps
 
@@ -27,8 +26,8 @@ Or run each separately as separate apps:
 
 - Run `npm run serve` to serve the shell and all apps.
 - Run `npm run serve:shell` to serve only the shell.
-- Run `npm run serve:client-a` to serve only the client-a app.
-- Run `npm run serve:client-b` to serve only the client-b app.
+- Run `npm run serve:client-ng-a` to serve only the Angular client example A app.
+- Run `npm run serve:client-ng-b` to serve only the Angular client example B app.
 
 ### Building Angular Apps
 
@@ -40,10 +39,6 @@ Add this to all Angular apps created in workspace.json: architect > build > buil
 See [here](https://www.npmjs.com/package/ngx-build-plus) for details.
 
 Note: Until using Ivy as the CLI builder, do not lazy load modules.
-
-Note: to ensure assets are accessible set the outputPath to that of the shell in the build options,
-and glob all files with input as the app's asset loc and output to '/assets', then set the
---output-path flag in the build rule defined in package.json to the app subdir within the shell dir.
 
 ### Build React Apps
 

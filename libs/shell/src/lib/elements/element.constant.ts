@@ -2,27 +2,40 @@ import { ElementName, ElementRoute } from './element.enum';
 import { ClientConfig } from './element.model';
 
 export const clientsConfig: { [name: string]: ClientConfig } = {
-  clientA: {
+  clientAngularA: {
     isLoaded: false,
-    element: ElementName.ClientA,
-    route: ElementRoute.ClientA,
+    element: ElementName.ClientAngularA,
+    route: ElementRoute.ClientAngularA,
     scripts: [
       // Using ngx-build-plus:
-      'mfe-client-a/polyfills.js',
-      'mfe-client-a/main.js',
+      'mfe-client-ng-a/polyfills.js',
+      'mfe-client-ng-a/main.js',
 
       // Below scripts are combined into main.js when using ngx-build-plus
-      // 'mfe-client-a/runtime.js',
+      // 'mfe-client-ng-b/runtime.js',
     ],
   },
-  clientB: {
+  clientAngularB: {
     isLoaded: false,
-    element: ElementName.ClientB,
-    route: ElementRoute.ClientA,
+    element: ElementName.ClientAngularB,
+    route: ElementRoute.ClientAngularB,
     scripts: [
-      'mfe-client-b/main.es5.js',
-      'mfe-client-b/polyfills.es5.js',
-      'mfe-client-b/runtime.js',
+      // Using ngx-build-plus:
+      'mfe-client-ng-b/polyfills.js',
+      'mfe-client-ng-b/main.js',
+
+      // Below scripts are combined into main.js when using ngx-build-plus
+      // 'mfe-client-ng-b/runtime.js',
+    ],
+  },
+  clientReactB: {
+    isLoaded: false,
+    element: ElementName.ClientReactA,
+    route: ElementRoute.ClientReactA,
+    scripts: [
+      'mfe-client-react-a/main.es5.js',
+      'mfe-client-react-a/polyfills.es5.js',
+      'mfe-client-react-a/runtime.js',
     ],
   },
 };

@@ -1,4 +1,4 @@
-@import 'shared-ui-styles/variables';
+@import 'shared-ui-styles/index';
 
 .main-panel {
   background-color: #ccc;
@@ -6,14 +6,20 @@
   width: calc(100% - 200px);
   min-height: 100%;
 
+  & > .heading {
+    padding: 1rem;
+    font-size: 30px;
+    color: $color-app-light;
+  }
+
+  & > .navbar {
+    padding: 1rem;
+    border-bottom: 1px solid $color-grey-500;
+    border-top: 1px solid $color-grey-500;
+  }
+
   & > .content {
     padding: 30px 15px;
     min-height: calc(100% - 100px);
-    border: 1px solid grey;
-  }
-
-  & .heading {
-    font-size: 30px;
-    color: $color-green;
   }
 }

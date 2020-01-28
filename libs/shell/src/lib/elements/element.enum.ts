@@ -1,11 +1,13 @@
 export enum ElementName {
   Shell = 'mfe-shell',
-  ClientA = 'mfe-client-a',
-  ClientB = 'mfe-client-b',
+  ClientAngularA = 'mfe-client-ng-a',
+  ClientAngularB = 'mfe-client-ng-b',
+  ClientReactA = 'mfe-client-react-a',
 }
 
 export enum ElementRoute {
   Shell = '/',
-  ClientA = 'client-a',
-  ClientB = 'client-b',
+  ClientAngularA = 'ng-a',
+  ClientAngularB = 'ng-b',
+  ClientReactA = 'react-a',
 }

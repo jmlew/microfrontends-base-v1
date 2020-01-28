@@ -17,16 +17,22 @@
     "mfe-shell-e2e": {
       "tags": []
     },
-    "mfe-client-a": {
+    "mfe-client-ng-b": {
       "tags": []
     },
-    "mfe-client-a-e2e": {
+    "mfe-client-ng-b-e2e": {
       "tags": []
     },
-    "mfe-client-b": {
+    "mfe-client-ng-a": {
       "tags": []
     },
-    "mfe-client-b-e2e": {
+    "mfe-client-ng-a-e2e": {
+      "tags": []
+    },
+    "mfe-client-react-a": {
+      "tags": []
+    },
+    "mfe-client-react-a-e2e": {
       "tags": []
     },
     "shared-ui": {

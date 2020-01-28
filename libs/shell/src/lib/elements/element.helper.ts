@@ -12,9 +12,14 @@ export function loadClient(config: ClientConfig, container: HTMLElement) {
     container.appendChild(script);
   });
 
-  const element: HTMLElement = document.createElement(config.element);
-  container.appendChild(element);
+  const element: HTMLElement = embedElement(config.element, container);
 
   element.addEventListener('message', (msg) => this.handleMessage(msg));
   element.setAttribute('state', 'init');
+}
+
+export function embedElement(name: string, container: HTMLElement): HTMLElement {
+  const element: HTMLElement = document.createElement(name);
+  container.appendChild(element);
+  return element;
 }

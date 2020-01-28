@@ -55,13 +55,13 @@
           }
         },
         "serve": {
-          "builder": "@nrwl/web:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
-            "buildTarget": "mfe-shell:build"
+            "browserTarget": "mfe-shell:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "mfe-shell:build:production"
+              "browserTarget": "mfe-shell:build:production"
             }
           }
         },
@@ -173,29 +173,29 @@
         }
       }
     },
-    "mfe-client-a": {
+    "mfe-client-ng-a": {
       "projectType": "application",
       "schematics": {
         "@nrwl/angular:component": {
           "style": "scss"
         }
       },
-      "root": "apps/mfe-client-a",
-      "sourceRoot": "apps/mfe-client-a/src",
+      "root": "apps/mfe-client-ng-a",
+      "sourceRoot": "apps/mfe-client-ng-a/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "ngx-build-plus:build",
           "options": {
-            "outputPath": "dist/apps/mfe-shell/mfe-client-a",
-            "index": "apps/mfe-client-a/src/index.html",
-            "main": "apps/mfe-client-a/src/main.ts",
-            "polyfills": "apps/mfe-client-a/src/polyfills.ts",
-            "tsConfig": "apps/mfe-client-a/tsconfig.app.json",
+            "outputPath": "dist/apps/mfe-shell/mfe-client-ng-a",
+            "index": "apps/mfe-client-ng-a/src/index.html",
+            "main": "apps/mfe-client-ng-a/src/main.ts",
+            "polyfills": "apps/mfe-client-ng-a/src/polyfills.ts",
+            "tsConfig": "apps/mfe-client-ng-a/tsconfig.app.json",
             "aot": false,
             "assets": [
-              "apps/mfe-client-a/src/favicon.ico",
-              "apps/mfe-client-a/src/assets"
+              "apps/mfe-client-ng-a/src/favicon.ico",
+              "apps/mfe-client-ng-a/src/assets"
             ],
             "scripts": [],
             "styles": [
@@ -211,8 +211,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/mfe-client-a/src/environments/environment.ts",
-                  "with": "apps/mfe-client-a/src/environments/environment.prod.ts"
+                  "replace": "apps/mfe-client-ng-a/src/environments/environment.ts",
+                  "with": "apps/mfe-client-ng-a/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -235,86 +235,184 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "mfe-client-a:build"
+            "browserTarget": "mfe-client-ng-a:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mfe-client-a:build:production"
+              "browserTarget": "mfe-client-ng-a:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mfe-client-a:build"
+            "browserTarget": "mfe-client-ng-a:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/mfe-client-a/tsconfig.app.json",
-              "apps/mfe-client-a/tsconfig.spec.json"
+              "apps/mfe-client-ng-a/tsconfig.app.json",
+              "apps/mfe-client-ng-a/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/mfe-client-a/**"]
+            "exclude": ["**/node_modules/**", "!apps/mfe-client-ng-a/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/mfe-client-a/jest.config.js",
-            "tsConfig": "apps/mfe-client-a/tsconfig.spec.json",
-            "setupFile": "apps/mfe-client-a/src/test-setup.ts"
+            "jestConfig": "apps/mfe-client-ng-a/jest.config.js",
+            "tsConfig": "apps/mfe-client-ng-a/tsconfig.spec.json",
+            "setupFile": "apps/mfe-client-ng-a/src/test-setup.ts"
           }
         }
       }
     },
-    "mfe-client-a-e2e": {
-      "root": "apps/mfe-client-a-e2e",
-      "sourceRoot": "apps/mfe-client-a-e2e/src",
+    "mfe-client-ng-b": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/mfe-client-ng-b",
+      "sourceRoot": "apps/mfe-client-ng-b/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:build",
+          "options": {
+            "outputPath": "dist/apps/mfe-shell/mfe-client-ng-b",
+            "index": "apps/mfe-client-ng-b/src/index.html",
+            "main": "apps/mfe-client-ng-b/src/main.ts",
+            "polyfills": "apps/mfe-client-ng-b/src/polyfills.ts",
+            "tsConfig": "apps/mfe-client-ng-b/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/mfe-client-ng-b/src/favicon.ico",
+              "apps/mfe-client-ng-b/src/assets"
+            ],
+            "scripts": [],
+            "styles": [
+              "libs/shared/ui-styles/src/lib/shared-ui-styles/index.scss",
+              "libs/shared/ui-angular/src/lib/styles/mat-theme.scss",
+              "libs/shared/ui-angular/src/lib/styles/mat-icons.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs/shared/ui-styles/src/lib"]
+            }
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/mfe-client-ng-b/src/environments/environment.ts",
+                  "with": "apps/mfe-client-ng-b/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "mfe-client-ng-b:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mfe-client-ng-b:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mfe-client-ng-b:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/mfe-client-ng-b/tsconfig.app.json",
+              "apps/mfe-client-ng-b/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/mfe-client-ng-b/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/mfe-client-ng-b/jest.config.js",
+            "tsConfig": "apps/mfe-client-ng-b/tsconfig.spec.json",
+            "setupFile": "apps/mfe-client-ng-b/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "mfe-client-ng-b-e2e": {
+      "root": "apps/mfe-client-ng-b-e2e",
+      "sourceRoot": "apps/mfe-client-ng-b-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/mfe-client-a-e2e/cypress.json",
-            "tsConfig": "apps/mfe-client-a-e2e/tsconfig.e2e.json",
-            "devServerTarget": "mfe-client-a:serve"
+            "cypressConfig": "apps/mfe-client-ng-b-e2e/cypress.json",
+            "tsConfig": "apps/mfe-client-ng-b-e2e/tsconfig.e2e.json",
+            "devServerTarget": "mfe-client-ng-b:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mfe-client-a:serve:production"
+              "devServerTarget": "mfe-client-ng-b:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/mfe-client-a-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/mfe-client-a-e2e/**"]
+            "tsConfig": ["apps/mfe-client-ng-b-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/mfe-client-ng-b-e2e/**"]
           }
         }
       }
     },
-    "mfe-client-b": {
-      "root": "apps/mfe-client-b",
-      "sourceRoot": "apps/mfe-client-b/src",
+    "mfe-client-react-a": {
+      "root": "apps/mfe-client-react-a",
+      "sourceRoot": "apps/mfe-client-react-a/src",
       "projectType": "application",
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/web:build",
           "options": {
-            "outputPath": "dist/apps/mfe-shell/mfe-client-b",
-            "index": "apps/mfe-client-b/src/index.html",
-            "main": "apps/mfe-client-b/src/main.tsx",
-            "polyfills": "apps/mfe-client-b/src/polyfills.ts",
-            "tsConfig": "apps/mfe-client-b/tsconfig.app.json",
+            "outputPath": "dist/apps/mfe-shell/mfe-client-react-a",
+            "index": "apps/mfe-client-react-a/src/index.html",
+            "main": "apps/mfe-client-react-a/src/main.tsx",
+            "polyfills": "apps/mfe-client-react-a/src/polyfills.ts",
+            "tsConfig": "apps/mfe-client-react-a/tsconfig.app.json",
             "assets": [
-              "apps/mfe-client-b/src/favicon.ico",
-              "apps/mfe-client-b/src/assets"
+              "apps/mfe-client-react-a/src/favicon.ico",
+              "apps/mfe-client-react-a/src/assets"
             ],
             "scripts": [],
             "stylePreprocessorOptions": {
@@ -326,8 +424,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/mfe-client-b/src/environments/environment.ts",
-                  "with": "apps/mfe-client-b/src/environments/environment.prod.ts"
+                  "replace": "apps/mfe-client-react-a/src/environments/environment.ts",
+                  "with": "apps/mfe-client-react-a/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -350,11 +448,11 @@
         "serve": {
           "builder": "@nrwl/web:dev-server",
           "options": {
-            "buildTarget": "mfe-client-b:build"
+            "buildTarget": "mfe-client-react-a:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "mfe-client-b:build:production"
+              "buildTarget": "mfe-client-react-a:build:production"
             }
           }
         },
@@ -362,38 +460,38 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/mfe-client-b/.eslintrc",
+            "config": "apps/mfe-client-react-a/.eslintrc",
             "tsConfig": [
-              "apps/mfe-client-b/tsconfig.app.json",
-              "apps/mfe-client-b/tsconfig.spec.json"
+              "apps/mfe-client-react-a/tsconfig.app.json",
+              "apps/mfe-client-react-a/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/mfe-client-b/**"]
+            "exclude": ["**/node_modules/**", "!apps/mfe-client-react-a/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/mfe-client-b/jest.config.js",
-            "tsConfig": "apps/mfe-client-b/tsconfig.spec.json"
+            "jestConfig": "apps/mfe-client-react-a/jest.config.js",
+            "tsConfig": "apps/mfe-client-react-a/tsconfig.spec.json"
           }
         }
       }
     },
-    "mfe-client-b-e2e": {
-      "root": "apps/mfe-client-b-e2e",
-      "sourceRoot": "apps/mfe-client-b-e2e/src",
+    "mfe-client-react-a-e2e": {
+      "root": "apps/mfe-client-react-a-e2e",
+      "sourceRoot": "apps/mfe-client-react-a-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/mfe-client-b-e2e/cypress.json",
-            "tsConfig": "apps/mfe-client-b-e2e/tsconfig.e2e.json",
-            "devServerTarget": "mfe-client-b:serve"
+            "cypressConfig": "apps/mfe-client-react-a-e2e/cypress.json",
+            "tsConfig": "apps/mfe-client-react-a-e2e/tsconfig.e2e.json",
+            "devServerTarget": "mfe-client-react-a:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mfe-client-b:serve:production"
+              "devServerTarget": "mfe-client-react-a:serve:production"
             }
           }
         },
@@ -401,9 +499,9 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/mfe-client-b-e2e/.eslintrc",
-            "tsConfig": ["apps/mfe-client-b-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/mfe-client-b-e2e/**"]
+            "config": "apps/mfe-client-react-a-e2e/.eslintrc",
+            "tsConfig": ["apps/mfe-client-react-a-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/mfe-client-react-a-e2e/**"]
           }
         }
       }
