@@ -9,7 +9,7 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:build",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/apps/mfe-shell",
             "index": "apps/mfe-shell/src/index.html",
@@ -17,13 +17,23 @@
             "polyfills": "apps/mfe-shell/src/polyfills.ts",
             "tsConfig": "apps/mfe-shell/tsconfig.app.json",
             "assets": ["apps/mfe-shell/src/favicon.ico", "apps/mfe-shell/src/assets"],
+            "scripts": [
+              "node_modules/rxjs/bundles/rxjs.umd.js",
+              "node_modules/@angular/core/bundles/core.umd.js",
+              "node_modules/@angular/common/bundles/common.umd.js",
+              "node_modules/@angular/common/bundles/common-http.umd.js",
+              "node_modules/@angular/compiler/bundles/compiler.umd.js",
+              "node_modules/@angular/forms/bundles/forms.umd.js",
+              "node_modules/@angular/router/bundles/router.umd.js",
+              "node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
+              "node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"
+            ],
             "styles": [
               "libs/shared/ui-angular/src/lib/styles/mat-theme.scss",
               "libs/shared/ui-angular/src/lib/styles/mat-icons.scss",
               "libs/shared/ui-styles/src/lib/shared-ui-styles/index.scss",
               "apps/mfe-shell/src/styles/global.scss"
             ],
-            "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["libs/shared/ui-styles/src/lib"]
             },
@@ -55,7 +65,7 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "mfe-shell:build"
           },
@@ -185,8 +195,14 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:build",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "./webpack-ng.config.js",
+              "mergeStrategies": {
+                "externals": "replace"
+              }
+            },
             "outputPath": "dist/apps/mfe-shell/mfe-client-ng-a",
             "index": "apps/mfe-client-ng-a/src/index.html",
             "main": "apps/mfe-client-ng-a/src/main.ts",
@@ -235,7 +251,7 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "mfe-client-ng-a:build"
           },
@@ -283,8 +299,14 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:build",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "./webpack-ng.config.js",
+              "mergeStrategies": {
+                "externals": "replace"
+              }
+            },
             "outputPath": "dist/apps/mfe-shell/mfe-client-ng-b",
             "index": "apps/mfe-client-ng-b/src/index.html",
             "main": "apps/mfe-client-ng-b/src/main.ts",
@@ -333,7 +355,7 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "mfe-client-ng-b:build"
           },
