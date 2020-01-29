@@ -1,4 +1,10 @@
-import { ClientConfig, clientsConfig, ElementName, loadClient } from '@microfr/shell';
+import {
+  ClientConfig,
+  clientsConfig,
+  ElementName,
+  loadClient,
+  defineCustomElement,
+} from '@microfr/shell';
 
 export class AppElement extends HTMLElement {
   public static observedAttributes = [];
@@ -14,10 +20,6 @@ export class AppElement extends HTMLElement {
     ];
     clientConfigs.forEach((config: ClientConfig) => loadClient(config, container));
   }
-}
-
-if (!customElements.get(ElementName.Shell)) {
-  customElements.define(ElementName.Shell, AppElement);
 }
 
 function getCustomElementTemplate() {
@@ -48,5 +50,7 @@ function getCustomElementTemplate() {
         <!-- Web Components go here -->
       </div>
     </main>
-  `;
+        `;
 }
+
+defineCustomElement(ElementName.Shell, AppElement);

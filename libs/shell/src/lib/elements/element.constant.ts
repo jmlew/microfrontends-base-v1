@@ -1,18 +1,18 @@
 import { ElementName, ElementRoute } from './element.enum';
 import { ClientConfig } from './element.model';
 
+// TODO: Enable differential loading of the below scripts using technique in index.html.
+// Currently turned off with each browserlist set only to es2015 browsers.
+
 export const clientsConfig: { [name: string]: ClientConfig } = {
   clientAngularA: {
     isLoaded: false,
     element: ElementName.ClientAngularA,
     route: ElementRoute.ClientAngularA,
     scripts: [
-      // Using ngx-build-plus:
-      'mfe-client-ng-a/polyfills.js',
-      'mfe-client-ng-a/main.js',
-
-      // Below scripts are combined into main.js when using ngx-build-plus
-      // 'mfe-client-ng-b/runtime.js',
+      `${ElementName.ClientAngularA}/polyfills.js`,
+      `${ElementName.ClientAngularA}/main.js`,
+      `${ElementName.ClientAngularA}/runtime.js`,
     ],
   },
   clientAngularB: {
@@ -20,12 +20,9 @@ export const clientsConfig: { [name: string]: ClientConfig } = {
     element: ElementName.ClientAngularB,
     route: ElementRoute.ClientAngularB,
     scripts: [
-      // Using ngx-build-plus:
-      'mfe-client-ng-b/polyfills.js',
-      'mfe-client-ng-b/main.js',
-
-      // Below scripts are combined into main.js when using ngx-build-plus
-      // 'mfe-client-ng-b/runtime.js',
+      `${ElementName.ClientAngularB}/polyfills.js`,
+      `${ElementName.ClientAngularB}/main.js`,
+      `${ElementName.ClientAngularB}/runtime.js`,
     ],
   },
   clientReactB: {

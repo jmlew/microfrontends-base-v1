@@ -1,7 +1,13 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["node", "jest"]
+    "types": ["node", "jest"],
+    "angularCompilerOptions": {
+      "fullTemplateTypeCheck": true,
+      "strictInjectionParameters": true,
+      "noImplicitAny": true,
+      "suppressImplicitAnyIndexErrors": true
+    }
   },
   "include": ["**/*.ts"]
 }

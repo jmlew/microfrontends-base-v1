@@ -1,6 +1,7 @@
 import { ClientConfig } from './element.model';
 
 export function loadClient(config: ClientConfig, container: HTMLElement) {
+  console.log('loadClient :', config);
   if (config.isLoaded) {
     return;
   }
@@ -22,4 +23,10 @@ export function embedElement(name: string, container: HTMLElement): HTMLElement 
   const element: HTMLElement = document.createElement(name);
   container.appendChild(element);
   return element;
+}
+
+export function defineCustomElement(name: string, element: Function) {
+  if (!customElements.get(name)) {
+    customElements.define(name, element);
+  }
 }

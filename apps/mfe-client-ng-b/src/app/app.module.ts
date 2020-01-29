@@ -12,6 +12,7 @@ import { AppRootComponent } from './core/components';
 import { FeatureAModule } from './features/feature-a/feature-a.module';
 import { FeatureBModule } from './features/feature-b/feature-b.module';
 import { appConfig } from './shared/constants';
+import { defineCustomElement } from '@microfr/shell';
 
 @NgModule({
   imports: [
@@ -42,7 +43,7 @@ export class AppModule {
     const appElement: NgElementConstructor<void> = createCustomElement(AppRootComponent, {
       injector: this.injector,
     });
-    console.log('ngDoBootstrap :', appConfig.element);
-    customElements.define(appConfig.element, appElement);
+    console.log('ngDoBootstrap :', appConfig.element, this);
+    defineCustomElement(appConfig.element, appElement);
   }
 }
