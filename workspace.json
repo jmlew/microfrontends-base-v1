@@ -197,12 +197,6 @@
         "build": {
           "builder": "ngx-build-plus:build",
           "options": {
-            "customWebpackConfig": {
-              "path": "./webpack-ng.config.js",
-              "mergeStrategies": {
-                "externals": "replace"
-              }
-            },
             "outputPath": "dist/apps/mfe-shell/mfe-client-ng-a",
             "index": "apps/mfe-client-ng-a/src/index.html",
             "main": "apps/mfe-client-ng-a/src/main.ts",
@@ -301,12 +295,6 @@
         "build": {
           "builder": "ngx-build-plus:build",
           "options": {
-            "customWebpackConfig": {
-              "path": "./webpack-ng.config.js",
-              "mergeStrategies": {
-                "externals": "replace"
-              }
-            },
             "outputPath": "dist/apps/mfe-shell/mfe-client-ng-b",
             "index": "apps/mfe-client-ng-b/src/index.html",
             "main": "apps/mfe-client-ng-b/src/main.ts",
