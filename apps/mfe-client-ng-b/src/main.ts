@@ -1,12 +1,10 @@
-import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import 'hammerjs';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 if (environment.production) {
-  enableProdMode();
+  // enableProdMode(); // Called once for all apps by the shell on the global window.ng.core UMD file.
 }
 
 platformBrowserDynamic()

@@ -195,7 +195,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "ngx-build-plus:build",
           "options": {
             "customWebpackConfig": {
               "path": "./webpack-ng.config.js",
@@ -299,7 +299,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "ngx-build-plus:build",
           "options": {
             "customWebpackConfig": {
               "path": "./webpack-ng.config.js",

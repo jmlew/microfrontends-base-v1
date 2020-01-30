@@ -19,6 +19,9 @@ export class AppElement extends HTMLElement {
       clientsConfig.clientAngularB,
     ];
     clientConfigs.forEach((config: ClientConfig) => loadClient(config, container));
+
+    // Call the Angular apps' enableProdMode method once and remove from each main.ts.
+    (<any>window).ng.core.enableProdMode();
   }
 }
 
@@ -50,7 +53,7 @@ function getCustomElementTemplate() {
         <!-- Web Components go here -->
       </div>
     </main>
-        `;
+  `;
 }
 
 defineCustomElement(ElementName.Shell, AppElement);

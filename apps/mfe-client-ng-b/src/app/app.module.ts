@@ -43,7 +43,6 @@ export class AppModule {
     const appElement: NgElementConstructor<void> = createCustomElement(AppRootComponent, {
       injector: this.injector,
     });
-    console.log('ngDoBootstrap :', appConfig.element, this);
     defineCustomElement(appConfig.element, appElement);
   }
 }

@@ -12,7 +12,7 @@ export const clientsConfig: { [name: string]: ClientConfig } = {
     scripts: [
       `${ElementName.ClientAngularA}/polyfills.js`,
       `${ElementName.ClientAngularA}/main.js`,
-      `${ElementName.ClientAngularA}/runtime.js`,
+      // `${ElementName.ClientAngularA}/runtime.js`, // Combined into main with ng-build-plus
     ],
   },
   clientAngularB: {
@@ -22,7 +22,7 @@ export const clientsConfig: { [name: string]: ClientConfig } = {
     scripts: [
       `${ElementName.ClientAngularB}/polyfills.js`,
       `${ElementName.ClientAngularB}/main.js`,
-      `${ElementName.ClientAngularB}/runtime.js`,
+      // `${ElementName.ClientAngularB}/runtime.js`, // Combined into main with ng-build-plus
     ],
   },
   clientReactB: {

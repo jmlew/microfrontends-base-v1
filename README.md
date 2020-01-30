@@ -35,26 +35,27 @@ Reference the custom webpack config `webpack-ng.config.js` with an 'externals' p
 imports which are common between apps into objects referenced on the global object
 (window.ng), to therefore be accessed as external references.
 
-eg. `externals: {'@angular/core': 'ng.core', ...}`
+> eg. `externals: {'@angular/core': 'ng.core', ...}`
 
 Add each added librarys' UMD bundle to the shell's build scripts
 (mfe-shell:architect:build:options:scripts) to be compiled into the shell's scripts.js.
 Note: the order in which they're listed matters (rxjs > core > comomon > common-http > compiler, ...).
 
-eg. `"scripts": ["node_modules/@angular/core/bundles/core.umd.js", ...]`
+> eg. `"scripts": ["node_modules/@angular/core/bundles/core.umd.js", ...]`
 
 Use the builder `@angular-builders/custom-webpack:browser` (app-foo:architect:build:builder)
 for all Angular apps (instead of the default `@nrwl/web:build` or `@angular-devkit/build-angular` builders)
 which extends the Angular CLI and uses the custom webpack config.
 
 Ensure the build options includes these options for using the config (app-foo:architect:build:options):
-`"customWebpackConfig": { "path": "./webpack.externals.js", "mergeStrategies": { "externals": "replace" } },`
+`"customWebpackConfig": { "path": "./webpack-ng.externals.js", "mergeStrategies": { "externals": "replace" } },`
 
 See [here](https://www.npmjs.com/package/@angular-builders/custom-webpack#custom-webpack-browser) for details.
 
 Ensure common polyfills are also added to the shell's polyfills and removed from each app,
 so to only load these once on the top-level.
-eg. `import 'zone.js/dist/zone'`
+
+> eg. `import 'zone.js/dist/zone'`
 
 Note: Until using Ivy as the CLI builder, do not lazy load modules.
 
