@@ -1,10 +1,11 @@
 import { ClientConfig } from './element.model';
+import { ElementName } from './element.enum';
 
-export function loadClient(config: ClientConfig, container: HTMLElement) {
-  console.log('loadClient :', config);
+export function loadClient(config: ClientConfig, container: HTMLElement): HTMLElement {
   if (config.isLoaded) {
     return;
   }
+  console.log('loadClient :', config);
 
   config.scripts.forEach((path: string) => {
     const script: HTMLScriptElement = document.createElement('script');
@@ -13,20 +14,21 @@ export function loadClient(config: ClientConfig, container: HTMLElement) {
     container.appendChild(script);
   });
 
-  const element: HTMLElement = embedElement(config.element, container);
-
-  element.addEventListener('message', (msg) => this.handleMessage(msg));
-  element.setAttribute('state', 'init');
+  return embedElement(config.element, container);
 }
 
-export function embedElement(name: string, container: HTMLElement): HTMLElement {
+export function embedElement(name: ElementName, container: HTMLElement): HTMLElement {
   const element: HTMLElement = document.createElement(name);
   container.appendChild(element);
   return element;
 }
 
-export function defineCustomElement(name: string, element: Function) {
+export function defineCustomElement(name: ElementName, element: Function) {
   if (!customElements.get(name)) {
     customElements.define(name, element);
   }
+}
+
+export function isCustomElementDefined(name: ElementName): Promise<void> {
+  return customElements.whenDefined(name);
 }

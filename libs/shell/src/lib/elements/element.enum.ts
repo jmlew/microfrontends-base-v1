@@ -11,3 +11,10 @@ export enum ElementRoute {
   ClientAngularB = 'ng-b',
   ClientReactA = 'react-a',
 }
+
+export enum ElementLabel {
+  Shell = 'Shell',
+  ClientAngularA = 'Angular App A',
+  ClientAngularB = 'Angular App B',
+  ClientReactA = 'React App A',
+}
