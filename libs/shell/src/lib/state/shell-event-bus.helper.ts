@@ -2,24 +2,16 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { ShellAction } from './shell-event-bus.model';
 
+/**
+ * A global Event Bus through which the shell can co-ordinate actions between itself and
+ * its client apps.
+ *
+ * This is instantiated once as a singleton whose instance is tied to the window object.
+ */
 export class ShellActionsBus {
-  private static instance: ShellActionsBus;
   private actionsSubject: BehaviorSubject<ShellAction> = new BehaviorSubject<ShellAction>(
     null
   );
-  private registeredClients: HTMLElement[];
-
-  private constructor() {
-    this.registeredClients = [];
-  }
-
-  registerClient(client: HTMLElement) {
-    this.registeredClients = [...this.registeredClients, client];
-  }
-
-  get clients(): HTMLElement[] {
-    return this.registeredClients;
-  }
 
   get actions$(): Observable<ShellAction> {
     return this.actionsSubject.asObservable();
@@ -30,11 +22,10 @@ export class ShellActionsBus {
   }
 
   static getInstance(): ShellActionsBus {
-    if (!ShellActionsBus.instance) {
-      ShellActionsBus.instance = new ShellActionsBus();
+    if (!(<any>window).ShellActionsBus) {
+      (<any>window).ShellActionsBus = new ShellActionsBus();
     }
-
-    return ShellActionsBus.instance;
+    return (<any>window).ShellActionsBus;
   }
 
   dispatch(action: ShellAction) {
