@@ -44,7 +44,7 @@ Note: the order in which they're listed matters (rxjs > core > comomon > common-
 
 > eg. `"scripts": ["node_modules/@angular/core/bundles/core.umd.js", ...]`
 
-Replace the default builder for all Angular projects to `ngx-build-plus:build` (foo-app:architect:build:builder) for all Angular apps (instead of the default `@nrwl/web:build` or `@angular-devkit/build-angular` builders). This extends the Angular CLI and ensures both that a single self-contained bundle is created (as opposed ot the many separate bundles generated from the default builder), and that a custom webpack config can be used to remap the library imports to the global scope using the 'externals' collection.
+Replace the default builder for all Angular projects to `ngx-build-plus:build` (architect:build:builder) for all Angular apps (instead of the default `@nrwl/web:build` or `@angular-devkit/build-angular` builders). This extends the Angular CLI and ensures both that a single self-contained bundle is created (as opposed ot the many separate bundles generated from the default builder), and that a custom webpack config can be used to remap the library imports to the global scope using the 'externals' collection.
 
 To ensure a single bunle is generated, call `nx build` with the `--single-bundle` flag.
 
@@ -64,13 +64,15 @@ Ensure common Angular polyfills are also added to the shell's polyfills and remo
 
 > eg. `import 'zone.js/dist/zone'; import 'hammerjs/hammer';`
 
-#### Reducing bundle size: Use Ivy
+#### Reducing bundle size: Using Ivy
 
-TODO: Add reasons and instructions for compiling with Ivy.
+To opt-in using the new Angular Ivy compiler, set `"enableIvy": true` on each Angular project's tsconfig.json, and `"aot": true` under each project's workspace build options (architect:build:options). It is however recommended to use Ivy with Angular Elements when Angular v9 comes out. This is because Ivy with Angular 8 is not yet ready to be used with Angular Elements (see [here](https://github.com/angular/angular/issues/30262)).
 
-#### Lazy-loading modules
+#### Implementing Lazy Loading (without the Router)
 
-TODO: Add reasons and instructions for `Implementing Lazy Loading (without the Router)`
+Included is a service to enable lazy-loading modules without using the router (@microfr/shared/ui-angular/LazyLoaderService).
+
+> TODO: Add further instructions for using this.
 
 ### Build React Apps
 
@@ -89,4 +91,4 @@ Import all styles at once into the global sass file of the library as `@import '
 
 Then access specific modules as `@import 'shared-ui-styles/variables';`
 
-TODO: Add reasons and instructions for both fully ancapsulating styles through Shadow DOM, vs sharing through base classes.
+> TODO: Add reasons and instructions for both fully ancapsulating styles through Shadow DOM, vs sharing through base classes.

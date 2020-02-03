@@ -1,14 +1,14 @@
 import {
   ClientConfig,
   clientsConfig,
-  ElementName,
-  loadClient,
   defineCustomElement,
-  isCustomElementDefined,
-  ShellActionsBus,
-  ShellAction,
-  ShellActionType,
+  ElementName,
   ElementRoute,
+  isCustomElementDefined,
+  loadClient,
+  ShellAction,
+  ShellActionsBus,
+  ShellActionType,
 } from '@microfr/shell';
 import { Subscription } from 'rxjs';
 
@@ -60,7 +60,7 @@ export class AppElement extends HTMLElement {
     this.initClients(container);
 
     // Call the Angular apps' enableProdMode method once and remove from each main.ts.
-    (<any>window).ng.core.enableProdMode();
+    (window as any).ng.core.enableProdMode();
   }
 
   private initClients(container: HTMLElement) {
@@ -68,6 +68,7 @@ export class AppElement extends HTMLElement {
     const elementConfigs: ClientConfig[] = [
       clientsConfig.clientAngularA,
       clientsConfig.clientAngularB,
+      clientsConfig.clientReactA,
     ];
     elementConfigs.forEach((config: ClientConfig) => {
       // Load client element from config.
@@ -81,7 +82,7 @@ export class AppElement extends HTMLElement {
     });
 
     // All clients have been loaded.
-    const areAllClientsLoaded: Promise<void>[] = elementConfigs.map(
+    const areAllClientsLoaded: Array<Promise<void>> = elementConfigs.map(
       (config: ClientConfig) => isCustomElementDefined(config.element)
     );
     Promise.all(areAllClientsLoaded).then(() => {
@@ -107,7 +108,7 @@ export class AppElement extends HTMLElement {
     const buttonConfigs: ClientConfig[] = [
       clientsConfig.clientAngularA,
       clientsConfig.clientAngularB,
-      clientsConfig.clientReactB,
+      clientsConfig.clientReactA,
     ];
     navbar.innerHTML = getCustomElementNavButtons(buttonConfigs);
     const buttons: HTMLCollectionOf<HTMLButtonElement> = navbar.getElementsByTagName(

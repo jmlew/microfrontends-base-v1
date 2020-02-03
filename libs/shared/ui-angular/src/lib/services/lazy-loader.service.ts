@@ -2,10 +2,10 @@ import {
   Compiler,
   Injectable,
   Injector,
-  Type,
   NgModule,
   NgModuleFactory,
   NgModuleRef,
+  Type,
 } from '@angular/core';
 
 @Injectable()

@@ -1,4 +1,4 @@
-import { ElementName, ElementRoute, ElementLabel } from './element.enum';
+import { ElementLabel, ElementName, ElementRoute } from './element.enum';
 import { ClientConfig } from './element.model';
 
 // TODO: Enable differential loading of the below scripts using technique in index.html.
@@ -30,15 +30,15 @@ export const clientsConfig: { [name: string]: ClientConfig } = {
       // `${ElementName.ClientAngularB}/runtime.js`, // Combined into main with ng-build-plus
     ],
   },
-  clientReactB: {
+  clientReactA: {
     isLoaded: false,
     element: ElementName.ClientReactA,
     route: ElementRoute.ClientReactA,
     label: ElementLabel.ClientReactA,
     scripts: [
-      'mfe-client-react-a/main.es5.js',
-      'mfe-client-react-a/polyfills.es5.js',
-      'mfe-client-react-a/runtime.js',
+      `${api}${ElementName.ClientReactA}/main.es5.js`,
+      `${api}${ElementName.ClientReactA}/polyfills.es5.js`,
+      `${api}${ElementName.ClientReactA}/runtime.js`,
     ],
   },
 };

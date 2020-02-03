@@ -7,12 +7,12 @@ import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
+import { defineCustomElement } from '@microfr/shell';
 import { appRoutes } from './app.routes';
 import { AppRootComponent } from './core/components';
 import { FeatureAModule } from './features/feature-a/feature-a.module';
 import { FeatureBModule } from './features/feature-b/feature-b.module';
 import { appConfig } from './shared/constants';
-import { defineCustomElement } from '@microfr/shell';
 
 @NgModule({
   imports: [

@@ -1,5 +1,5 @@
-import { ClientConfig } from './element.model';
 import { ElementName } from './element.enum';
+import { ClientConfig } from './element.model';
 
 export function loadClient(config: ClientConfig, container: HTMLElement): HTMLElement {
   if (config.isLoaded) {
@@ -23,6 +23,7 @@ export function embedElement(name: ElementName, container: HTMLElement): HTMLEle
   return element;
 }
 
+// tslint:disable-next-line: ban-types
 export function defineCustomElement(name: ElementName | string, element: Function) {
   if (!customElements.get(name)) {
     customElements.define(name, element);
