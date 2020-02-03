@@ -3,5 +3,12 @@
   "compilerOptions": {
     "types": ["node", "jest"]
   },
+  "angularCompilerOptions": {
+    "enableIvy": false,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
   "include": ["**/*.ts"]
 }

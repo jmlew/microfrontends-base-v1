@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { createCustomElement, NgElementConstructor } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,13 +24,12 @@ import { defineCustomElement } from '@microfr/shell';
 
     // Feature modules - not lazy loaded through the router.
     // TODO: provide lazy loading using the NgModuleFactoryLoader.
-    FeatureAModule,
+    // FeatureAModule,
     FeatureBModule,
 
     // RouterModule.forRoot([], { initialNavigation: 'enabled' })
     RouterModule.forRoot(appRoutes, { useHash: true }),
   ],
-  // schemas: [CUSTOM_ELEMENTS_SCHEMA], // Required if this project is loading non-angular custom elements.
   providers: [],
   bootstrap: [],
   entryComponents: [AppRootComponent],

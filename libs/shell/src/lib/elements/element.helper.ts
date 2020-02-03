@@ -23,7 +23,7 @@ export function embedElement(name: ElementName, container: HTMLElement): HTMLEle
   return element;
 }
 
-export function defineCustomElement(name: ElementName, element: Function) {
+export function defineCustomElement(name: ElementName | string, element: Function) {
   if (!customElements.get(name)) {
     customElements.define(name, element);
   }

@@ -8,7 +8,9 @@ import { ShellActionType } from '@microfr/shell';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  constructor(private readonly shellState: ShellStateService) {}
+  constructor(private readonly shellState: ShellStateService) {
+    console.log('MainComponent bootstrapped:', this);
+  }
 
   onFooClick() {
     this.shellState.dispatch({
