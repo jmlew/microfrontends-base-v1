@@ -24,7 +24,7 @@ import { defineCustomElement } from '@microfr/shell';
 
     // Feature modules - not lazy loaded through the router.
     // TODO: provide lazy loading using the NgModuleFactoryLoader.
-    // FeatureAModule,
+    FeatureAModule,
     FeatureBModule,
 
     // RouterModule.forRoot([], { initialNavigation: 'enabled' })
