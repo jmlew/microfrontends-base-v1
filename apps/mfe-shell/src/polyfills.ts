@@ -1,5 +1,3 @@
-import '@webcomponents/custom-elements/custom-elements.min';
-
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
