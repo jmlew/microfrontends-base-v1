@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 
-import { ShellStateService } from '../../../../shared/services';
 import { ShellActionType } from '@microfr/shell';
+import { ShellStateService } from '../../../../shared/services';
 
 @Component({
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  constructor(private readonly shellState: ShellStateService) {
-    console.log('MainComponent bootstrapped:', this);
-  }
+  constructor(private readonly shellState: ShellStateService) {}
 
   onFooClick() {
     this.shellState.dispatch({

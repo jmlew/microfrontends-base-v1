@@ -22,10 +22,10 @@ export class ShellActionsBus {
   }
 
   static getInstance(): ShellActionsBus {
-    if (!(<any>window).ShellActionsBus) {
-      (<any>window).ShellActionsBus = new ShellActionsBus();
+    if (!(window as any).ShellActionsBus) {
+      (window as any).ShellActionsBus = new ShellActionsBus();
     }
-    return (<any>window).ShellActionsBus;
+    return (window as any).ShellActionsBus;
   }
 
   dispatch(action: ShellAction) {

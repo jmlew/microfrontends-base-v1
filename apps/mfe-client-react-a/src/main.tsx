@@ -5,6 +5,7 @@ import { ClientAppElement, ClientAppInfo } from '@microfr/shared/model';
 import { defineCustomElement } from '@microfr/shell';
 import { AppRoot } from './app/core/components';
 import { appConfig } from './app/shared/constants';
+import { shellStateHelper } from './app/shared/helpers';
 
 class AppElement extends HTMLElement implements ClientAppElement {
   private observer: MutationObserver;
@@ -20,6 +21,7 @@ class AppElement extends HTMLElement implements ClientAppElement {
   }
 
   disconnectedCallback() {
+    shellStateHelper.onDestroy();
     this.unmountElement();
   }
 

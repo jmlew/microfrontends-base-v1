@@ -1,10 +1,8 @@
-import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ShellAction, ShellActionsBus } from '@microfr/shell';
 
-@Injectable({ providedIn: 'root' })
-export class ShellStateService implements OnDestroy {
+class ShellStateHelper {
   private actionsBus: ShellActionsBus;
   private actionsBusSubs: Subscription;
 
@@ -13,14 +11,14 @@ export class ShellStateService implements OnDestroy {
     this.initActionsListeners();
   }
 
-  ngOnDestroy() {
+  onDestroy() {
     this.actionsBusSubs.unsubscribe();
   }
 
   private initActionsListeners() {
     this.actionsBusSubs = this.actionsBus.actions$.subscribe((action: ShellAction) => {
       if (action) {
-        console.log('Action from Angular Client A:', action);
+        console.log('Action from React Client A:', action);
       }
     });
   }
@@ -29,3 +27,6 @@ export class ShellStateService implements OnDestroy {
     this.actionsBus.dispatch(action);
   }
 }
+
+const shellStateHelper = new ShellStateHelper();
+export { shellStateHelper };
