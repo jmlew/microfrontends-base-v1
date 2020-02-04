@@ -38,7 +38,7 @@
             ],
             "styles": [
               "libs/shared/ui-angular/src/lib/styles/mat-theme.scss",
-              "libs/shared/ui-angular/src/lib/styles/mat-icons.scss",
+              "libs/shared/ui-styles/src/lib/mat-overrides/mat-icons.scss",
               "libs/shared/ui-styles/src/lib/shared-ui-styles/index.scss",
               "apps/mfe-shell/src/styles/global.scss"
             ],

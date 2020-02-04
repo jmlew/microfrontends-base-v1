@@ -1,9 +1,10 @@
-import React from 'react';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
+import React from 'react';
 import styled from 'styled-components';
 
 import { ShellActionType } from '@microfr/shell';
-
 import { shellStateHelper } from '../../shared/helpers';
 
 const StyledApp = styled.div`
@@ -11,11 +12,6 @@ const StyledApp = styled.div`
     padding: 20px;
     background-color: grey;
     text-align: center;
-  }
-
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
   }
 
   h3 {
@@ -35,8 +31,12 @@ export const AppRoot = () => {
   return (
     <StyledApp>
       <main>
-        <h3>React App content: Client A</h3>
-        <button onClick={onFooClick}>Test global state action</button>
+        <Typography variant="h4" gutterBottom>
+          React App content: Client A
+        </Typography>
+        <Button variant="contained" color="primary" onClick={onFooClick}>
+          Test global state action
+        </Button>
       </main>
     </StyledApp>
   );
