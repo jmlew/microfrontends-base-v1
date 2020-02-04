@@ -19,17 +19,6 @@ export const clientsConfig: { [name: string]: ClientConfig } = {
       // `${ElementName.ClientAngularA}/runtime.js`, // Combined into main with ng-build-plus
     ],
   },
-  clientAngularB: {
-    isLoaded: false,
-    element: ElementName.ClientAngularB,
-    route: ElementRoute.ClientAngularB,
-    label: ElementLabel.ClientAngularB,
-    scripts: [
-      `${api}${ElementName.ClientAngularB}/polyfills.js`,
-      `${api}${ElementName.ClientAngularB}/main.js`,
-      // `${ElementName.ClientAngularB}/runtime.js`, // Combined into main with ng-build-plus
-    ],
-  },
   clientReactA: {
     isLoaded: false,
     element: ElementName.ClientReactA,

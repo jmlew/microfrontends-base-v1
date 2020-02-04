@@ -22,11 +22,7 @@ export class ShellAppElement extends HTMLElement {
   constructor() {
     super();
 
-    this.clientConfigs = [
-      clientsConfig.clientAngularA,
-      clientsConfig.clientAngularB,
-      clientsConfig.clientReactA,
-    ];
+    this.clientConfigs = [clientsConfig.clientAngularA, clientsConfig.clientReactA];
   }
 
   connectedCallback() {
@@ -40,8 +36,6 @@ export class ShellAppElement extends HTMLElement {
   disconnectedCallback() {
     this.actionsBusSubs.unsubscribe();
   }
-
-  attributeChangedCallback() {}
 
   /**
    * Setup Shell actions event bus.
@@ -106,15 +100,11 @@ export class ShellAppElement extends HTMLElement {
     const appInfoMap: { [element: string]: ClientAppInfo } = {
       [ElementName.ClientAngularA]: {
         name: 'Client Angular A',
-        description: 'Example Angular Client One',
-      },
-      [ElementName.ClientAngularB]: {
-        name: 'Client Angular B',
-        description: 'Example Angular Client Two',
+        description: 'Example Angular Client',
       },
       [ElementName.ClientReactA]: {
         name: 'Client React A',
-        description: 'Example Angular Client One',
+        description: 'Example React Client',
       },
     };
 

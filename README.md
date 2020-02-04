@@ -8,7 +8,6 @@ A POC collection of Angular and ReactJS apps using a microfontends monorepo arch
 - Run `npm run build:shell` to build only the shell.
 - Run `npm run build:clients` to build only the client apps.
 - Run `npm run build:client-ng-a` to build only the Angular client example A app.
-- Run `npm run build:client-ng-b` to build only the Angular client example B app.
 - Run `npm run build:client-react-a` to build only the React client example A app.
 
 ## Serve Shell & Apps
@@ -24,7 +23,6 @@ Or run each separately as separate apps:
 - Run `npm run serve` to serve the shell and all apps.
 - Run `npm run serve:shell` to serve only the shell.
 - Run `npm run serve:client-ng-a` to serve only the Angular client example A app.
-- Run `npm run serve:client-ng-b` to serve only the Angular client example B app.
 - Run `npm run serve:client-react-a` to serve only the React client example A app.
 
 ## Adding polyfills
