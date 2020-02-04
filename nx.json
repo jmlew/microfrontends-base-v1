@@ -49,6 +49,9 @@
     },
     "shell": {
       "tags": []
+    },
+    "shared-model": {
+      "tags": []
     }
   }
 }

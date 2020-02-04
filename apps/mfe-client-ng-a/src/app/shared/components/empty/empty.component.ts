@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
 })
 export class EmptyComponent {
   constructor() {
-    console.log('EmptyComponent :', this);
+    console.log('EmptyComponent: mfe-client-ng-a');
   }
 }

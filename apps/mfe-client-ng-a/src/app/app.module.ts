@@ -32,8 +32,8 @@ import { appConfig } from './shared/constants';
   ],
   providers: [],
   bootstrap: [],
-  entryComponents: [AppRootComponent],
   declarations: [],
+  entryComponents: [AppRootComponent],
 })
 export class AppModule {
   constructor(private readonly injector: Injector) {}

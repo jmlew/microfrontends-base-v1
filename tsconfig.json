@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "typeRoots": ["typings", "node_modules/@types"],
     "paths": {
+      "@microfr/shared/model": ["libs/shared/model/src/index.ts"],
       "@microfr/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@microfr/shared/util": ["libs/shared/util/src/index.ts"],
       "@microfr/shared/ui-angular": ["libs/shared/ui-angular/src/index.ts"],

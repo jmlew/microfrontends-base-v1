@@ -1,11 +1,14 @@
+import { ClientAppElement } from './../../../../shared/model/src/lib/app-interface.model';
 import { ElementName } from './element.enum';
 import { ClientConfig } from './element.model';
 
-export function loadClient(config: ClientConfig, container: HTMLElement): HTMLElement {
+export function loadClient(
+  config: ClientConfig,
+  container: HTMLElement
+): ClientAppElement {
   if (config.isLoaded) {
     return;
   }
-  console.log('loadClient :', config);
 
   config.scripts.forEach((path: string) => {
     const script: HTMLScriptElement = document.createElement('script');
@@ -14,7 +17,7 @@ export function loadClient(config: ClientConfig, container: HTMLElement): HTMLEl
     container.appendChild(script);
   });
 
-  return embedElement(config.element, container);
+  return embedElement(config.element, container) as ClientAppElement;
 }
 
 export function embedElement(name: ElementName, container: HTMLElement): HTMLElement {

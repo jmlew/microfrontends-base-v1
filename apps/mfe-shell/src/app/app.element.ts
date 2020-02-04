@@ -1,3 +1,4 @@
+import { ClientAppElement, ClientAppInfo } from '@microfr/shared/model';
 import {
   ClientConfig,
   clientsConfig,
@@ -12,10 +13,21 @@ import {
 } from '@microfr/shell';
 import { Subscription } from 'rxjs';
 
-export class AppElement extends HTMLElement {
+export class ShellAppElement extends HTMLElement {
   public static observedAttributes = [];
   private actionsBus: ShellActionsBus;
   private actionsBusSubs: Subscription;
+  private clientConfigs: ClientConfig[];
+
+  constructor() {
+    super();
+
+    this.clientConfigs = [
+      clientsConfig.clientAngularA,
+      clientsConfig.clientAngularB,
+      clientsConfig.clientReactA,
+    ];
+  }
 
   connectedCallback() {
     this.initState();
@@ -65,14 +77,10 @@ export class AppElement extends HTMLElement {
 
   private initClients(container: HTMLElement) {
     // Load relevant clients into top-level view.
-    const elementConfigs: ClientConfig[] = [
-      clientsConfig.clientAngularA,
-      clientsConfig.clientAngularB,
-      clientsConfig.clientReactA,
-    ];
-    elementConfigs.forEach((config: ClientConfig) => {
+    this.clientConfigs.forEach((config: ClientConfig) => {
       // Load client element from config.
-      const element: HTMLElement = loadClient(config, container);
+      const element: ClientAppElement = loadClient(config, container);
+      console.log('client loaded :', element);
 
       // Init client once loaded.
       const isClientLoaded: Promise<void> = isCustomElementDefined(config.element);
@@ -82,11 +90,39 @@ export class AppElement extends HTMLElement {
     });
 
     // All clients have been loaded.
-    const areAllClientsLoaded: Array<Promise<void>> = elementConfigs.map(
+    const areAllClientsLoaded: Array<Promise<void>> = this.clientConfigs.map(
       (config: ClientConfig) => isCustomElementDefined(config.element)
     );
     Promise.all(areAllClientsLoaded).then(() => {
       this.handleAllClientsLoaded();
+    });
+  }
+
+  /**
+   * Sample functionality showing the updating of each app with info initialised by the
+   * shell.
+   */
+  private updateClientInputs() {
+    const appInfoMap: { [element: string]: ClientAppInfo } = {
+      [ElementName.ClientAngularA]: {
+        name: 'Client Angular A',
+        description: 'Example Angular Client One',
+      },
+      [ElementName.ClientAngularB]: {
+        name: 'Client Angular B',
+        description: 'Example Angular Client Two',
+      },
+      [ElementName.ClientReactA]: {
+        name: 'Client React A',
+        description: 'Example Angular Client One',
+      },
+    };
+
+    Object.keys(appInfoMap).forEach((name: ElementName) => {
+      const app: ClientAppElement = this.getClientApp(name);
+      const info: ClientAppInfo = appInfoMap[name];
+      app.appInfo = info;
+      console.log('appInfo set on client:', name, app.appInfo);
     });
   }
 
@@ -102,15 +138,13 @@ export class AppElement extends HTMLElement {
     this.actionsBus.dispatch({
       type: ShellActionType.AllClientsAreLoaded,
     });
+
+    // Example interaction between shell and apps through a shared interface.
+    this.updateClientInputs();
   }
 
   private initButtons(navbar: HTMLElement) {
-    const buttonConfigs: ClientConfig[] = [
-      clientsConfig.clientAngularA,
-      clientsConfig.clientAngularB,
-      clientsConfig.clientReactA,
-    ];
-    navbar.innerHTML = getCustomElementNavButtons(buttonConfigs);
+    navbar.innerHTML = getCustomElementNavButtons(this.clientConfigs);
     const buttons: HTMLCollectionOf<HTMLButtonElement> = navbar.getElementsByTagName(
       'button'
     );
@@ -122,6 +156,10 @@ export class AppElement extends HTMLElement {
   private handleButtonClick(button: HTMLButtonElement) {
     this.goToAppRoute(button.id as ElementRoute);
     this.sendTestAction(button.id);
+  }
+
+  private getClientApp(name: ElementName): ClientAppElement {
+    return document.querySelector(name);
   }
 
   private goToAppRoute(route: ElementRoute) {
@@ -136,7 +174,7 @@ export class AppElement extends HTMLElement {
   }
 }
 
-defineCustomElement(ElementName.Shell, AppElement);
+defineCustomElement(ElementName.Shell, ShellAppElement);
 
 function getCustomElementTemplate() {
   return `

@@ -1,4 +1,4 @@
-import { ElementName, ElementRoute, ElementLabel } from '.';
+import { ElementLabel, ElementName, ElementRoute } from '.';
 
 export interface ClientConfig {
   isLoaded: boolean;
