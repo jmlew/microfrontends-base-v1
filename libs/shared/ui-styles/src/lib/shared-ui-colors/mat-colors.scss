@@ -1,0 +1,31 @@
+$theme-colours: (
+  // Generic colours
+    color-white: #fff,
+  color-black: #000,
+  color-red: #f4511e,
+  color-green: #20f355,
+  // Mat Design pallet.
+    color-primary: #0277bd,
+  color-primary-light: #58a5f0,
+  color-primary-dark: #004c8c,
+  color-secondary: #ff8f00,
+  color-secondary-light: #ffc046,
+  color-secondary-dark: #c56000,
+  // Grey variants.
+    color-grey-50: #fafafa,
+  color-grey-100: #f7f7f7,
+  color-grey-200: #f1f1f1,
+  color-grey-300: #e6e6e6,
+  color-grey-400: #c9c9c9,
+  color-grey-500: #aeaeae,
+  color-grey-600: #888,
+  color-grey-700: #747474,
+  color-grey-800: #545454,
+  color-grey-900: #2c2c2c
+);
+
+@each $color, $value in $theme-colours {
+  :export {
+    $color: $value;
+  }
+}

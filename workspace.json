@@ -219,7 +219,7 @@
             "styles": [
               "libs/shared/ui-styles/src/lib/shared-ui-styles/index.scss",
               "libs/shared/ui-angular/src/lib/styles/mat-theme.scss",
-              "libs/shared/ui-angular/src/lib/styles/mat-icons.scss"
+              "libs/shared/ui-styles/src/lib/mat-overrides/mat-icons.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["libs/shared/ui-styles/src/lib"]
@@ -510,6 +510,33 @@
           "options": {
             "jestConfig": "libs/shared/model/jest.config.js",
             "tsConfig": "libs/shared/model/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "shared-ui-react": {
+      "root": "libs/shared/ui-react",
+      "sourceRoot": "libs/shared/ui-react/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/ui-react/.eslintrc",
+            "tsConfig": [
+              "libs/shared/ui-react/tsconfig.lib.json",
+              "libs/shared/ui-react/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui-react/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/ui-react/jest.config.js",
+            "tsConfig": "libs/shared/ui-react/tsconfig.spec.json"
           }
         }
       }

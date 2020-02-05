@@ -1,4 +1,5 @@
-@import 'shared-ui-styles/variables';
+// @import 'shared-ui-colors/mat-colors';
+@import '../../../../ui-styles/src/lib/shared-ui-colors/mat-colors.scss';
 @import '~@angular/material/theming';
 
 @include mat-core();

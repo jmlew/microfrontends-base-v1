@@ -81,6 +81,10 @@ Included is a service to enable lazy-loading modules without using the router (@
 
 ### Build React Apps
 
+#### Custom Weback Config
+
+Update these in `webpack-react.config.js` and add a reference to the config in the React project's build rules (architect:build:options) `"webpackConfig": "webpack-react.config.js"`
+
 ## Styling
 
 ### Include shared SASS styles
