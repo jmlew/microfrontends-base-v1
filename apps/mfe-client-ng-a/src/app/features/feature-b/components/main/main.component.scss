@@ -1,4 +1,5 @@
-@import 'shared-ui-styles/variables';
+// From base path defined in workspace (stylePreprocessorOptions:includePaths)
+@import 'ui-colors/index';
 
 .component-style-example {
   color: $color-red;

@@ -87,17 +87,21 @@ Update these in `webpack-react.config.js` and add a reference to the config in t
 
 ## Styling
 
-### Include shared SASS styles
+### Reference shared SASS libs
 
-Shared SASS files are managed in the shared-ui-styles library.
+Shared SASS files are managed in the `libs/shared/ui` lib's `styles` directory.
 
-After creating a new lib or app which relies on common styling, add the path to this library to its SASS paths in order to import the styes:
+This library contains a number of subdirectories which can be imported direclty into any app using a global path reference.
 
-Paste into /architect/build/options:\
-`"stylePreprocessorOptions": {"includePaths": ["libs/shared/ui-styles/src/lib"]}`
+> eg. import shared colour variables as `@import 'ui-colors/index'`, or just the color styles themselves as `@import 'ui-styles/colors'`, or import all shared styles with `@import 'ui-styles/all'`.
 
-Import all styles at once into the global sass file of the library as `@import 'shared-ui-styles/all`;
+This path reference is generated for each app in the workspace (architect:build:options) by adding:
+`"stylePreprocessorOptions": {"includePaths": ["libs/shared/ui/src/lib/styles/"]}`
 
-Then access specific modules as `@import 'shared-ui-styles/variables';`
+### Compile shared styles
+
+All shared styles are compiled into the shell to be accessed by all apps whose containing Web Components are not encapsulated with Shadow DOM.
+
+This is done by adding `libs/shared/ui/src/lib/styles/ui-styles/all.scss` to the styles collection in the shel's build config (architect:build:options:styles).
 
 > TODO: Add reasons and instructions for both fully ancapsulating styles through Shadow DOM, vs sharing through base classes.

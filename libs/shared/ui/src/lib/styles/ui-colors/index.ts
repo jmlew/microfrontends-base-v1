@@ -1,4 +1,4 @@
-export const themeColours = {
+const themeColours = {
   // Generic colours
   white: '#fff',
   black: '#000',
@@ -23,3 +23,5 @@ export const themeColours = {
   grey800: '#545454',
   grey900: '#2c2c2c',
 };
+
+export { themeColours };

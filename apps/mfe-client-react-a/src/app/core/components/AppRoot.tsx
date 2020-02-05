@@ -5,7 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import styled from 'styled-components';
 
-import { theme, themeColours } from '@microfr/shared/ui-react';
+import { themeColours } from '@microfr/shared/ui';
+import { theme } from '@microfr/shared/ui-react';
 
 import { ShellActionType } from '@microfr/shell';
 import { shellStateHelper } from '../../shared/helpers';
@@ -30,7 +31,7 @@ export const AppRoot = () => {
     <MuiThemeProvider theme={theme}>
       <StyledApp>
         <main>
-          <Typography variant="h4" gutterBottom={true}={true}>
+          <Typography variant="h4" gutterBottom={true}>
             React App content: Client A
           </Typography>
           <Button variant="contained" color="primary" onClick={onFooClick}>

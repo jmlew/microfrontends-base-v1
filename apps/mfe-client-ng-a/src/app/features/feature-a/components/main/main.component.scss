@@ -1,6 +1,8 @@
-@import 'shared-ui-styles/variables';
+// From base path defined in workspace (stylePreprocessorOptions:includePaths)
+@import 'ui-colors/index';
 
 .component-style-example {
   color: $color-grey-800;
   font-size: 40px;
 }
+

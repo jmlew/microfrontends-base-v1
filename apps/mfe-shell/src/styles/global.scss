@@ -1,4 +1,5 @@
-@import 'shared-ui-styles/index';
+// From base path defined in workspace (stylePreprocessorOptions:includePaths)
+@import 'ui-colors/index';
 
 .main-panel {
   background-color: #ccc;
@@ -9,7 +10,7 @@
   & > .heading {
     padding: 1rem;
     font-size: 30px;
-    color: $color-app-light;
+    color: $color-primary;
   }
 
   & > .navbar {

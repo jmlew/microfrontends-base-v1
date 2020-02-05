@@ -1,11 +1,9 @@
-// @import 'shared-ui-colors/mat-colors';
-@import '../../../../ui-styles/src/lib/shared-ui-colors/mat-colors.scss';
 @import '~@angular/material/theming';
 
-@include mat-core();
+// From base path defined in workspace (stylePreprocessorOptions:includePaths)
+@import 'ui-colors/index';
 
-// $app-angular-base-primary: mat-palette($mat-indigo);
-// $app-angular-base-accent: mat-palette($mat-pink, A200, A100, A400);
+@include mat-core();
 
 $app-pallet-primary: (
   50: lighten($color-primary, 50%),
@@ -109,3 +107,4 @@ $warning: mat-palette($mat-amber, 400);
   color: mat-color($warning, default-contrast);
   background-color: mat-color($warning);
 }
+

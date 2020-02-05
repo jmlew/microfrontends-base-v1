@@ -1,7 +1,7 @@
 import red from '@material-ui/core/colors/red';
-import { themeColours } from './theme-colors';
 
 import { createMuiTheme, Theme } from '@material-ui/core/styles';
+import { themeColours } from '@microfr/shared/ui';
 
 const theme: Theme = createMuiTheme({
   palette: {

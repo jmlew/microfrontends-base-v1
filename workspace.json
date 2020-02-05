@@ -37,15 +37,14 @@
               "node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"
             ],
             "styles": [
+              "libs/shared/ui/src/lib/styles/mat-overrides/mat-icons.scss",
               "libs/shared/ui-angular/src/lib/styles/mat-theme.scss",
-              "libs/shared/ui-styles/src/lib/mat-overrides/mat-icons.scss",
-              "libs/shared/ui-styles/src/lib/shared-ui-styles/index.scss",
+              "libs/shared/ui/src/lib/styles/ui-styles/all.scss",
               "apps/mfe-shell/src/styles/global.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["libs/shared/ui-styles/src/lib"]
-            },
-            "extractCss": true
+              "includePaths": ["libs/shared/ui/src/lib/styles/"]
+            }
           },
           "configurations": {
             "production": {
@@ -149,10 +148,7 @@
               "libs/shared/ui/tsconfig.lib.json",
               "libs/shared/ui/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/ui/**"],
-            "stylePreprocessorOptions": {
-              "includePaths": ["libs/shared/ui-styles/src/lib"]
-            }
+            "exclude": ["**/node_modules/**", "!libs/shared/ui/**"]
           }
         },
         "test": {
@@ -217,12 +213,12 @@
             ],
             "scripts": [],
             "styles": [
-              "libs/shared/ui-styles/src/lib/shared-ui-styles/index.scss",
-              "libs/shared/ui-angular/src/lib/styles/mat-theme.scss",
-              "libs/shared/ui-styles/src/lib/mat-overrides/mat-icons.scss"
+              "libs/shared/ui/src/lib/styles/mat-overrides/mat-icons.scss",
+              "libs/shared/ui/src/lib/styles/ui-styles/all.scss",
+              "libs/shared/ui-angular/src/lib/styles/mat-theme.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["libs/shared/ui-styles/src/lib"]
+              "includePaths": ["libs/shared/ui/src/lib/styles/"]
             }
           },
           "configurations": {
@@ -335,8 +331,9 @@
               "apps/mfe-client-react-a/src/assets"
             ],
             "scripts": [],
+            "styles": [],
             "stylePreprocessorOptions": {
-              "includePaths": ["libs/shared/ui-styles/src/lib"]
+              "includePaths": ["libs/shared/ui/src/lib/styles/"]
             },
             "webpackConfig": "webpack-react.config.js"
           },
@@ -443,7 +440,7 @@
             ],
             "exclude": ["**/node_modules/**", "!libs/shared/ui-angular/**"],
             "stylePreprocessorOptions": {
-              "includePaths": ["libs/shared/ui-styles/src/lib"]
+              "includePaths": ["libs/shared/ui/src/lib/styles/"]
             }
           }
         },
@@ -455,13 +452,6 @@
           }
         }
       }
-    },
-    "shared-ui-styles": {
-      "root": "libs/shared/ui-styles",
-      "sourceRoot": "libs/shared/ui-styles/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {}
     },
     "shell": {
       "root": "libs/shell",
