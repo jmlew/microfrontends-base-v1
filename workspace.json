@@ -338,7 +338,7 @@
             "stylePreprocessorOptions": {
               "includePaths": ["libs/shared/ui-styles/src/lib"]
             },
-            "webpackConfig": "@nrwl/react/plugins/webpack"
+            "webpackConfig": "webpack-react.config.js"
           },
           "configurations": {
             "production": {
