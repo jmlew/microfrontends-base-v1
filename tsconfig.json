@@ -13,6 +13,7 @@
     "lib": ["es2019", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "jsx": "preserve",
     "baseUrl": ".",
     "typeRoots": ["typings", "node_modules/@types"],
     "paths": {
@@ -20,7 +21,8 @@
       "@microfr/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@microfr/shared/util": ["libs/shared/util/src/index.ts"],
       "@microfr/shared/ui-angular": ["libs/shared/ui-angular/src/index.ts"],
-      "@microfr/shell": ["libs/shell/src/index.ts"]
+      "@microfr/shell": ["libs/shell/src/index.ts"],
+      "@microfr/shared/ui-react": ["libs/shared/ui-react/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
