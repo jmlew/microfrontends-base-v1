@@ -11,9 +11,13 @@ import {
   ElementName,
   ElementRoute,
   embedElement,
+  getApp,
+  hideApp,
   isCustomElementDefined,
   loadClient,
+  showApp,
 } from '@microfr/shell';
+
 import { evtBusDom, evtBusObs } from '../helpers';
 
 export class ShellAppElement extends HTMLElement {
@@ -94,14 +98,11 @@ export class ShellAppElement extends HTMLElement {
       loadClient(config, container);
 
       // Create element and appendto container.
-      const element: ClientAppElement = embedElement(
-        config.name,
-        container
-      ) as ClientAppElement;
+      const element: ClientAppElement = embedElement(config.name, container);
 
       // Hide all but the first client app.
       if (index > 0) {
-        this.hideApp(element);
+        hideApp(element);
       }
 
       // Add app element to local collection.
@@ -140,7 +141,7 @@ export class ShellAppElement extends HTMLElement {
     };
 
     Object.keys(appInfoMap).forEach((name: ElementName) => {
-      const app: ClientAppElement = this.getAppElement(name);
+      const app: ClientAppElement = getApp(name);
       const info: ClientAppInfo = appInfoMap[name];
       app.appInfo = info;
       console.log('appInfo set on client:', name, app.appInfo);
@@ -182,39 +183,15 @@ export class ShellAppElement extends HTMLElement {
   }
 
   private updateRenderedAppsOnRouteChange(route: ElementRoute) {
-    const config: ClientConfig = this.clientConfigs.find(
+    const currentConfig: ClientConfig = this.clientConfigs.find(
       (item: ClientConfig) => item.route === route
     );
-    if (config) {
+    if (currentConfig) {
       this.clients.forEach((item: { name: ElementName; element: ClientAppElement }) => {
         const { name, element } = item;
-        name === config.name ? this.showApp(element) : this.hideApp(element);
+        name === currentConfig.name ? showApp(element) : hideApp(element);
       });
     }
-  }
-
-  private showApp(element: ClientAppElement) {
-    element.hidden = false;
-  }
-
-  private hideApp(element: ClientAppElement) {
-    element.hidden = true;
-  }
-
-  private addApp(element: ClientAppElement) {
-    if (!this.container.contains(element)) {
-      this.container.appendChild(element);
-    }
-  }
-
-  private removeApp(element: ClientAppElement) {
-    if (this.container.contains(element)) {
-      this.container.removeChild(element);
-    }
-  }
-
-  private getAppElement(name: ElementName): ClientAppElement {
-    return document.querySelector(name);
   }
 
   private goToAppRoute(route: ElementRoute) {

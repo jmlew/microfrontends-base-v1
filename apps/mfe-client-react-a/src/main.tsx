@@ -2,7 +2,11 @@ import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 
 import { ClientAppElement, ClientAppInfo } from '@microfr/shared/model/app-interface';
-import { defineCustomElement } from '@microfr/shell';
+import {
+  defineCustomElement,
+  isAppShown,
+  isMutationAttributeHidden,
+} from '@microfr/shell';
 import { AppRoot } from './app/core/components';
 import { appConfig } from './app/shared/constants';
 
@@ -12,14 +16,16 @@ class AppElement extends HTMLElement implements ClientAppElement {
 
   constructor() {
     super();
-    this.initObserver();
+    this.initMutationObserver();
   }
 
   connectedCallback() {
+    this.observeMutations();
     this.mountElement();
   }
 
   disconnectedCallback() {
+    this.observeMutations(false);
     this.unmountElement();
   }
 
@@ -31,24 +37,51 @@ class AppElement extends HTMLElement implements ClientAppElement {
     console.log('attributeChangedCallback :', name, oldValue, newValue);
   }
 
+  /**
+   * Example property input from shell to client.
+   */
   set appInfo(data: ClientAppInfo) {
     console.log(`set appInfo on ${appConfig.label}:`, data);
     this._appInfo = data;
   }
 
+  /**
+   * Example property accessor to shell from client.
+   */
   get appInfo(): ClientAppInfo {
     return this._appInfo;
   }
 
-  private initObserver() {
-    this.observer = new MutationObserver(this.updateElement.bind(this));
-    this.observer.observe(this, { attributes: true });
+  /**
+   * Initialises DOM MutationObserver to observe changes to element visibility.
+   */
+  private initMutationObserver() {
+    this.observer = new MutationObserver(this.handleMutationChanges.bind(this));
   }
 
-  private updateElement() {
-    console.log('updateElement on MutationObserver :', this.attributes);
-    this.unmountElement();
-    this.mountElement();
+  /**
+   * Starts or stops observing DOM mutations.
+   */
+  private observeMutations(isObserve: boolean = true) {
+    isObserve
+      ? this.observer.observe(this, { attributes: true, attributeOldValue: true })
+      : this.observer.disconnect();
+  }
+
+  /**
+   * Observes DOM mutations on the native element and sets the apps state accoring to the
+   * element's visible status.
+   */
+  private handleMutationChanges(mutations: MutationRecord[]) {
+    const isHiddenChanged: boolean = mutations.some(isMutationAttributeHidden);
+    if (isHiddenChanged) {
+      const isShown: boolean = isAppShown(this);
+      console.log(`isShown ${appConfig.label}: `, isShown);
+      this.unmountElement();
+      if (isShown) {
+        this.mountElement();
+      }
+    }
   }
 
   private mountElement() {

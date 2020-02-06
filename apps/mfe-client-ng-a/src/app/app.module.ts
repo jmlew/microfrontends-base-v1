@@ -27,7 +27,6 @@ import { appConfig } from './shared/constants';
     FeatureAModule,
     FeatureBModule,
 
-    // RouterModule.forRoot([], { initialNavigation: 'enabled' })
     RouterModule.forRoot(appRoutes, { useHash: true }),
   ],
   providers: [],
@@ -39,10 +38,13 @@ export class AppModule {
   constructor(private readonly injector: Injector) {}
 
   ngDoBootstrap() {
-    const appElement: NgElementConstructor<void> = createCustomElement(AppRootComponent, {
-      injector: this.injector,
-    });
     console.log('ngDoBootstrap :', appConfig.name);
-    defineCustomElement(appConfig.name, appElement);
+    const AppElement: NgElementConstructor<AppRootComponent> = createCustomElement(
+      AppRootComponent,
+      {
+        injector: this.injector,
+      }
+    );
+    defineCustomElement(appConfig.name, AppElement);
   }
 }
