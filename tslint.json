@@ -88,7 +88,7 @@
     "rxjs-pipeable-operators-only": true,
     "rxjs-proper-imports": true,
     "radix": true,
-    "semicolon": [true, "always"],
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
     "template-banana-in-box": true,
     "template-no-negated-async": true,
     "triple-equals": [true, "allow-null-check"],

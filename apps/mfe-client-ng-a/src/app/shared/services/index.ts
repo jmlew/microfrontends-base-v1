@@ -2,4 +2,5 @@
 // opposed via the providedIn prop of the @Injectable service decorator.
 export const exports: any[] = [];
 
-export * from './shell-state.service';
+export * from './evt-bus-obs.service';
+export * from './evt-bus-dom.service';

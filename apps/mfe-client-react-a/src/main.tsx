@@ -1,11 +1,10 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 
-import { ClientAppElement, ClientAppInfo } from '@microfr/shared/model';
+import { ClientAppElement, ClientAppInfo } from '@microfr/shared/model/app-interface';
 import { defineCustomElement } from '@microfr/shell';
 import { AppRoot } from './app/core/components';
 import { appConfig } from './app/shared/constants';
-import { shellStateHelper } from './app/shared/helpers';
 
 class AppElement extends HTMLElement implements ClientAppElement {
   private observer: MutationObserver;
@@ -21,7 +20,6 @@ class AppElement extends HTMLElement implements ClientAppElement {
   }
 
   disconnectedCallback() {
-    shellStateHelper.onDestroy();
     this.unmountElement();
   }
 
@@ -34,7 +32,7 @@ class AppElement extends HTMLElement implements ClientAppElement {
   }
 
   set appInfo(data: ClientAppInfo) {
-    console.log('set appInfo on mfe-client-react-a:', data);
+    console.log(`set appInfo on ${appConfig.label}:`, data);
     this._appInfo = data;
   }
 
@@ -62,4 +60,4 @@ class AppElement extends HTMLElement implements ClientAppElement {
   }
 }
 
-defineCustomElement(appConfig.element, AppElement);
+defineCustomElement(appConfig.name, AppElement);

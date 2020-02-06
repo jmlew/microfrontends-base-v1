@@ -22,7 +22,15 @@
       "@microfr/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@microfr/shared/ui-angular": ["libs/shared/ui-angular/src/index.ts"],
       "@microfr/shared/ui-react": ["libs/shared/ui-react/src/index.ts"],
-      "@microfr/shared/util": ["libs/shared/util/src/index.ts"]
+      "@microfr/shared/util/event-bus-dom": [
+        "libs/shared/util/event-bus-dom/src/index.ts"
+      ],
+      "@microfr/shared/util/event-bus-obs": [
+        "libs/shared/util/event-bus-observables/src/index.ts"
+      ],
+      "@microfr/shared/model/app-interface": [
+        "libs/shared/model/app-interface/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

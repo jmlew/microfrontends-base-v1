@@ -32,9 +32,6 @@
     "shared-ui": {
       "tags": []
     },
-    "shared-util": {
-      "tags": []
-    },
     "shared-ui-angular": {
       "tags": []
     },
@@ -45,6 +42,15 @@
       "tags": []
     },
     "shared-ui-react": {
+      "tags": []
+    },
+    "shared-util-event-bus-dom": {
+      "tags": []
+    },
+    "shared-util-event-bus-observables": {
+      "tags": []
+    },
+    "shared-model-app-interface": {
       "tags": []
     }
   }

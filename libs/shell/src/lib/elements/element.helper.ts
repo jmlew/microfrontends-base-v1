@@ -1,11 +1,8 @@
-import { ClientAppElement } from './../../../../shared/model/src/lib/app-interface.model';
+import { ClientAppElement } from '@microfr/shared/model/app-interface';
 import { ElementName } from './element.enum';
 import { ClientConfig } from './element.model';
 
-export function loadClient(
-  config: ClientConfig,
-  container: HTMLElement
-): ClientAppElement {
+export function loadClient(config: ClientConfig, container: HTMLElement) {
   if (config.isLoaded) {
     return;
   }
@@ -16,8 +13,6 @@ export function loadClient(
     script.onerror = () => console.error(`error loading ${path}`);
     container.appendChild(script);
   });
-
-  return embedElement(config.element, container) as ClientAppElement;
 }
 
 export function embedElement(name: ElementName, container: HTMLElement): HTMLElement {

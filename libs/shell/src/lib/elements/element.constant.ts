@@ -10,7 +10,7 @@ const api = 'http://localhost:4200/';
 export const clientsConfig: { [name: string]: ClientConfig } = {
   clientAngularA: {
     isLoaded: false,
-    element: ElementName.ClientAngularA,
+    name: ElementName.ClientAngularA,
     route: ElementRoute.ClientAngularA,
     label: ElementLabel.ClientAngularA,
     scripts: [
@@ -21,7 +21,7 @@ export const clientsConfig: { [name: string]: ClientConfig } = {
   },
   clientReactA: {
     isLoaded: false,
-    element: ElementName.ClientReactA,
+    name: ElementName.ClientReactA,
     route: ElementRoute.ClientReactA,
     label: ElementLabel.ClientReactA,
     scripts: [
