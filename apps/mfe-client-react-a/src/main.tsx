@@ -9,6 +9,7 @@ import {
 } from '@microfr/shell';
 import { AppRoot } from './app/core/components';
 import { appConfig } from './app/shared/constants';
+import { appVisibility } from './app/shared/helpers';
 
 class AppElement extends HTMLElement implements ClientAppElement {
   private observer: MutationObserver;
@@ -76,6 +77,7 @@ class AppElement extends HTMLElement implements ClientAppElement {
     const isHiddenChanged: boolean = mutations.some(isMutationAttributeHidden);
     if (isHiddenChanged) {
       const isShown: boolean = isAppShown(this);
+      appVisibility.isHidden = !isShown;
       console.log(`isShown ${appConfig.label}: `, isShown);
       this.unmountElement();
       if (isShown) {

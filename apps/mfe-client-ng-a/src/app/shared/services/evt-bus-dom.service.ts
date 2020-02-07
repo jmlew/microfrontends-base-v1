@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import {
   EvtBusDom,
@@ -6,30 +6,36 @@ import {
   EvtBusEventItem,
   EvtBusEventType,
 } from '@microfr/shared/util/event-bus-dom';
+import { appConfig } from '../constants';
+import { AppVisibilityService } from './app-visibility.service';
 
 @Injectable({ providedIn: 'root' })
 export class EvtBusDomService implements EvtBusDomImpl {
   private evtBus: EvtBusDom;
 
-  constructor() {
+  constructor(private readonly appVisibility: AppVisibilityService) {
     this.evtBus = EvtBusDom.getInstance();
   }
 
   dispatch(type: EvtBusEventType, detail: any) {
+    if (this.appVisibility.isHidden) {
+      console.warn(`Events blocked from ${appConfig.label} while hidden`);
+      return;
+    }
     this.evtBus.dispatchEvent(type, detail);
   }
 
-  addEventListener(item: EvtBusEventItem, items: EvtBusEventItem[]) {
+  addEventItem(item: EvtBusEventItem, items: EvtBusEventItem[]) {
     items.push(item);
-    this.evtBus.addEventListener(item);
+    this.evtBus.addEventItem(item);
   }
 
-  removeEventListener(item: EvtBusEventItem, items: EvtBusEventItem[]) {
+  removeEventItem(item: EvtBusEventItem, items: EvtBusEventItem[]) {
     items = items.filter((element: EvtBusEventItem) => element !== item);
-    this.evtBus.removeEventListener(item);
+    this.evtBus.removeEventItem(item);
   }
 
   destroy(items: EvtBusEventItem[]) {
-    items.forEach((item: EvtBusEventItem) => this.removeEventListener(item, items));
+    items.forEach((item: EvtBusEventItem) => this.removeEventItem(item, items));
   }
 }

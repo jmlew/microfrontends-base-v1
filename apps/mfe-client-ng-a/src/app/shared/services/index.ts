@@ -4,3 +4,4 @@ export const exports: any[] = [];
 
 export * from './evt-bus-obs.service';
 export * from './evt-bus-dom.service';
+export * from './app-visibility.service';

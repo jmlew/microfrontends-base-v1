@@ -5,6 +5,9 @@ import {
   EvtBusObservables,
   EvtBusObservablesImpl,
 } from '@microfr/shared/util/event-bus-obs';
+import { filter } from 'rxjs/operators';
+import { appConfig } from '../constants';
+import { appVisibility } from './app-visibility.helper';
 
 class EvtBusObservablesHelper implements EvtBusObservablesImpl {
   private evtBus: EvtBusObservables;
@@ -13,18 +16,25 @@ class EvtBusObservablesHelper implements EvtBusObservablesImpl {
     this.evtBus = EvtBusObservables.getInstance();
   }
 
+  /**
+   * Returns the evt bus actions stream if the app is currently visible.
+   */
   get actions$(): Observable<EvtBusAction> {
-    return this.evtBus.actions$;
+    return this.evtBus.actions$.pipe(filter(() => !appVisibility.isHidden));
+  }
+
+  dispatch(action: EvtBusAction) {
+    if (appVisibility.isHidden) {
+      console.warn(`Actons blocked from ${appConfig.label} while hidden`);
+      return;
+    }
+    this.evtBus.dispatchAction(action);
   }
 
   destroy(subject: Subject<unknown>) {
     if (subject) {
       EvtBusObservables.unsubscribe(subject);
     }
-  }
-
-  dispatch(action: EvtBusAction) {
-    this.evtBus.dispatchAction(action);
   }
 }
 

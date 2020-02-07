@@ -16,18 +16,18 @@ class EvtBusDomHelper implements EvtBusDomImpl {
     this.evtBus.dispatchEvent(type, detail);
   }
 
-  addEventListener(item: EvtBusEventItem, items: EvtBusEventItem[]) {
+  addEventItem(item: EvtBusEventItem, items: EvtBusEventItem[]) {
     items.push(item);
-    this.evtBus.addEventListener(item);
+    this.evtBus.addEventItem(item);
   }
 
-  removeEventListener(item: EvtBusEventItem, items: EvtBusEventItem[]) {
+  removeEventItem(item: EvtBusEventItem, items: EvtBusEventItem[]) {
     items = items.filter((element: EvtBusEventItem) => element !== item);
-    this.evtBus.removeEventListener(item);
+    this.evtBus.removeEventItem(item);
   }
 
   destroy(items: EvtBusEventItem[]) {
-    items.forEach((item: EvtBusEventItem) => this.removeEventListener(item, items));
+    items.forEach((item: EvtBusEventItem) => this.removeEventItem(item, items));
   }
 }
 

@@ -15,7 +15,7 @@ export class MainComponent {
   ) {}
 
   onFooClick() {
-    const sampleEventData = 'Fired from Angular App A';
+    const sampleEventData = { payload: 'Fired from Angular App A' };
     this.evtBusObs.dispatch({
       type: EvtBusActionType.SampleEvent,
       payload: sampleEventData,

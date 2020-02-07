@@ -1,13 +1,10 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  HostListener,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
-  Output,
   SimpleChanges,
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -19,7 +16,11 @@ import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus
 import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import { isAppShown, isMutationAttributeHidden } from '@microfr/shell';
 import { appConfig } from '../../../shared/constants';
-import { EvtBusDomService, EvtBusObservablesService } from '../../../shared/services';
+import {
+  AppVisibilityService,
+  EvtBusDomService,
+  EvtBusObservablesService,
+} from '../../../shared/services';
 
 @Component({
   // selector: 'mfe-client-ng-a', // Element name defined as custom element on ngDoBootstrap.
@@ -40,6 +41,7 @@ export class AppRootComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private readonly elementRef: ElementRef,
     private readonly router: Router,
+    private readonly appVisibility: AppVisibilityService,
     private readonly evtBusObs: EvtBusObservablesService,
     private readonly evtBusDom: EvtBusDomService
   ) {
@@ -98,18 +100,19 @@ export class AppRootComponent implements OnInit, OnDestroy, OnChanges {
     const isHiddenChanged: boolean = mutations.some(isMutationAttributeHidden);
     if (isHiddenChanged) {
       const isShown: boolean = isAppShown(this.nativeElement);
+      this.appVisibility.isHidden = !isShown;
       console.log(`isShown ${appConfig.label}: `, isShown);
     }
   }
 
   private listenToEvtBusDom() {
-    this.evtBusDom.addEventListener(
-      {
-        type: EvtBusEventType.SampleEvent,
-        listener: (event: CustomEvent) => {
-          console.log(`Event to ${appConfig.label}:`, event.detail);
-        },
-      },
+    const listener: EventListener = (event: CustomEvent) => {
+      if (!this.appVisibility.isHidden) {
+        console.log(`Event to ${appConfig.label}:`, event.detail);
+      }
+    };
+    this.evtBusDom.addEventItem(
+      { type: EvtBusEventType.SampleEvent, listener },
       this.evtBusDomItems
     );
   }

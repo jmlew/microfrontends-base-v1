@@ -2,6 +2,12 @@
 
 A POC collection of Angular and ReactJS apps using a microfontends monorepo architecture, generated with [Nx](https://nx.dev).
 
+## Structure
+
+The architecture consists of a shell, a number of client apps, and a number of dependant libraries.
+
+The shell goes by the namespace: `{project-name}-shell`, with each app as `{project-name}-client-{app-name}`
+
 ## Build Shell & Apps
 
 - Run `npm run build` to build the shell and all apps.

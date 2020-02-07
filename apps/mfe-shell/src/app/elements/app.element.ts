@@ -52,7 +52,7 @@ export class ShellAppElement extends HTMLElement {
   }
 
   private listenToEvtBusDom() {
-    evtBusDom.addEventListener(
+    evtBusDom.addEventItem(
       {
         type: EvtBusEventType.SampleEvent,
         listener: (event: CustomEvent) => {
@@ -100,17 +100,16 @@ export class ShellAppElement extends HTMLElement {
       // Create element and appendto container.
       const element: ClientAppElement = embedElement(config.name, container);
 
-      // Hide all but the first client app.
-      if (index > 0) {
-        hideApp(element);
-      }
-
       // Add app element to local collection.
       this.clients.push({ name, element });
 
       // Init client once loaded.
       const isClientLoaded: Promise<void> = isCustomElementDefined(name);
       isClientLoaded.then(() => {
+        // Hide all but the first client app.
+        if (index > 0) {
+          hideApp(element);
+        }
         this.handleClientLoaded(config);
       });
     });
@@ -186,11 +185,20 @@ export class ShellAppElement extends HTMLElement {
     const currentConfig: ClientConfig = this.clientConfigs.find(
       (item: ClientConfig) => item.route === route
     );
+    // Show the client which matches the route while hiding the others if the route
+    // correspnds to a client, otherwise show all clients.
+
+    // TODO: add multiple routes per client config and only hide apps which don't match
+    // any of the route path.
     if (currentConfig) {
       this.clients.forEach((item: { name: ElementName; element: ClientAppElement }) => {
         const { name, element } = item;
         name === currentConfig.name ? showApp(element) : hideApp(element);
       });
+    } else {
+      this.clients.forEach((item: { name: ElementName; element: ClientAppElement }) =>
+        showApp(item.element)
+      );
     }
   }
 
@@ -199,7 +207,7 @@ export class ShellAppElement extends HTMLElement {
   }
 
   private sendTestAction(route: ElementRoute) {
-    const sampleEventData = `Fired from Shell, go to route: ${route}`;
+    const sampleEventData = { payload: `Fired from Shell, go to route: ${route}` };
     evtBusObs.dispatch({
       type: EvtBusActionType.SampleEvent,
       payload: sampleEventData,
@@ -223,13 +231,15 @@ function getCustomElementTemplate() {
 }
 
 function getCustomElementNavButtons(configs: ClientConfig[]): string {
-  return configs
-    .map(
-      (config: ClientConfig) => `
-      <button class="btn-generic" type="button" id="${config.route}">
-        ${config.label}
-      </button>
-    `
-    )
-    .join('');
+  const appButtons: string[] = configs.map((config: ClientConfig) => NavButton(config));
+  const allButton: string = NavButton({ route: '', label: 'Home' });
+  return [...appButtons, allButton].join('');
+}
+
+function NavButton({ route, label }) {
+  return `
+    <button class="btn-generic" type="button" id="${route}">
+      ${label}
+    </button>
+  `;
 }

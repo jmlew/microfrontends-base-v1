@@ -12,6 +12,6 @@ export enum EvtBusEventType {
 export interface EvtBusDomImpl {
   dispatch: (type: EvtBusEventType, detail?: any) => void;
   destroy: (items: EvtBusEventItem[]) => void;
-  addEventListener: (item: EvtBusEventItem, items: EvtBusEventItem[]) => void;
-  removeEventListener: (item: EvtBusEventItem, items: EvtBusEventItem[]) => void;
+  addEventItem: (item: EvtBusEventItem, items: EvtBusEventItem[]) => void;
+  removeEventItem: (item: EvtBusEventItem, items: EvtBusEventItem[]) => void;
 }

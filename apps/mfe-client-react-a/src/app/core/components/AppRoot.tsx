@@ -36,7 +36,7 @@ export class AppRoot extends React.Component {
   }
 
   private listenToEvtBusDom() {
-    evtBusDom.addEventListener(
+    evtBusDom.addEventItem(
       {
         type: EvtBusEventType.SampleEvent,
         listener: (event: CustomEvent) => {
@@ -58,7 +58,7 @@ export class AppRoot extends React.Component {
   }
 
   handleFooClick = () => {
-    const sampleEventData = 'Fired from React App A';
+    const sampleEventData = { payload: 'Fired from Angular App A' };
     evtBusObs.dispatch({
       type: EvtBusActionType.SampleEvent,
       payload: sampleEventData,

@@ -20,12 +20,12 @@ export class EvtBusDom {
     return (window as any).EvtBusDom;
   }
 
-  addEventListener(item: EvtBusEventItem) {
+  addEventItem(item: EvtBusEventItem) {
     const { type, listener } = item;
     this.bus.addEventListener(type, listener);
   }
 
-  removeEventListener(item: EvtBusEventItem) {
+  removeEventItem(item: EvtBusEventItem) {
     const { type, listener } = item;
     this.bus.removeEventListener(type, listener);
   }
