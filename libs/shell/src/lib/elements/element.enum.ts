@@ -4,14 +4,14 @@ export enum ElementName {
   ClientReactA = 'mfe-client-react-a',
 }
 
-export enum ElementRoute {
-  Shell = '/',
-  ClientAngularA = 'ng-a',
-  ClientReactA = 'react-a',
-}
-
 export enum ElementLabel {
   Shell = 'Shell',
   ClientAngularA = 'Angular App A',
   ClientReactA = 'React App A',
+}
+
+export enum ElementRoute {
+  Shell = '/',
+  ClientAngularA = 'ng-a',
+  ClientReactA = 'react-a',
 }

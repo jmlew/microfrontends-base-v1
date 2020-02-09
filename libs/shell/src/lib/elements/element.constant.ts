@@ -11,8 +11,8 @@ export const clientsConfig: { [name: string]: ClientConfig } = {
   clientAngularA: {
     isLoaded: false,
     name: ElementName.ClientAngularA,
-    route: ElementRoute.ClientAngularA,
     label: ElementLabel.ClientAngularA,
+    route: ElementRoute.ClientAngularA,
     scripts: [
       `${api}${ElementName.ClientAngularA}/polyfills.js`,
       `${api}${ElementName.ClientAngularA}/main.js`,
@@ -22,8 +22,8 @@ export const clientsConfig: { [name: string]: ClientConfig } = {
   clientReactA: {
     isLoaded: false,
     name: ElementName.ClientReactA,
-    route: ElementRoute.ClientReactA,
     label: ElementLabel.ClientReactA,
+    route: ElementRoute.ClientReactA,
     scripts: [
       `${api}${ElementName.ClientReactA}/main.es5.js`,
       `${api}${ElementName.ClientReactA}/polyfills.es5.js`,

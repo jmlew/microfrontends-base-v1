@@ -29,6 +29,6 @@ export const appRoutes: Routes = [
     ],
   },
 
-  // Detach this app through an empty coponent for paths which exclude this app's prefix.
+  // Detach this app through an empty component for paths which exclude this app's prefix.
   { path: '**', component: fromSharedComps.EmptyComponent },
 ];

@@ -4,9 +4,9 @@ A POC collection of Angular and ReactJS apps using a microfontends monorepo arch
 
 ## Structure
 
-The architecture consists of a shell, a number of client apps, and a number of dependant libraries.
+The architecture consists of a single shell, a number of client apps, and a number of libraries whcih are either shared between each of specific to one of the clients / shell.
 
-The shell goes by the namespace: `{project-name}-shell`, with each app as `{project-name}-client-{app-name}`
+The shell goes by the namespace: `{project-name}-shell`, with each client app as `{project-name}-client-{app-name}`.
 
 ## Build Shell & Apps
 
@@ -84,6 +84,10 @@ To opt-in using the new Angular Ivy compiler, set the following for each Angular
 Included is a service to enable lazy-loading modules without using the router (@microfr/shared/ui-angular/LazyLoaderService).
 
 > TODO: Add further instructions for using this.
+
+### Add custom Angular Element strategy factory
+
+Use a custom NgElementStrategyFactory when creating a new Angular app as a custom element with the NgElementConstructor. The ElementZoneStrategyFactory lib is used here to ensures automatic change detection through Zone doesn't conflict with an element's parent, if the parent is also an Angular element. See the example of this in the mfe-client-ng-a app's custom element constructor in `app.module`.
 
 ### Build React Apps
 

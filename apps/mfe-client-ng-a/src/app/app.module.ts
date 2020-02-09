@@ -1,8 +1,13 @@
 import { Injector, NgModule } from '@angular/core';
-import { createCustomElement, NgElementConstructor } from '@angular/elements';
+import {
+  createCustomElement,
+  NgElementConstructor,
+  NgElementStrategyFactory,
+} from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { ElementZoneStrategyFactory } from 'elements-zone-strategy';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -39,10 +44,20 @@ export class AppModule {
 
   ngDoBootstrap() {
     console.log('ngDoBootstrap :', appConfig.name);
+
+    // Create custom strategy factory which always runs in the NgZone to avoid zone
+    // conflicts with future parent / child Ng elements.
+    const strategyFactory: NgElementStrategyFactory = new ElementZoneStrategyFactory(
+      AppRootComponent,
+      this.injector
+    );
+
+    // Create root element constructor for use in defining the custom element.
     const AppElement: NgElementConstructor<AppRootComponent> = createCustomElement(
       AppRootComponent,
       {
         injector: this.injector,
+        strategyFactory,
       }
     );
     defineCustomElement(appConfig.name, AppElement);
