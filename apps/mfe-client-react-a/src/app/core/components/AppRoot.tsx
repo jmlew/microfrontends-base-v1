@@ -58,7 +58,7 @@ export class AppRoot extends React.Component {
   }
 
   handleFooClick = () => {
-    const sampleEventData = { payload: 'Fired from Angular App A' };
+    const sampleEventData = { payload: 'Fired from React App A' };
     evtBusObs.dispatch({
       type: EvtBusActionType.SampleEvent,
       payload: sampleEventData,
@@ -78,6 +78,11 @@ export class AppRoot extends React.Component {
               Test global state action
             </Button>
           </main>
+          <img
+            src="/assets/images/react.png"
+            alt="React Logo"
+            className="framework-logo"
+          />
         </StyledAppRoot>
       </MuiThemeProvider>
     );

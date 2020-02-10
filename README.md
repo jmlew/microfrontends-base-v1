@@ -10,7 +10,7 @@ The shell goes by the namespace: `{project-name}-shell`, with each client app as
 
 ## Build Shell & Apps
 
-- Run `npm run build` to build the shell and all apps.
+- Run `npm run build` to build the shell and client apps.
 - Run `npm run build:shell` to build only the shell.
 - Run `npm run build:clients` to build only the client apps.
 - Run `npm run build:client-ng-a` to build only the Angular client example A app.
@@ -22,14 +22,23 @@ Serving via the default @nrwl/web:dev-server server does not serve files for all
 
 This requires first ensuring the shell and apps have been built on changes.
 
-Run `npm start`
+Run `npm start` builds everything and serves the shell and all clients.
 
-Or run each separately as separate apps:
+Or run each separately:
 
-- Run `npm run serve` to serve the shell and all apps.
+- Run `npm run serve` to serve the shell and all clients.
 - Run `npm run serve:shell` to serve only the shell.
+- Run `npm run serve:clients` to serve all listed clients.
 - Run `npm run serve:client-ng-a` to serve only the Angular client example A app.
 - Run `npm run serve:client-react-a` to serve only the React client example A app.
+
+Or run each as separate apps in development mode:
+
+- Run `npm run serve:dev:shell` to serve only the shell along with all prod built clients.
+- Run `npm run serve:dev:client-ng-a` to serve only the Angular client example A app.
+- Run `npm run serve:dev:client-react-a` to serve only the React client example A app.
+
+An example workflow is to serve the shell in dev mode along with any clients also being developed and preview them in different tabs. The shell in dev mode serves the production built clients which can be updated via the build commands (eg. `npm run build:client-ng-a`) with each major update and live-reloaded in the shell tab. This allows for updates to be made to individual clients in their development environments while simultaneously previewing changes within the context of the shell.
 
 ## Adding polyfills
 

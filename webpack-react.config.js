@@ -1,21 +1,7 @@
 const nrwlReactWebpack = require('@nrwl/react/plugins/webpack');
 
-/**
- * Sass rules which can be used for SASS / CSS / JS conversions.
- */
-const sassRules = {
-  test: /\.scss$/,
-  use: [
-    {
-      loader: 'style-loader', // creates style nodes from JS strings
-    },
-    {
-      loader: 'sass-loader', // compiles Sass to CSS
-    },
-  ],
-};
-
 module.exports = (config) => {
-  config.module.rules.unshift(sassRules);
+  // Add sample rules to config.
+  // config.module.rules.unshift(sampleRulesHere);
   return { ...nrwlReactWebpack(config) };
 };

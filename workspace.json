@@ -174,7 +174,7 @@
         "build": {
           "builder": "ngx-build-plus:build",
           "options": {
-            "outputPath": "dist/apps/mfe-shell/mfe-client-ng-a",
+            "outputPath": "dist/apps/mfe-client-ng-a",
             "index": "apps/mfe-client-ng-a/src/index.html",
             "main": "apps/mfe-client-ng-a/src/main.ts",
             "polyfills": "apps/mfe-client-ng-a/src/polyfills.ts",
@@ -186,8 +186,9 @@
             ],
             "scripts": [],
             "styles": [
-              "libs/shared/ui/src/lib/styles/mat-overrides/mat-icons.scss",
               "libs/shared/ui/src/lib/styles/ui-styles/all.scss",
+              "libs/shared/ui/src/lib/styles/mat-overrides/mat-icons.scss",
+              "apps/mfe-shell/src/styles/global.scss",
               "libs/shared/ui-angular/src/lib/styles/mat-theme.scss"
             ],
             "stylePreprocessorOptions": {
@@ -294,7 +295,7 @@
         "build": {
           "builder": "@nrwl/web:build",
           "options": {
-            "outputPath": "dist/apps/mfe-shell/mfe-client-react-a",
+            "outputPath": "dist/apps/mfe-client-react-a",
             "index": "apps/mfe-client-react-a/src/index.html",
             "main": "apps/mfe-client-react-a/src/main.tsx",
             "polyfills": "apps/mfe-client-react-a/src/polyfills.ts",
@@ -304,7 +305,10 @@
               "apps/mfe-client-react-a/src/assets"
             ],
             "scripts": [],
-            "styles": [],
+            "styles": [
+              "libs/shared/ui/src/lib/styles/ui-styles/all.scss",
+              "apps/mfe-shell/src/styles/global.scss"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": ["libs/shared/ui/src/lib/styles/"]
             },

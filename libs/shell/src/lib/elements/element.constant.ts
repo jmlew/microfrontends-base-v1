@@ -1,11 +1,19 @@
-import { ElementLabel, ElementName, ElementRoute } from './element.enum';
+import {
+  ElementDevServerLoc,
+  ElementLabel,
+  ElementName,
+  ElementProdServerLoc,
+  ElementRoute,
+} from './element.enum';
 import { ClientConfig } from './element.model';
 
 // TODO: Enable differential loading of the below scripts using technique in index.html.
 // Currently turned off with each browserlist set only to es2015 browsers.
 
-// TODO: provide api proxy for dev vs prod.
-const api = 'http://localhost:4200/';
+// TODO: Switch between prod and dev by loading scripts from within shell dir in
+// dist or via app's dev server location.
+
+const isDevMode = false;
 
 export const clientsConfig: { [name: string]: ClientConfig } = {
   clientAngularA: {
@@ -13,21 +21,32 @@ export const clientsConfig: { [name: string]: ClientConfig } = {
     name: ElementName.ClientAngularA,
     label: ElementLabel.ClientAngularA,
     route: ElementRoute.ClientAngularA,
-    scripts: [
-      `${api}${ElementName.ClientAngularA}/polyfills.js`,
-      `${api}${ElementName.ClientAngularA}/main.js`,
-      // `${ElementName.ClientAngularA}/runtime.js`, // Combined into main with ng-build-plus
-    ],
+    scripts: isDevMode
+      ? [
+          `${ElementDevServerLoc.ClientAngularA}polyfills.js`,
+          `${ElementDevServerLoc.ClientAngularA}main.js`,
+        ]
+      : [
+          `${ElementProdServerLoc.ClientAngularA}polyfills.js`,
+          `${ElementProdServerLoc.ClientAngularA}main.js`,
+        ],
   },
   clientReactA: {
     isLoaded: false,
     name: ElementName.ClientReactA,
     label: ElementLabel.ClientReactA,
     route: ElementRoute.ClientReactA,
-    scripts: [
-      `${api}${ElementName.ClientReactA}/main.es5.js`,
-      `${api}${ElementName.ClientReactA}/polyfills.es5.js`,
-      `${api}${ElementName.ClientReactA}/runtime.js`,
-    ],
+    scripts: isDevMode
+      ? [
+          `${ElementDevServerLoc.ClientReactA}main.js`,
+          `${ElementDevServerLoc.ClientReactA}polyfills.js`,
+          `${ElementDevServerLoc.ClientReactA}vendor.js`,
+          `${ElementDevServerLoc.ClientReactA}runtime.js`,
+        ]
+      : [
+          `${ElementProdServerLoc.ClientReactA}main.es5.js`,
+          `${ElementProdServerLoc.ClientReactA}polyfills.es5.js`,
+          `${ElementProdServerLoc.ClientReactA}runtime.js`,
+        ],
   },
 };

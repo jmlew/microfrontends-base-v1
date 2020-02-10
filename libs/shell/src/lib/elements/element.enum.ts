@@ -15,3 +15,18 @@ export enum ElementRoute {
   ClientAngularA = 'ng-a',
   ClientReactA = 'react-a',
 }
+
+export enum ElementDevServerLoc {
+  Shell = 'http://localhost:6600/',
+  ClientAngularA = 'http://localhost:6610/',
+  ClientReactA = 'http://localhost:6620/',
+}
+
+/**
+ * Placeholder for production server locations. Currently mapped to dev servers.
+ */
+export enum ElementProdServerLoc {
+  Shell = ElementDevServerLoc.Shell,
+  ClientAngularA = ElementDevServerLoc.ClientAngularA,
+  ClientReactA = ElementDevServerLoc.ClientReactA,
+}
