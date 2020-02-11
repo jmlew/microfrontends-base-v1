@@ -1,14 +1,6 @@
-export class AppVisibilityHelper {
-  private isAppHidden: boolean;
+import { AppVisibility } from '@microfr/shared/util/common';
 
-  get isHidden(): boolean {
-    return this.isAppHidden;
-  }
-
-  set isHidden(isHidden: boolean) {
-    this.isAppHidden = isHidden;
-  }
-}
+export class AppVisibilityHelper extends AppVisibility {}
 
 const appVisibility: AppVisibilityHelper = new AppVisibilityHelper();
 

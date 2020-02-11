@@ -2,14 +2,14 @@
 @import 'ui-colors/index';
 
 .main-panel {
-  background-color: #ccc;
+  background-color: $color-grey-100;
   position: relative;
   min-height: 100%;
 
   & > .heading {
     padding: 1rem;
-    font-size: 30px;
-    color: $color-primary;
+    font-size: 24px;
+    color: $color-grey-800;
   }
 
   & > .navbar {
@@ -25,6 +25,6 @@
 }
 
 .framework-logo {
-  height: 160px;
+  height: 30px;
   margin: 30px;
 }

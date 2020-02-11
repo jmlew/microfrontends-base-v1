@@ -52,6 +52,9 @@
     },
     "shared-model-app-interface": {
       "tags": []
+    },
+    "shared-util-common": {
+      "tags": []
     }
   }
 }

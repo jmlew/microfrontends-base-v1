@@ -591,6 +591,33 @@
           }
         }
       }
+    },
+    "shared-util-common": {
+      "root": "libs/shared/util/common",
+      "sourceRoot": "libs/shared/util/common/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/util/common/.eslintrc",
+            "tsConfig": [
+              "libs/shared/util/common/tsconfig.lib.json",
+              "libs/shared/util/common/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/util/common/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/util/common/jest.config.js",
+            "tsConfig": "libs/shared/util/common/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

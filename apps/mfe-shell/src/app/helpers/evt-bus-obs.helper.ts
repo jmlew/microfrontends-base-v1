@@ -1,32 +1,6 @@
-import { Observable, Subject } from 'rxjs';
+import { EvtBusObservablesBase } from '@microfr/shared/util/event-bus-obs';
 
-import {
-  EvtBusAction,
-  EvtBusObservables,
-  EvtBusObservablesImpl,
-} from '@microfr/shared/util/event-bus-obs';
-
-class EvtBusObservablesHelper implements EvtBusObservablesImpl {
-  private evtBus: EvtBusObservables;
-
-  constructor() {
-    this.evtBus = EvtBusObservables.getInstance();
-  }
-
-  get actions$(): Observable<EvtBusAction> {
-    return this.evtBus.actions$;
-  }
-
-  destroy(subject: Subject<unknown>) {
-    if (subject) {
-      EvtBusObservables.unsubscribe(subject);
-    }
-  }
-
-  dispatch(action: EvtBusAction) {
-    this.evtBus.dispatchAction(action);
-  }
-}
+class EvtBusObservablesHelper extends EvtBusObservablesBase {}
 
 const evtBusObs = new EvtBusObservablesHelper();
 export { evtBusObs };

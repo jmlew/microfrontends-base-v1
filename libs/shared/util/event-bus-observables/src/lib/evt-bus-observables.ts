@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-import { EvtBusAction } from './observables.model';
+import { EvtBusAction } from './evt-bus-observables.model';
 
 /**
  * A global RxJS Subject based Event Bus through which the shell can co-ordinate actions
@@ -27,7 +27,7 @@ export class EvtBusObservables {
     subject.complete();
   }
 
-  get actions$(): Observable<EvtBusAction> {
+  getActions(): Observable<EvtBusAction> {
     return this.actionsSubject.asObservable();
   }
 

@@ -75,7 +75,7 @@ export class ShellAppElement extends HTMLElement {
 
   private render() {
     // Render main template.
-    this.innerHTML = getCustomElementTemplate();
+    this.innerHTML = getShellTemplate();
 
     // Create sample shell navbar buttons.
     this.navbar = document.getElementById('app-btns');
@@ -218,10 +218,10 @@ export class ShellAppElement extends HTMLElement {
 
 defineCustomElement(ElementName.Shell, ShellAppElement);
 
-function getCustomElementTemplate() {
+function getShellTemplate() {
   return `
     <main class="main-panel">
-      <h1 class="heading">Microfrontends Root Element</h1>
+      <h1 class="heading">Microfrontends Shell</h1>
       <nav class="navbar" id="app-btns"></nav>
       <div id="content" class="content">
         <!-- Web Components go here -->
