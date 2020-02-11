@@ -32,7 +32,7 @@ export class ShellAppElement extends HTMLElement {
   constructor() {
     super();
 
-    this.clientConfigs = [clientsConfig.clientAngularA, clientsConfig.clientReactA];
+    this.clientConfigs = [clientsConfig.clientRed, clientsConfig.clientBlue];
     this.clients = [];
   }
 
@@ -129,11 +129,11 @@ export class ShellAppElement extends HTMLElement {
    */
   private updateClientInputs() {
     const appInfoMap: { [element: string]: ClientAppInfo } = {
-      [ElementName.ClientAngularA]: {
+      [ElementName.ClientRed]: {
         name: 'Client Angular A',
         description: 'Example Angular Client',
       },
-      [ElementName.ClientReactA]: {
+      [ElementName.ClientBlue]: {
         name: 'Client React A',
         description: 'Example React Client',
       },

@@ -1,25 +1,25 @@
 export enum ElementName {
   Shell = 'mfe-shell',
-  ClientAngularA = 'mfe-client-ng-a',
-  ClientReactA = 'mfe-client-react-a',
+  ClientRed = 'mfe-client-red',
+  ClientBlue = 'mfe-client-blue',
 }
 
 export enum ElementLabel {
   Shell = 'Shell',
-  ClientAngularA = 'Angular App A',
-  ClientReactA = 'React App A',
+  ClientRed = 'Client Red: Angular App',
+  ClientBlue = 'Client Blue: React App',
 }
 
 export enum ElementRoute {
   Shell = '/',
-  ClientAngularA = 'ng-a',
-  ClientReactA = 'react-a',
+  ClientRed = 'red',
+  ClientBlue = 'blue',
 }
 
 export enum ElementDevServerLoc {
   Shell = 'http://localhost:6600/',
-  ClientAngularA = 'http://localhost:6610/',
-  ClientReactA = 'http://localhost:6620/',
+  ClientRed = 'http://localhost:6610/',
+  ClientBlue = 'http://localhost:6620/',
 }
 
 /**
@@ -27,6 +27,6 @@ export enum ElementDevServerLoc {
  */
 export enum ElementProdServerLoc {
   Shell = ElementDevServerLoc.Shell,
-  ClientAngularA = ElementDevServerLoc.ClientAngularA,
-  ClientReactA = ElementDevServerLoc.ClientReactA,
+  ClientRed = ElementDevServerLoc.ClientRed,
+  ClientBlue = ElementDevServerLoc.ClientBlue,
 }

@@ -17,16 +17,16 @@
     "mfe-shell-e2e": {
       "tags": []
     },
-    "mfe-client-ng-a": {
+    "mfe-client-red": {
       "tags": []
     },
-    "mfe-client-ng-a-e2e": {
+    "mfe-client-red-e2e": {
       "tags": []
     },
-    "mfe-client-react-a": {
+    "mfe-client-blue": {
       "tags": []
     },
-    "mfe-client-react-a-e2e": {
+    "mfe-client-blue-e2e": {
       "tags": []
     },
     "shared-ui": {

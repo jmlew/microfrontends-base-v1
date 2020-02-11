@@ -16,37 +16,37 @@ import { ClientConfig } from './element.model';
 const isDevMode = false;
 
 export const clientsConfig: { [name: string]: ClientConfig } = {
-  clientAngularA: {
+  clientRed: {
     isLoaded: false,
-    name: ElementName.ClientAngularA,
-    label: ElementLabel.ClientAngularA,
-    route: ElementRoute.ClientAngularA,
+    name: ElementName.ClientRed,
+    label: ElementLabel.ClientRed,
+    route: ElementRoute.ClientRed,
     scripts: isDevMode
       ? [
-          `${ElementDevServerLoc.ClientAngularA}polyfills.js`,
-          `${ElementDevServerLoc.ClientAngularA}main.js`,
+          `${ElementDevServerLoc.ClientRed}polyfills.js`,
+          `${ElementDevServerLoc.ClientRed}main.js`,
         ]
       : [
-          `${ElementProdServerLoc.ClientAngularA}polyfills.js`,
-          `${ElementProdServerLoc.ClientAngularA}main.js`,
+          `${ElementProdServerLoc.ClientRed}polyfills.js`,
+          `${ElementProdServerLoc.ClientRed}main.js`,
         ],
   },
-  clientReactA: {
+  clientBlue: {
     isLoaded: false,
-    name: ElementName.ClientReactA,
-    label: ElementLabel.ClientReactA,
-    route: ElementRoute.ClientReactA,
+    name: ElementName.ClientBlue,
+    label: ElementLabel.ClientBlue,
+    route: ElementRoute.ClientBlue,
     scripts: isDevMode
       ? [
-          `${ElementDevServerLoc.ClientReactA}main.js`,
-          `${ElementDevServerLoc.ClientReactA}polyfills.js`,
-          `${ElementDevServerLoc.ClientReactA}vendor.js`,
-          `${ElementDevServerLoc.ClientReactA}runtime.js`,
+          `${ElementDevServerLoc.ClientBlue}main.js`,
+          `${ElementDevServerLoc.ClientBlue}polyfills.js`,
+          `${ElementDevServerLoc.ClientBlue}vendor.js`,
+          `${ElementDevServerLoc.ClientBlue}runtime.js`,
         ]
       : [
-          `${ElementProdServerLoc.ClientReactA}main.es5.js`,
-          `${ElementProdServerLoc.ClientReactA}polyfills.es5.js`,
-          `${ElementProdServerLoc.ClientReactA}runtime.js`,
+          `${ElementProdServerLoc.ClientBlue}main.es5.js`,
+          `${ElementProdServerLoc.ClientBlue}polyfills.es5.js`,
+          `${ElementProdServerLoc.ClientBlue}runtime.js`,
         ],
   },
 };
