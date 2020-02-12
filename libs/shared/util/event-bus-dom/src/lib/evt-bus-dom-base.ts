@@ -1,6 +1,6 @@
 import { AppVisibility } from '@microfr/shared/util/common';
-import { EvtBusDomImpl, EvtBusEventItem, EvtBusEventType } from './com-evt.model';
 import { EvtBusDom } from './evt-bus-dom';
+import { EvtBusDomImpl, EvtBusEventItem, EvtBusEventType } from './evt-bus-dom.model';
 
 export class EvtBusDomBase implements EvtBusDomImpl {
   protected evtBus: EvtBusDom;

@@ -1,0 +1,23 @@
+<mat-card
+  fxLayout="column"
+  fxLayoutAlign="center center">
+  <nav
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px">
+    <button
+      *ngFor="let item of menuItems"
+      mat-raised-button
+      color="primary"
+      (click)="onItemClick(item)">
+      <mat-icon class="mr-2">{{ item.icon }}</mat-icon>
+      <span>{{ item.label }}</span>
+    </button>
+  </nav>
+</mat-card>
+
+<mat-divider></mat-divider>
+
+<img
+  src="/assets/images/ng.svg"
+  alt="Angular Logo"
+  class="framework-logo">

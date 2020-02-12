@@ -51,7 +51,7 @@ export class AppRoot extends React.Component {
     evtBusObs.actions$
       .pipe(takeUntil(this.evtBusObsDestroy))
       .subscribe((action: EvtBusAction) => {
-        if (action && action.type === EvtBusActionType.SampleEvent) {
+        if (action) {
           console.log(`Action to ${appConfig.label}:`, action);
         }
       });

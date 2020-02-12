@@ -31,6 +31,21 @@ export const clientsConfig: { [name: string]: ClientConfig } = {
           `${ElementProdServerLoc.ClientRed}main.js`,
         ],
   },
+  clientOrange: {
+    isLoaded: false,
+    name: ElementName.ClientOrange,
+    label: ElementLabel.ClientOrange,
+    route: ElementRoute.ClientOrange,
+    scripts: isDevMode
+      ? [
+          `${ElementDevServerLoc.ClientOrange}polyfills.js`,
+          `${ElementDevServerLoc.ClientOrange}main.js`,
+        ]
+      : [
+          `${ElementProdServerLoc.ClientOrange}polyfills.js`,
+          `${ElementProdServerLoc.ClientOrange}main.js`,
+        ],
+  },
   clientBlue: {
     isLoaded: false,
     name: ElementName.ClientBlue,

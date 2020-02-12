@@ -179,7 +179,6 @@
             "main": "apps/mfe-client-red/src/main.ts",
             "polyfills": "apps/mfe-client-red/src/polyfills.ts",
             "tsConfig": "apps/mfe-client-red/tsconfig.app.json",
-            "aot": false,
             "assets": [
               "apps/mfe-client-red/src/favicon.ico",
               "apps/mfe-client-red/src/assets"
@@ -615,6 +614,104 @@
           "options": {
             "jestConfig": "libs/shared/util/common/jest.config.js",
             "tsConfig": "libs/shared/util/common/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "mfe-client-orange": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/mfe-client-orange",
+      "sourceRoot": "apps/mfe-client-orange/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:build",
+          "options": {
+            "outputPath": "dist/apps/mfe-client-orange",
+            "index": "apps/mfe-client-orange/src/index.html",
+            "main": "apps/mfe-client-orange/src/main.ts",
+            "polyfills": "apps/mfe-client-orange/src/polyfills.ts",
+            "tsConfig": "apps/mfe-client-orange/tsconfig.app.json",
+            "assets": [
+              "apps/mfe-client-orange/src/favicon.ico",
+              "apps/mfe-client-orange/src/assets"
+            ],
+            "scripts": [],
+            "styles": [
+              "libs/shared/ui/src/lib/styles/ui-styles/all.scss",
+              "libs/shared/ui/src/lib/styles/mat-overrides/mat-icons.scss",
+              "apps/mfe-shell/src/styles/global.scss",
+              "libs/shared/ui-angular/src/lib/styles/mat-theme.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs/shared/ui/src/lib/styles/"]
+            }
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/mfe-client-orange/src/environments/environment.ts",
+                  "with": "apps/mfe-client-orange/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "mfe-client-orange:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mfe-client-orange:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mfe-client-orange:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/mfe-client-orange/tsconfig.app.json",
+              "apps/mfe-client-orange/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/mfe-client-orange/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/mfe-client-orange/jest.config.js",
+            "tsConfig": "apps/mfe-client-orange/tsconfig.spec.json",
+            "setupFile": "apps/mfe-client-orange/src/test-setup.ts"
           }
         }
       }

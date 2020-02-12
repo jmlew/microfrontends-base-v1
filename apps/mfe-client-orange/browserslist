@@ -1,0 +1,8 @@
+> 0.5%
+last 2 versions
+Firefox ESR
+not dead
+not IE 9-11
+
+# Only use es2015 compliant browsers https://caniuse.com/#feat=es6
+# Chrome >= 61

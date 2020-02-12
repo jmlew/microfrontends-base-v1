@@ -32,7 +32,11 @@ export class ShellAppElement extends HTMLElement {
   constructor() {
     super();
 
-    this.clientConfigs = [clientsConfig.clientRed, clientsConfig.clientBlue];
+    this.clientConfigs = [
+      clientsConfig.clientOrange,
+      clientsConfig.clientRed,
+      clientsConfig.clientBlue,
+    ];
     this.clients = [];
   }
 
@@ -67,7 +71,7 @@ export class ShellAppElement extends HTMLElement {
     evtBusObs.actions$
       .pipe(takeUntil(this.evtBusObsDestroy))
       .subscribe((action: EvtBusAction) => {
-        if (action && action.type === EvtBusActionType.SampleEvent) {
+        if (action) {
           console.log('Action to Shell:', action);
         }
       });
@@ -97,18 +101,18 @@ export class ShellAppElement extends HTMLElement {
       // Load client element from config.
       loadClient(config, container);
 
-      // Create element and appendto container.
+      // Create element and append to container.
       const element: ClientAppElement = embedElement(config.name, container);
-
-      // Add app element to local collection.
-      this.clients.push({ name, element });
 
       // Init client once loaded.
       const isClientLoaded: Promise<void> = isCustomElementDefined(name);
       isClientLoaded.then(() => {
+        // Add app element to local collection.
+        this.clients.push({ name, element });
+
         // Hide all but the first client app.
         if (index > 0) {
-          hideApp(element);
+          // hideApp(element);
         }
         this.handleClientLoaded(config);
       });

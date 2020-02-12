@@ -1,4 +1,4 @@
-import { IconMat } from '../enums/icons.enum';
+import { IconMat } from '@microfr/shared/ui';
 import { RouteConfig } from '../models/routes.model';
 import { appConfig } from './build.constant';
 

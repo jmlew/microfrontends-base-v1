@@ -121,7 +121,7 @@ export class AppRootComponent implements OnInit, OnDestroy, OnChanges {
     this.evtBusObs.actions$
       .pipe(takeUntil(this.evtBusObsDestroy))
       .subscribe((action: EvtBusAction) => {
-        if (action && action.type === EvtBusActionType.SampleEvent) {
+        if (action) {
           console.log(`Action to ${appConfig.label}:`, action);
         }
       });

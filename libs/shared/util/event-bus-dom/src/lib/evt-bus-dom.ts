@@ -1,4 +1,4 @@
-import { EvtBusEventItem, EvtBusEventType } from './com-evt.model';
+import { EvtBusEventItem, EvtBusEventType } from './evt-bus-dom.model';
 
 /**
  * A global DOM API Custom Event based Event Bus through which the shell can co-ordinate

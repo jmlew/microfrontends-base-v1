@@ -8,6 +8,7 @@ export interface EvtBusAction {
 export enum EvtBusActionType {
   ClientIsLoaded = '[Shell] Client is Loaded',
   AllClientsAreLoaded = '[Shell] All Clients are Loaded',
+  ToggleShowClient = '[Client] Toggle Show Client',
   SampleEvent = '[Global] Sample Event',
 }
 
