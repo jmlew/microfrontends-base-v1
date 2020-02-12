@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { AppMenuComponent } from './core/components';
+import * as fromCoreComps from './core/components';
 import * as fromFeatureAComps from './features/feature-a/components';
 import * as fromFeatureBComps from './features/feature-b/components';
 import * as fromSharedComps from './shared/components';
@@ -16,7 +16,7 @@ import { rootRouteConfig } from './shared/constants';
 export const appRoutes: Routes = [
   {
     path: rootRouteConfig.appRoot.name,
-    component: AppMenuComponent,
+    component: fromCoreComps.AppMenuComponent,
     children: [
       {
         path: rootRouteConfig.featureA.name,
@@ -28,7 +28,8 @@ export const appRoutes: Routes = [
       },
     ],
   },
+  { path: '**', component: fromCoreComps.AppHomeComponent },
 
   // Detach this app through an empty component for paths which exclude this app's prefix.
-  { path: '**', component: fromSharedComps.EmptyComponent },
+  // { path: '**', component: fromSharedComps.EmptyComponent },
 ];

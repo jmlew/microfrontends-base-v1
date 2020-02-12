@@ -4,10 +4,11 @@ export interface EvtBusEventItem {
 }
 
 export enum EvtBusEventType {
-  ClientIsLoaded = '[Shell] Client is Loaded',
-  AllClientsAreLoaded = '[Shell] All Clients are Loaded',
-  ToggleShowClient = '[Client] Toggle Show Client',
-  SampleEvent = '[Global] Sample Event',
+  ClientIsLoaded = 'Client is Loaded',
+  AllClientsAreLoaded = 'All Clients are Loaded',
+  SelectClient = 'Select Client',
+  ChangeRoute = 'Change Route',
+  SampleEvent = 'Sample Event',
 }
 
 export interface EvtBusDomImpl {

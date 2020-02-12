@@ -32,7 +32,7 @@ import { appConfig } from './shared/constants';
     FeatureAModule,
     FeatureBModule,
 
-    RouterModule.forRoot(appRoutes, { useHash: true, initialNavigation: 'enabled' }),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
   ],
   providers: [],
   bootstrap: [],

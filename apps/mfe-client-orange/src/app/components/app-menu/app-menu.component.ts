@@ -33,10 +33,10 @@ export class AppMenuComponent implements OnInit {
     const elementName: ElementName = fromConstants.menuToClientElementMap[item.name];
     // Dispatch action to observables-based event bus.
     this.evtBusObservables.dispatch({
-      type: EvtBusActionType.ToggleShowClient,
+      type: EvtBusActionType.SelectClient,
       payload: elementName,
     });
     // Dispatch event to DOM-based event bus.
-    this.evtBusDom.dispatch(EvtBusEventType.ToggleShowClient, elementName);
+    this.evtBusDom.dispatch(EvtBusEventType.SelectClient, elementName);
   }
 }

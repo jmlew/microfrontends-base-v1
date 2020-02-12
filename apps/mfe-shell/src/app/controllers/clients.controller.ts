@@ -6,8 +6,6 @@ import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus
 import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import {
   ClientConfig,
-  clientsConfig,
-  defineCustomElement,
   ElementName,
   ElementRoute,
   embedElement,
@@ -20,37 +18,24 @@ import {
 
 import { evtBusDom, evtBusObs } from '../helpers';
 
-export class ShellAppElement extends HTMLElement {
-  public static observedAttributes = [];
-  private clientConfigs: ClientConfig[];
+export class MfeClientsController {
   private evtBusObsDestroy: Subject<unknown> = new Subject();
   private evtBusDomItems: EvtBusEventItem[] = [];
   private clients: Array<{ name: ElementName; element: ClientAppElement }>;
-  private container: HTMLElement;
-  private navbar: HTMLElement;
+  private clientConfigs: ClientConfig[];
 
-  constructor() {
-    super();
-
-    this.clientConfigs = [
-      clientsConfig.clientOrange,
-      clientsConfig.clientRed,
-      clientsConfig.clientBlue,
-    ];
+  constructor(clientConfigs: ClientConfig[]) {
+    this.clientConfigs = clientConfigs;
     this.clients = [];
-  }
-
-  connectedCallback() {
     this.listenToEvtBusObs();
     this.listenToEvtBusDom();
-    this.render();
   }
 
   /**
    * Ensure all observable streams are unsubscribed from. This isn't strictly necessary,
    * since the shell element should remain in DOM.
    */
-  disconnectedCallback() {
+  destroy() {
     evtBusObs.destroy(this.evtBusObsDestroy);
     evtBusDom.destroy(this.evtBusDomItems);
   }
@@ -58,9 +43,20 @@ export class ShellAppElement extends HTMLElement {
   private listenToEvtBusDom() {
     evtBusDom.addEventItem(
       {
-        type: EvtBusEventType.SampleEvent,
+        type: EvtBusEventType.ChangeRoute,
         listener: (event: CustomEvent) => {
-          console.log('Event to Shell:', event.detail);
+          console.log('Event to Shell:', EvtBusEventType.ChangeRoute, event.detail);
+          this.handleRouteChange(event.detail as ElementRoute);
+        },
+      },
+      this.evtBusDomItems
+    );
+    evtBusDom.addEventItem(
+      {
+        type: EvtBusEventType.SelectClient,
+        listener: (event: CustomEvent) => {
+          // Handle event.
+          console.log('Event to Shell:', EvtBusEventType.SelectClient, event.detail);
         },
       },
       this.evtBusDomItems
@@ -72,33 +68,30 @@ export class ShellAppElement extends HTMLElement {
       .pipe(takeUntil(this.evtBusObsDestroy))
       .subscribe((action: EvtBusAction) => {
         if (action) {
-          console.log('Action to Shell:', action);
+          switch (action.type) {
+            case EvtBusActionType.ChangeRoute:
+              console.log('Action to Shell:', action);
+              this.handleRouteChange(action.payload as ElementRoute);
+              break;
+            case EvtBusActionType.SelectClient:
+              // Handle event.
+              console.log('Action to Shell:', action);
+              break;
+
+            default:
+              break;
+          }
         }
       });
   }
 
-  private render() {
-    // Render main template.
-    this.innerHTML = getShellTemplate();
-
-    // Create sample shell navbar buttons.
-    this.navbar = document.getElementById('app-btns');
-    this.initButtons(this.navbar);
-
-    // Create client app elements.
-    this.container = document.getElementById('content');
-    this.initClients(this.container);
-
-    // Call the Angular apps' enableProdMode method once and remove from each main.ts.
-    (window as any).ng.core.enableProdMode();
-  }
-
-  private initClients(container: HTMLElement) {
+  initClients() {
     // Load relevant clients into top-level view.
     this.clientConfigs.forEach((config: ClientConfig, index: number) => {
       const { name } = config;
 
       // Load client element from config.
+      const container: HTMLElement = document.getElementById(name);
       loadClient(config, container);
 
       // Create element and append to container.
@@ -127,6 +120,23 @@ export class ShellAppElement extends HTMLElement {
     });
   }
 
+  private handleClientLoaded(config: ClientConfig) {
+    config.isLoaded = true;
+    evtBusObs.dispatch({
+      type: EvtBusActionType.ClientIsLoaded,
+      payload: config.name,
+    });
+  }
+
+  private handleAllClientsLoaded() {
+    evtBusObs.dispatch({
+      type: EvtBusActionType.AllClientsAreLoaded,
+    });
+
+    // Example interaction between shell and apps through a shared interface.
+    this.updateClientInputs();
+  }
+
   /**
    * Sample functionality showing the updating of each app with info initialised by the
    * shell.
@@ -151,41 +161,16 @@ export class ShellAppElement extends HTMLElement {
     });
   }
 
-  private handleClientLoaded(config: ClientConfig) {
-    config.isLoaded = true;
-    evtBusObs.dispatch({
-      type: EvtBusActionType.ClientIsLoaded,
-      payload: config.name,
-    });
+  private goToRoute(route: ElementRoute) {
+    document.location.href = `#/${route}`;
   }
 
-  private handleAllClientsLoaded() {
-    evtBusObs.dispatch({
-      type: EvtBusActionType.AllClientsAreLoaded,
-    });
-
-    // Example interaction between shell and apps through a shared interface.
-    this.updateClientInputs();
+  private handleRouteChange(route: ElementRoute) {
+    this.goToRoute(route);
+    // this.updateClientVisibilityOnRouteChange(route);
   }
 
-  private initButtons(navbar: HTMLElement) {
-    navbar.innerHTML = getCustomElementNavButtons(this.clientConfigs);
-    const buttons: HTMLCollectionOf<HTMLButtonElement> = navbar.getElementsByTagName(
-      'button'
-    );
-    Array.from(buttons).forEach((button: HTMLButtonElement) => {
-      button.addEventListener('click', this.handleButtonClick.bind(this, button));
-    });
-  }
-
-  private handleButtonClick(button: HTMLButtonElement) {
-    const route: ElementRoute = button.id as ElementRoute;
-    this.sendTestAction(route);
-    this.goToAppRoute(route);
-    this.updateRenderedAppsOnRouteChange(route);
-  }
-
-  private updateRenderedAppsOnRouteChange(route: ElementRoute) {
+  private updateClientVisibilityOnRouteChange(route: ElementRoute) {
     const currentConfig: ClientConfig = this.clientConfigs.find(
       (item: ClientConfig) => item.route === route
     );
@@ -205,45 +190,4 @@ export class ShellAppElement extends HTMLElement {
       );
     }
   }
-
-  private goToAppRoute(route: ElementRoute) {
-    document.location.href = `#/${route}`;
-  }
-
-  private sendTestAction(route: ElementRoute) {
-    const sampleEventData = { payload: `Fired from Shell, go to route: ${route}` };
-    evtBusObs.dispatch({
-      type: EvtBusActionType.SampleEvent,
-      payload: sampleEventData,
-    });
-    evtBusDom.dispatch(EvtBusEventType.SampleEvent, sampleEventData);
-  }
-}
-
-defineCustomElement(ElementName.Shell, ShellAppElement);
-
-function getShellTemplate() {
-  return `
-    <main class="main-panel">
-      <h1 class="heading">Microfrontends Shell</h1>
-      <nav class="navbar" id="app-btns"></nav>
-      <div id="content" class="content">
-        <!-- Web Components go here -->
-      </div>
-    </main>
-  `;
-}
-
-function getCustomElementNavButtons(configs: ClientConfig[]): string {
-  const appButtons: string[] = configs.map((config: ClientConfig) => NavButton(config));
-  const allButton: string = NavButton({ route: '', label: 'Home' });
-  return [...appButtons, allButton].join('');
-}
-
-function NavButton({ route, label }) {
-  return `
-    <button class="btn-generic" type="button" id="${route}">
-      ${label}
-    </button>
-  `;
 }

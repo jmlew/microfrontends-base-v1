@@ -1,30 +1,35 @@
 // From base path defined in workspace (stylePreprocessorOptions:includePaths)
 @import 'ui-colors/index';
 
-.main-panel {
+.shell-panel {
   background-color: $color-grey-100;
   position: relative;
   min-height: 100%;
 
   & > .heading {
+    text-align: center;
     padding: 1rem;
     font-size: 24px;
     color: $color-grey-800;
+    background-color: $color-white;
   }
 
-  & > .navbar {
+  & .shell-menu {
+    text-align: center;
     padding: 1rem;
-    border-bottom: 1px solid $color-grey-500;
-    border-top: 1px solid $color-grey-500;
-  }
+    background-color: $color-grey-200;
+    border-bottom: 1px solid $color-grey-400;
+    border-top: 1px solid $color-grey-400;
 
-  & > .content {
-    padding: 30px 15px;
-    min-height: calc(100% - 100px);
+    button {
+      font-size: 12px;
+    }
   }
 }
 
-.framework-logo {
-  height: 30px;
-  margin: 30px;
+.client-panel {
+  padding: 1rem;
+  background-color: $color-white;
+  border: 1px solid $color-grey-400;
+  border-radius: 4px;
 }

@@ -1,6 +1,9 @@
 {
   "version": 1,
   "defaultProject": "mfe-shell",
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
   "projects": {
     "mfe-shell": {
       "root": "apps/mfe-shell",
@@ -716,9 +719,6 @@
         }
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/web"
   },
   "schematics": {
     "@nrwl/workspace": {

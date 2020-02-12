@@ -60,7 +60,7 @@ export class AppRoot extends React.Component {
   handleFooClick = () => {
     const sampleEventData = { payload: 'Fired from React App A' };
     evtBusObs.dispatch({
-      type: EvtBusActionType.SampleEvent,
+      type: EvtBusActionType.SampleAction,
       payload: sampleEventData,
     });
     evtBusDom.dispatch(EvtBusEventType.SampleEvent, sampleEventData);
@@ -71,18 +71,15 @@ export class AppRoot extends React.Component {
       <MuiThemeProvider theme={theme}>
         <StyledAppRoot>
           <main>
-            <Typography variant="h4" gutterBottom={true}>
-              React App content: Client A
-            </Typography>
+            <img
+              src="/assets/images/react.png"
+              alt="React Logo"
+              className="framework-logo"
+            />
             <Button variant="contained" color="primary" onClick={this.handleFooClick}>
               Test global state action
             </Button>
           </main>
-          <img
-            src="/assets/images/react.png"
-            alt="React Logo"
-            className="framework-logo"
-          />
         </StyledAppRoot>
       </MuiThemeProvider>
     );

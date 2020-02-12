@@ -20,7 +20,7 @@
     "------ BUILD ------": "",
     "build": "npm run build:shell && npm run build:clients",
     "build:shell": "nx build --project=mfe-shell",
-    "build:clients": "npm run build:client-red && npm run build:client-blue && npm run build:client-orange",
+    "build:clients": "npm run build:client-red & npm run build:client-blue & npm run build:client-orange",
     "build:client-red": "nx build --project=mfe-client-red --prod --extra-webpack-config=webpack-ng.config.js --single-bundle --output-hashing=none --vendor-chunk=false",
     "build:client-blue": "nx build --project=mfe-client-blue --prod --output-hashing=none --vendor-chunk=false",
     "build:client-orange": "nx build --project=mfe-client-orange --prod --extra-webpack-config=webpack-ng.config.js --single-bundle --output-hashing=none --vendor-chunk=false",

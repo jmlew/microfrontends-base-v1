@@ -7,9 +7,9 @@ export enum ElementName {
 
 export enum ElementLabel {
   Shell = 'Shell',
-  ClientRed = 'Client Red: Angular App',
-  ClientBlue = 'Client Blue: React App',
-  ClientOrange = 'Client Orange: Angular App',
+  ClientRed = 'Red: Angular App',
+  ClientBlue = 'Blue: React App',
+  ClientOrange = 'Orange: Angular App',
 }
 
 export enum ElementRoute {
