@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AppVisibility } from '@microfr/shared/util/common';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class AppVisibilityService extends AppVisibility {}

@@ -1,5 +1,5 @@
 import { IconMat } from '@microfr/shared/ui';
-import { appConfig } from '../shared/constants/build.constant';
+import { appConfig } from '../core/constants/build.constant';
 import { RouteConfig } from '../shared/models/routes.model';
 
 // Define the route which activates app-specific content when used within micro-frontend.

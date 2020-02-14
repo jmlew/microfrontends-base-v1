@@ -6,7 +6,7 @@ import {
 } from '@microfr/shared/util/event-bus-obs';
 import { AppVisibilityService } from './app-visibility.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class EvtBusObservablesService extends EvtBusObservablesBase {
   protected evtBus: EvtBusObservables;
 

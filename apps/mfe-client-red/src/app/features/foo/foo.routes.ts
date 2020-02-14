@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { appRouteConfig } from '../../root/app-route-config.constant';
 import * as fromFooAViews from './foo-a/views';
 import * as fromFooBViews from './foo-b/views';
 import * as fromViews from './views';
@@ -10,11 +11,11 @@ export const fooRoutes: Routes = [
     component: fromViews.FooMainView,
     children: [
       {
-        path: 'foo-a',
+        path: appRouteConfig.featureFooA.name,
         component: fromFooAViews.FooAMainView,
       },
       {
-        path: 'foo-b',
+        path: appRouteConfig.featureFooB.name,
         component: fromFooBViews.FooBMainView,
       },
     ],

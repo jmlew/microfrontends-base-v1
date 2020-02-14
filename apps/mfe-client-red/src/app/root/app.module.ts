@@ -12,10 +12,10 @@ import { ElementZoneStrategyFactory } from 'elements-zone-strategy';
 
 import { defineCustomElement } from '@microfr/shell';
 
+import { appConfig } from '../core/constants';
 import { CoreModule } from '../core/core.module';
 import { FooModule } from '../features/foo/foo.module';
 import { LayoutModule } from '../layout/layout.module';
-import { appConfig } from '../shared/constants';
 import { ViewsModule } from '../views/views.module';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -29,7 +29,7 @@ import { AppRootComponent } from './app-root.component';
     HttpClientModule,
     RouterModule,
 
-    // App Main "singleton" modeuls.
+    // App Main "singleton" modules.
     CoreModule,
     LayoutModule,
     ViewsModule,
@@ -41,9 +41,9 @@ import { AppRootComponent } from './app-root.component';
     AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [],
   declarations: [AppRootComponent],
   entryComponents: [AppRootComponent],
+  // bootstrap: [], // Bootrstrapping handled in ngDoBootstrap.
 })
 export class AppModule {
   constructor(private readonly injector: Injector) {}

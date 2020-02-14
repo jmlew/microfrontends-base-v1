@@ -7,7 +7,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { ActivatedRoute, Router, RouterState } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -15,12 +15,12 @@ import { ClientAppElement, ClientAppInfo } from '@microfr/shared/model/app-inter
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import { isAppShown, isMutationAttributeHidden } from '@microfr/shell';
-import { appConfig } from '../shared/constants';
+import { appConfig } from '../core/constants';
 import {
   AppVisibilityService,
   EvtBusDomService,
   EvtBusObservablesService,
-} from '../shared/services';
+} from '../core/services';
 
 /**
  * Avoid layout in the root component and rely only on the routes config to determine

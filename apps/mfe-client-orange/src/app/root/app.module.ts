@@ -1,33 +1,42 @@
-import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import {
   createCustomElement,
   NgElementConstructor,
   NgElementStrategyFactory,
 } from '@angular/elements';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+
 import { ElementZoneStrategyFactory } from 'elements-zone-strategy';
 
-import { UiMatModule } from '@microfr/shared/ui-angular';
 import { defineCustomElement } from '@microfr/shell';
-import * as fromComponents from './components';
-import { appConfig } from './constants';
-import * as fromServices from './services';
+import { appConfig } from '../core/constants';
+import { CoreModule } from '../core/core.module';
+import { MenuModule } from '../features/menu/menu.module';
+import { LayoutModule } from '../layout/layout.module';
+import { AppRootComponent } from './app-root.component';
 
 @NgModule({
   imports: [
-    CommonModule,
+    // Angular.
     BrowserModule,
     BrowserAnimationsModule,
-    UiMatModule,
-    FlexLayoutModule,
+    HttpClientModule,
+    RouterModule,
+
+    // App Main "singleton" modules.
+    CoreModule,
+    LayoutModule,
+
+    // App Features.
+    MenuModule,
   ],
-  declarations: [...fromComponents.exports],
-  providers: [...fromServices.exports],
-  bootstrap: [],
-  entryComponents: [fromComponents.AppRootComponent],
+  providers: [],
+  declarations: [AppRootComponent],
+  entryComponents: [AppRootComponent],
+  // bootstrap: [], // Bootrstrapping handled in ngDoBootstrap.
 })
 export class AppModule {
   constructor(private readonly injector: Injector) {}
@@ -38,17 +47,18 @@ export class AppModule {
     // Create custom strategy factory which always runs in the NgZone to avoid zone
     // conflicts with future parent / child Ng elements.
     const strategyFactory: NgElementStrategyFactory = new ElementZoneStrategyFactory(
-      fromComponents.AppRootComponent,
+      AppRootComponent,
       this.injector
     );
 
     // Create root element constructor for use in defining the custom element.
-    const AppElement: NgElementConstructor<
-      fromComponents.AppRootComponent
-    > = createCustomElement(fromComponents.AppRootComponent, {
-      injector: this.injector,
-      strategyFactory,
-    });
+    const AppElement: NgElementConstructor<AppRootComponent> = createCustomElement(
+      AppRootComponent,
+      {
+        injector: this.injector,
+        strategyFactory,
+      }
+    );
     defineCustomElement(appConfig.name, AppElement);
   }
 }

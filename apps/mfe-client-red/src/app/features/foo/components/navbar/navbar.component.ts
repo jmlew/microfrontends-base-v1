@@ -19,7 +19,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {}
 
   onItemClick(item: RouteItem) {
-    console.log('onItemClick :', item);
     this.router.navigate([item.name], { relativeTo: this.route });
   }
 }

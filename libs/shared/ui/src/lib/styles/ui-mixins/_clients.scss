@@ -1,5 +1,6 @@
 @import '../ui-colors/index';
 @import '../ui-variables/clients';
+@import '../ui-variables/layout';
 @import '../ui-variables/typography';
 @import '../ui-mixins/flexbox';
 
@@ -9,6 +10,7 @@
   background-color: $color-white;
   border: 1px solid $color-grey-400;
   border-radius: 4px;
+  margin: $spacing-4 $spacing-2 0 $spacing-2;
 }
 
 // Defines the styles of the client root component.

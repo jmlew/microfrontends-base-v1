@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import { ElementName } from '@microfr/shell';
+import * as fromServices from '../../../../core/services';
 import * as fromConstants from '../../constants';
-import * as fromServices from '../../services';
 import { MenuItem } from './../../models/menu.model';
 
 @Component({
