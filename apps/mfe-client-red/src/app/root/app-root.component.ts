@@ -28,6 +28,7 @@ import {
  * specific top-level routes if required.
  */
 @Component({
+  styleUrls: ['./app-root.component.scss'],
   // selector: 'mfe-client-red', // Element name defined as custom element on ngDoBootstrap.
   template: `
     <router-outlet></router-outlet>

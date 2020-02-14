@@ -1,4 +1,4 @@
-@import 'variables';
+@import '../ui-variables/typography';
 
 body {
   font-family: $font-family-body;
@@ -18,7 +18,7 @@ h4,
 h5 {
   line-height: $line-height-base !important;
 
-  &.no-padding {
-    margin-bottom: 0;
+  &.no-spacing {
+    margin-bottom: inherit !important;
   }
 }

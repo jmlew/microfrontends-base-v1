@@ -1,7 +1,8 @@
 // From base path defined in workspace (stylePreprocessorOptions:includePaths)
 @import 'ui-colors/index';
+@import 'ui-mixins/clients';
 
-.shell-panel {
+.shell-container {
   background-color: $color-grey-100;
   position: relative;
   min-height: 100%;
@@ -27,9 +28,6 @@
   }
 }
 
-.client-panel {
-  padding: 1rem;
-  background-color: $color-white;
-  border: 1px solid $color-grey-400;
-  border-radius: 4px;
+.client-container {
+  @include client-container();
 }

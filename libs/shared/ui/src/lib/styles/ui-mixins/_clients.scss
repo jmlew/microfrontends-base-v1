@@ -1,0 +1,36 @@
+@import '../ui-colors/index';
+@import '../ui-variables/clients';
+@import '../ui-variables/typography';
+@import '../ui-mixins/flexbox';
+
+
+// Defines the styles of the client container within the shell.
+@mixin client-container() {
+  background-color: $color-white;
+  border: 1px solid $color-grey-400;
+  border-radius: 4px;
+}
+
+// Defines the styles of the client root component.
+@mixin client-app-root() {
+  display: block;
+  width: 100%;
+}
+
+@mixin client-header() {
+  display: block;
+  width: 100%;
+  padding: $client-app-header-pad;
+  height: $client-app-header-h;
+  background-color: $color-grey-200;
+  border-bottom: 1px solid $color-grey-400;
+  color: $color-grey-600;
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
+
+  .header-label {
+    font-size: 18px;
+    font-weight: $font-weight-reg;
+  }
+}

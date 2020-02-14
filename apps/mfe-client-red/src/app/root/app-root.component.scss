@@ -3,5 +3,5 @@
 @import 'ui-variables/clients';
 
 :host {
-  @include client-header();
+  @include client-app-root();
 }

@@ -1,0 +1,23 @@
+@import '../ui-variables/clients';
+
+// Content spacers.
+
+.client-app-view {
+  padding: $client-app-view-pad;
+}
+
+.client-app-header {
+  padding: $client-app-view-pad;
+}
+
+// Common elements.
+
+.client-app-loading {
+  padding: 0.5rem;
+  margin: 5% auto;
+}
+
+.framework-logo {
+  height: 30px;
+  margin: 20px;
+}
