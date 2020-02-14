@@ -1,5 +1,5 @@
-import { EmptyComponent } from './empty/empty.component';
+import { DetailsComponent } from './details/details.component';
 
-export const exports: any[] = [EmptyComponent];
+export const exports: any[] = [DetailsComponent];
 
-export * from './empty/empty.component';
+export * from './details/details.component';

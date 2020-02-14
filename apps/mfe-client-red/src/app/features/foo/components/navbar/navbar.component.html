@@ -1,0 +1,16 @@
+<mat-card
+  fxLayout="column"
+  fxLayoutAlign="center center">
+  <nav
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px">
+    <button
+      *ngFor="let route of routes"
+      mat-raised-button
+      color="primary"
+      (click)="onItemClick(route)">
+      <mat-icon class="mr-2">{{ route.icon }}</mat-icon>
+      <span>{{ route.label }}</span>
+    </button>
+  </nav>
+</mat-card>

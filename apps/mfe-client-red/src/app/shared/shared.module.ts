@@ -3,17 +3,18 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { UiMatModule } from '@microfr/shared/ui-angular';
-import * as fromComponents from './components';
+import * as fromComps from './components';
 import * as fromDirectives from './directives';
 import * as fromGuards from './guards';
 import * as fromServices from './services';
 
-const modules = [CommonModule, UiMatModule, FlexLayoutModule];
+const EXPORTED_DECLARATIONS: any[] = [...fromComps.exports, ...fromDirectives.exports];
+const EXPORTED_PROVIDERS: any[] = [...fromServices.exports, ...fromGuards.exports];
 
 @NgModule({
-  imports: [...modules],
-  exports: [...modules, ...fromComponents.exports, ...fromDirectives.exports],
-  declarations: [...fromComponents.exports, ...fromDirectives.exports],
-  providers: [...fromServices.exports, ...fromGuards.exports],
+  imports: [CommonModule, UiMatModule, FlexLayoutModule],
+  exports: [CommonModule, UiMatModule, FlexLayoutModule, ...EXPORTED_DECLARATIONS],
+  declarations: [...EXPORTED_DECLARATIONS],
+  providers: [EXPORTED_PROVIDERS],
 })
 export class SharedModule {}
