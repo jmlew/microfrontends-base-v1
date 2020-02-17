@@ -1,10 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
-import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
+import { ClientAppInfo } from '@microfr/shared/model/app-interface';
+import * as fromCommonUtils from '@microfr/shared/util/common';
 import { takeUntil } from 'rxjs/operators';
-import { EvtBusDomService, EvtBusObservablesService } from '../../core/services';
+import { AppStateManager } from '../../core/services';
 
 /**
  * Shell component defines the top-level app structure. This markup is often defined in
@@ -17,47 +17,24 @@ import { EvtBusDomService, EvtBusObservablesService } from '../../core/services'
   styleUrls: ['./shell.view.scss'],
 })
 export class ShellView implements OnDestroy {
-  private evtBusObsDestroy: Subject<unknown> = new Subject();
-  private evtBusDomItems: EvtBusEventItem[] = [];
+  private stateStreamDestroy: Subject<unknown> = new Subject();
+  appName: string;
 
-  appName = 'Red Client App';
-  appLabel: string;
-
-  constructor(
-    private readonly evtBusObs: EvtBusObservablesService,
-    private readonly evtBusDom: EvtBusDomService
-  ) {
-    this.listenToLabelChanges();
+  constructor(private readonly appState: AppStateManager) {
+    this.initStateChanges();
   }
 
   ngOnDestroy() {
-    this.evtBusObs.destroy(this.evtBusObsDestroy);
-    this.evtBusDom.destroy(this.evtBusDomItems);
+    fromCommonUtils.destroy(this.stateStreamDestroy);
   }
 
-  private listenToLabelChanges() {
-    // Showcase listening to Evt Bus Observables.
-    this.evtBusObs.actions$
-      .pipe(takeUntil(this.evtBusObsDestroy))
-      .subscribe((action: EvtBusAction) => {
-        if (action && action.type === EvtBusActionType.ChangeClientRedLabel) {
-          this.changeLabel(action.payload);
+  private initStateChanges() {
+    this.appState.appInfo$
+      .pipe(takeUntil(this.stateStreamDestroy))
+      .subscribe((appInfo: ClientAppInfo) => {
+        if (appInfo) {
+          this.appName = appInfo.name;
         }
       });
-
-    // Showcase listening to Evt Bus DOM Custom Events.
-    this.evtBusDom.addEventItem(
-      {
-        type: EvtBusEventType.ChangeClientRedLabel,
-        listener: (event: CustomEvent) => {
-          this.changeLabel(event.detail);
-        },
-      },
-      this.evtBusDomItems
-    );
-  }
-
-  private changeLabel(label: string) {
-    this.appLabel = label;
   }
 }

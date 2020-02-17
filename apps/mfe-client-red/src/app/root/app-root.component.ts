@@ -8,19 +8,11 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { ClientAppElement, ClientAppInfo } from '@microfr/shared/model/app-interface';
-import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
-import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import { isAppShown, isMutationAttributeHidden } from '@microfr/shell';
 import { appConfig } from '../core/constants';
-import {
-  AppVisibilityService,
-  EvtBusDomService,
-  EvtBusObservablesService,
-} from '../core/services';
+import { AppStateManager, AppVisibilityService } from '../core/services';
 
 /**
  * Avoid layout in the root component and rely only on the routes config to determine
@@ -37,44 +29,39 @@ import {
 export class AppRootComponent implements OnInit, OnDestroy, OnChanges {
   private nativeElement: ClientAppElement;
   private observer: MutationObserver;
-  private evtBusObsDestroy: Subject<unknown> = new Subject();
-  private evtBusDomItems: EvtBusEventItem[] = [];
 
   @Input() appInfo: ClientAppInfo;
 
   constructor(
     private readonly elementRef: ElementRef,
     private readonly router: Router,
-    private readonly appVisibility: AppVisibilityService,
-    private readonly evtBusObs: EvtBusObservablesService,
-    private readonly evtBusDom: EvtBusDomService
+    private readonly appState: AppStateManager,
+    private readonly appVisibility: AppVisibilityService
   ) {
     this.nativeElement = this.elementRef.nativeElement;
     this.initMutationObserver();
   }
 
   ngOnInit() {
-    this.observeMutations();
-
     // Bootstrapping components as Web Components requires manual router initializion.
     this.router.initialNavigation();
 
+    this.observeMutations();
+
     // Start both alternative global event bus listeners.
-    this.listenToEvtBusObs();
-    this.listenToEvtBusDom();
+    this.appState.initEvtBusObs();
+    this.appState.initEvtBusDom();
   }
 
   ngOnDestroy() {
     this.observeMutations(false);
-    this.evtBusObs.destroy(this.evtBusObsDestroy);
-    this.evtBusDom.destroy(this.evtBusDomItems);
   }
 
   /**
    * Observes changes to property inputs from shell to client.
    */
   ngOnChanges(changes: SimpleChanges) {
-    console.log(`changes on ${appConfig.label}: `, changes);
+    this.appState.handleInputProperyChanges(changes);
   }
 
   /**
@@ -107,27 +94,5 @@ export class AppRootComponent implements OnInit, OnDestroy, OnChanges {
       this.appVisibility.isHidden = !isShown;
       console.log(`isShown ${appConfig.label}: `, isShown);
     }
-  }
-
-  private listenToEvtBusDom() {
-    const listener: EventListener = (event: CustomEvent) => {
-      if (!this.appVisibility.isHidden) {
-        console.log(`Event to ${appConfig.label}:`, event.detail);
-      }
-    };
-    this.evtBusDom.addEventItem(
-      { type: EvtBusEventType.SampleEvent, listener },
-      this.evtBusDomItems
-    );
-  }
-
-  private listenToEvtBusObs() {
-    this.evtBusObs.actions$
-      .pipe(takeUntil(this.evtBusObsDestroy))
-      .subscribe((action: EvtBusAction) => {
-        if (action) {
-          console.log(`Action to ${appConfig.label}:`, action);
-        }
-      });
   }
 }

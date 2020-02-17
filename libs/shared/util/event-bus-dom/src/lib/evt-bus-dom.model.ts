@@ -8,8 +8,8 @@ export enum EvtBusEventType {
   AllClientsAreLoaded = 'All Clients are Loaded',
   ChangeRoute = 'Change Route',
   SelectClient = 'Select Client',
-  ChangeClientRedLabel = 'Change Client Red Label',
-  ChangeClientBlueLabel = 'Change Client Blue Label',
+  ChangeClientRedInfo = 'Change Client Red Info',
+  ChangeClientBlueInfo = 'Change Client Blue Info',
   SampleEvent = 'Sample Event',
 }
 

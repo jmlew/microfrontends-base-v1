@@ -150,12 +150,16 @@ export class MfeClientsController {
   private updateClientInputs() {
     const appInfoMap: { [element: string]: ClientAppInfo } = {
       [ElementName.ClientRed]: {
-        name: 'Client Angular A',
+        name: 'Angular Sample A',
         description: 'Example Angular Client',
       },
       [ElementName.ClientBlue]: {
-        name: 'Client React A',
+        name: 'React Sample',
         description: 'Example React Client',
+      },
+      [ElementName.ClientOrange]: {
+        name: 'Angular Sample B',
+        description: 'Example Angular Client',
       },
     };
 

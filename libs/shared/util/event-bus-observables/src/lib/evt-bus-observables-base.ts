@@ -1,7 +1,7 @@
 import { Observable, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { AppVisibility } from '@microfr/shared/util/common';
+import { AppVisibility, destroy } from '@microfr/shared/util/common';
 import { EvtBusObservables } from './evt-bus-observables';
 import { EvtBusAction, EvtBusObservablesImpl } from './evt-bus-observables.model';
 
@@ -30,8 +30,6 @@ export class EvtBusObservablesBase implements EvtBusObservablesImpl {
   }
 
   destroy(subject: Subject<unknown>) {
-    if (subject) {
-      EvtBusObservables.unsubscribe(subject);
-    }
+    destroy(subject);
   }
 }

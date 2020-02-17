@@ -1,13 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
-  @Input() appLabel: string;
-  @Input() appName: string;
+export class HeaderComponent {
+  appNamePrefix = 'Red Client App';
 
-  ngOnInit() {}
+  @Input() appName: string;
 }

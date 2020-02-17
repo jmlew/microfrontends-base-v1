@@ -22,11 +22,6 @@ export class EvtBusObservables {
     return (window as any).EvtBusObservables;
   }
 
-  static unsubscribe(subject: Subject<unknown>) {
-    subject.next();
-    subject.complete();
-  }
-
   getActions(): Observable<EvtBusAction> {
     return this.actionsSubject.asObservable();
   }

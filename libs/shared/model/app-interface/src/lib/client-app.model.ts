@@ -7,6 +7,11 @@ export interface ClientAppInfo {
   description: string;
 }
 
-export interface ClientAppElement extends HTMLElement {
+export interface ClientAppInfoInputs {
   appInfo: ClientAppInfo;
 }
+
+/**
+ * Defines the client custom element with common properties
+ */
+export interface ClientAppElement extends HTMLElement, ClientAppInfoInputs {}
