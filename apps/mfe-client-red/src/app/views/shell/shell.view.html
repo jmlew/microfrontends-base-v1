@@ -1,5 +1,7 @@
 <div class="mat-typography">
-  <app-header></app-header>
+  <app-header
+    [appName]="appName"
+    [appLabel]="appLabel"></app-header>
   <div class="app-content">
     <router-outlet></router-outlet>
   </div>

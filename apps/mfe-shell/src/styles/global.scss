@@ -1,6 +1,7 @@
 // From base path defined in workspace (stylePreprocessorOptions:includePaths)
 @import 'ui-colors/index';
 @import 'ui-mixins/clients';
+@import 'ui-variables/typography';
 
 .shell-container {
   background-color: $color-grey-100;
@@ -18,12 +19,18 @@
   & .shell-menu {
     text-align: center;
     padding: 1rem;
-    background-color: $color-grey-200;
+    background-color: $color-grey-50;
     border-bottom: 1px solid $color-grey-400;
     border-top: 1px solid $color-grey-400;
 
     button {
       font-size: 12px;
+      font-weight: $font-weight-med;
+      color: $color-grey-600;
+
+      &:hover, &.active {
+        color: $color-grey-900;
+      }
     }
   }
 }

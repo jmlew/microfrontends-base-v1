@@ -40,6 +40,9 @@ export class MfeClientsController {
     evtBusDom.destroy(this.evtBusDomItems);
   }
 
+  /**
+   * Showcase listening to Evt Bus DOM Custom Events.
+   */
   private listenToEvtBusDom() {
     evtBusDom.addEventItem(
       {
@@ -63,6 +66,9 @@ export class MfeClientsController {
     );
   }
 
+  /**
+   * Showcase listening to Evt Bus Observables.
+   */
   private listenToEvtBusObs() {
     evtBusObs.actions$
       .pipe(takeUntil(this.evtBusObsDestroy))

@@ -10,7 +10,7 @@ DIRS=$*
 # Check for parameters and create defaults if none.
 
 if [ -z $1 ] ; then
-  DIRS="components containers services directives constants models enums guards utils pipes interceptors"
+  DIRS="components containers services directives constants models enums guards utils helpers pipes interceptors"
 fi
 
 echo "creating directories: $DIRS"

@@ -10,6 +10,7 @@ export class MfeNavbarController {
   private evtBusObsDestroy: Subject<unknown> = new Subject();
   private evtBusDomItems: EvtBusEventItem[] = [];
   private clientConfigs: ClientConfig[];
+  private buttons: HTMLCollectionOf<HTMLButtonElement>;
 
   constructor(clientConfigs: ClientConfig[]) {
     this.clientConfigs = clientConfigs;
@@ -27,15 +28,25 @@ export class MfeNavbarController {
   initButtons() {
     const navbar: HTMLElement = document.getElementById('shell-menu');
     navbar.innerHTML = this.getCustomElementNavButtons(this.clientConfigs);
-    const buttons: HTMLCollectionOf<HTMLButtonElement> = navbar.getElementsByTagName(
-      'button'
-    );
-    Array.from(buttons).forEach((button: HTMLButtonElement) => {
+    this.buttons = navbar.getElementsByTagName('button');
+    Array.from(this.buttons).forEach((button: HTMLButtonElement) => {
       button.addEventListener('click', this.handleButtonClick.bind(this, button));
     });
   }
 
   private handleButtonClick(button: HTMLButtonElement) {
+    // Update button styles.
+    const activeClassName = 'active';
+    button.classList.add(activeClassName);
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.buttons.length; i++) {
+      const item: HTMLButtonElement = this.buttons.item(i);
+      if (item !== button && item.classList.contains(activeClassName)) {
+        item.classList.remove(activeClassName);
+      }
+    }
+
+    // Send route change event.
     const route: ElementRoute = button.id as ElementRoute;
     this.sendButtonEvent(route);
   }

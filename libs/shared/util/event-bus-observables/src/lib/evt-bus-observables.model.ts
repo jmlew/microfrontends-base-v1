@@ -8,8 +8,10 @@ export interface EvtBusAction {
 export enum EvtBusActionType {
   ClientIsLoaded = 'Client is Loaded',
   AllClientsAreLoaded = 'All Clients are Loaded',
-  SelectClient = 'Select Client',
   ChangeRoute = 'Change Route',
+  SelectClient = 'Select Client',
+  ChangeClientRedLabel = 'Change Client Red Label',
+  ChangeClientBlueLabel = 'Change Client Blue Label',
   SampleAction = 'Sample Action',
 }
 

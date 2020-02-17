@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { appRouteConfig } from './../../../../root/app-route-config.constant';
 
@@ -10,11 +10,9 @@ import { RouteItem } from '../../../../shared/models';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  routes: RouteItem[];
+  @Input() routes: RouteItem[];
 
-  constructor(private readonly router: Router, private readonly route: ActivatedRoute) {
-    this.routes = [appRouteConfig.featureFooA, appRouteConfig.featureFooB];
-  }
+  constructor(private readonly router: Router, private readonly route: ActivatedRoute) {}
 
   ngOnInit() {}
 
