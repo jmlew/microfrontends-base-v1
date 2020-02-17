@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
 
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
-import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
+import { EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import { ClientConfig, ElementRoute } from '@microfr/shell';
 import { NavButton } from '../components';
 import { evtBusDom, evtBusObs } from '../helpers';

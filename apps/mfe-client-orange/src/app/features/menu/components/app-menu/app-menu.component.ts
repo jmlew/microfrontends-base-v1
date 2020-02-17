@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import { ElementName } from '@microfr/shell';
-import * as fromServices from '../../../../core/services';
+import { EvtBusDomService, EvtBusObservablesService } from '../../../../core/services';
 import * as fromConstants from '../../constants';
 import { MenuItem } from './../../models/menu.model';
 
@@ -12,17 +12,15 @@ import { MenuItem } from './../../models/menu.model';
   templateUrl: './app-menu.component.html',
   styleUrls: ['./app-menu.component.scss'],
 })
-export class AppMenuComponent implements OnInit {
+export class AppMenuComponent {
   menuItems: MenuItem[];
 
   constructor(
-    private readonly evtBusObservables: fromServices.EvtBusObservablesService,
-    private readonly evtBusDom: fromServices.EvtBusDomService
+    private readonly evtBusObs: EvtBusObservablesService,
+    private readonly evtBusDom: EvtBusDomService
   ) {
     this.menuItems = fromConstants.menuItems;
   }
-
-  ngOnInit() {}
 
   onItemClick(item: MenuItem) {
     this.updateEvtBus(item);
@@ -32,7 +30,7 @@ export class AppMenuComponent implements OnInit {
     // Get element name from button name.
     const elementName: ElementName = fromConstants.menuToClientElementMap[item.name];
     // Dispatch action to observables-based event bus.
-    this.evtBusObservables.dispatch({
+    this.evtBusObs.dispatch({
       type: EvtBusActionType.SelectClient,
       payload: elementName,
     });

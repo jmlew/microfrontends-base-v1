@@ -18,10 +18,10 @@
     "typeRoots": ["typings", "node_modules/@types"],
     "paths": {
       "@microfr/shell": ["libs/shell/src/index.ts"],
-      "@microfr/shared/model": ["libs/shared/model/src/index.ts"],
       "@microfr/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@microfr/shared/ui-angular": ["libs/shared/ui-angular/src/index.ts"],
       "@microfr/shared/ui-react": ["libs/shared/ui-react/src/index.ts"],
+      "@microfr/shared/util/common": ["libs/shared/util/common/src/index.ts"],
       "@microfr/shared/util/event-bus-dom": [
         "libs/shared/util/event-bus-dom/src/index.ts"
       ],
@@ -30,9 +30,8 @@
       ],
       "@microfr/shared/model/app-interface": [
         "libs/shared/model/app-interface/src/index.ts"
-      ],
-      "@microfr/shared/util/common": ["libs/shared/util/common/src/index.ts"]
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp", ".gitignore"]
 }

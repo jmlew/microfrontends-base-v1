@@ -14,4 +14,5 @@ shell.initClients();
 navBar.initButtons();
 
 // Call the Angular apps' enableProdMode method once and remove from each main.ts.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).ng.core.enableProdMode();

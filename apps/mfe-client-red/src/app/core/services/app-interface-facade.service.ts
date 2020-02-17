@@ -2,7 +2,7 @@ import { Injectable, OnDestroy, SimpleChanges } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { ClientAppInfo } from '@microfr/shared/model/app-interface';
+import { ClientAppDetails } from '@microfr/shared/model/app-interface';
 import * as fromCommonUtils from '@microfr/shared/util/common';
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
@@ -12,13 +12,13 @@ import { EvtBusDomService } from './evt-bus-dom.service';
 import { EvtBusObservablesService } from './evt-bus-obs.service';
 
 @Injectable()
-export class AppStateManager implements OnDestroy {
+export class AppInterfaceFacadeService implements OnDestroy {
   private appInputObsDestroy: Subject<unknown> = new Subject();
   private evtBusObsDestroy: Subject<unknown> = new Subject();
   private evtBusDomItems: EvtBusEventItem[] = [];
 
   // App state property streams.
-  private appInfo: BehaviorSubject<ClientAppInfo> = new BehaviorSubject(null);
+  private appDetails: BehaviorSubject<ClientAppDetails> = new BehaviorSubject(null);
 
   constructor(
     private readonly appVisibility: AppVisibilityService,
@@ -32,8 +32,8 @@ export class AppStateManager implements OnDestroy {
     this.evtBusDom.destroy(this.evtBusDomItems);
   }
 
-  get appInfo$(): Observable<ClientAppInfo> {
-    return this.appInfo.asObservable();
+  get appDetails$(): Observable<ClientAppDetails> {
+    return this.appDetails.asObservable();
   }
 
   /**
@@ -41,10 +41,10 @@ export class AppStateManager implements OnDestroy {
    */
   handleInputProperyChanges(changes: SimpleChanges) {
     if (
-      changes.appInfo &&
-      changes.appInfo.currentValue !== changes.appInfo.previousValue
+      changes.appDetails &&
+      changes.appDetails.currentValue !== changes.appDetails.previousValue
     ) {
-      this.appInfo.next(changes.appInfo.currentValue);
+      this.appDetails.next(changes.appDetails.currentValue);
     }
     console.log(`app input changes on ${appConfig.label}: `, changes);
   }
@@ -61,7 +61,7 @@ export class AppStateManager implements OnDestroy {
         }
         switch (action.type) {
           case EvtBusActionType.ChangeClientRedInfo:
-            this.appInfo.next(action.payload);
+            this.appDetails.next(action.payload);
             break;
 
           default:
@@ -80,7 +80,7 @@ export class AppStateManager implements OnDestroy {
         type: EvtBusEventType.ChangeClientRedInfo,
         listener: (event: CustomEvent) => {
           if (!this.appVisibility.isHidden) {
-            this.appInfo.next(event.detail);
+            this.appDetails.next(event.detail);
 
             console.log(`Event to ${appConfig.label}:`, event.detail);
           }

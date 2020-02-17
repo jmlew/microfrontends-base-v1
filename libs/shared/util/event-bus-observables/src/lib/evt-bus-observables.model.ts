@@ -12,6 +12,7 @@ export enum EvtBusActionType {
   SelectClient = 'Select Client',
   ChangeClientRedInfo = 'Change Client Red Info',
   ChangeClientBlueInfo = 'Change Client Blue Info',
+  SendClientOrangeMessage = 'Send Client Orange Message',
   SampleAction = 'Sample Action',
 }
 

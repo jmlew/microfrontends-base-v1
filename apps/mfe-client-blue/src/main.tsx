@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 
-import { ClientAppElement, ClientAppInfo } from '@microfr/shared/model/app-interface';
+import { ClientAppDetails, ClientAppElement } from '@microfr/shared/model/app-interface';
 import {
   defineCustomElement,
   isAppShown,
@@ -13,7 +13,7 @@ import { appVisibility } from './app/shared/helpers';
 
 class AppElement extends HTMLElement implements ClientAppElement {
   private observer: MutationObserver;
-  private _appInfo: ClientAppInfo;
+  private _appDetails: ClientAppDetails;
 
   constructor() {
     super();
@@ -41,16 +41,16 @@ class AppElement extends HTMLElement implements ClientAppElement {
   /**
    * Example property input from shell to client.
    */
-  set appInfo(data: ClientAppInfo) {
-    console.log(`set appInfo on ${appConfig.label}:`, data);
-    this._appInfo = data;
+  set appDetails(data: ClientAppDetails) {
+    console.log(`set appDetails on ${appConfig.label}:`, data);
+    this._appDetails = data;
   }
 
   /**
    * Example property accessor to shell from client.
    */
-  get appInfo(): ClientAppInfo {
-    return this._appInfo;
+  get appDetails(): ClientAppDetails {
+    return this._appDetails;
   }
 
   /**
@@ -63,7 +63,7 @@ class AppElement extends HTMLElement implements ClientAppElement {
   /**
    * Starts or stops observing DOM mutations.
    */
-  private observeMutations(isObserve: boolean = true) {
+  private observeMutations(isObserve = true) {
     isObserve
       ? this.observer.observe(this, { attributes: true, attributeOldValue: true })
       : this.observer.disconnect();

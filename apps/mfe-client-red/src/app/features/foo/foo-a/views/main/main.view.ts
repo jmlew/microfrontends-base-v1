@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { OrangeAppMessage } from '@microfr/shared/model/app-interface';
 import { EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import { EvtBusDomService } from '../../../../../core/services/evt-bus-dom.service';
@@ -24,5 +25,17 @@ export class FooAMainView implements OnInit {
       payload: sampleEventData,
     });
     this.evtBusDom.dispatch(EvtBusEventType.SampleEvent, sampleEventData);
+  }
+
+  onOrangeAppMessageClick() {
+    const data: OrangeAppMessage = {
+      fromApp: 'red',
+      message: 'Red says hello',
+    };
+    this.evtBusObs.dispatch({
+      type: EvtBusActionType.SampleAction,
+      payload: data,
+    });
+    this.evtBusDom.dispatch(EvtBusEventType.SendClientOrangeMessage, data);
   }
 }

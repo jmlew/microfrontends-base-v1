@@ -14,6 +14,7 @@ import { ElementZoneStrategyFactory } from 'elements-zone-strategy';
 import { defineCustomElement } from '@microfr/shell';
 import { appConfig } from '../core/constants';
 import { CoreModule } from '../core/core.module';
+import { DetailsModule } from '../features/details/details.module';
 import { MenuModule } from '../features/menu/menu.module';
 import { LayoutModule } from '../layout/layout.module';
 import { AppRootComponent } from './app-root.component';
@@ -32,6 +33,7 @@ import { AppRootComponent } from './app-root.component';
 
     // App Features.
     MenuModule,
+    DetailsModule,
   ],
   providers: [],
   declarations: [AppRootComponent],

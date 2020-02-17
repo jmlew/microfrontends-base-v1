@@ -15,7 +15,8 @@
     "prettier/@typescript-eslint"
   ],
   "rules": {
-    "javascript.suggestionActions.enabled": false,
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-parameter-properties": "off",
@@ -23,9 +24,7 @@
       "error",
       {
         "allow": [],
-        "depConstraints": [
-          { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
-        ]
+        "depConstraints": [{ "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }]
       }
     ]
   },
@@ -36,5 +35,6 @@
         "@typescript-eslint/no-unused-vars": "off"
       }
     }
-  ]
+  ],
+  "ignorePatterns": ["node_modules/", "jest.config.js"]
 }

@@ -9,10 +9,10 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ClientAppElement, ClientAppInfo } from '@microfr/shared/model/app-interface';
+import { ClientAppDetails, ClientAppElement } from '@microfr/shared/model/app-interface';
 import { isAppShown, isMutationAttributeHidden } from '@microfr/shell';
 import { appConfig } from '../core/constants';
-import { AppStateManager, AppVisibilityService } from '../core/services';
+import { AppInterfaceFacadeService, AppVisibilityService } from '../core/services';
 
 /**
  * Avoid layout in the root component and rely only on the routes config to determine
@@ -20,22 +20,21 @@ import { AppStateManager, AppVisibilityService } from '../core/services';
  * specific top-level routes if required.
  */
 @Component({
-  styleUrls: ['./app-root.component.scss'],
-  // selector: 'mfe-client-red', // Element name defined as custom element on ngDoBootstrap.
   template: `
     <router-outlet></router-outlet>
   `,
+  styleUrls: ['./app-root.component.scss'],
 })
 export class AppRootComponent implements OnInit, OnDestroy, OnChanges {
   private nativeElement: ClientAppElement;
   private observer: MutationObserver;
 
-  @Input() appInfo: ClientAppInfo;
+  @Input() appDetails: ClientAppDetails;
 
   constructor(
     private readonly elementRef: ElementRef,
     private readonly router: Router,
-    private readonly appState: AppStateManager,
+    private readonly appInterface: AppInterfaceFacadeService,
     private readonly appVisibility: AppVisibilityService
   ) {
     this.nativeElement = this.elementRef.nativeElement;
@@ -49,8 +48,8 @@ export class AppRootComponent implements OnInit, OnDestroy, OnChanges {
     this.observeMutations();
 
     // Start both alternative global event bus listeners.
-    this.appState.initEvtBusObs();
-    this.appState.initEvtBusDom();
+    this.appInterface.initEvtBusObs();
+    this.appInterface.initEvtBusDom();
   }
 
   ngOnDestroy() {
@@ -61,7 +60,7 @@ export class AppRootComponent implements OnInit, OnDestroy, OnChanges {
    * Observes changes to property inputs from shell to client.
    */
   ngOnChanges(changes: SimpleChanges) {
-    this.appState.handleInputProperyChanges(changes);
+    this.appInterface.handleInputProperyChanges(changes);
   }
 
   /**
@@ -74,7 +73,7 @@ export class AppRootComponent implements OnInit, OnDestroy, OnChanges {
   /**
    * Starts or stops observing DOM mutations.
    */
-  private observeMutations(isObserve: boolean = true) {
+  private observeMutations(isObserve = true) {
     isObserve
       ? this.observer.observe(this.nativeElement, {
           attributes: true,

@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { ClientAppElement, ClientAppInfo } from '@microfr/shared/model/app-interface';
+import { ClientAppDetails, ClientAppElement } from '@microfr/shared/model/app-interface';
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import {
@@ -148,7 +148,7 @@ export class MfeClientsController {
    * shell.
    */
   private updateClientInputs() {
-    const appInfoMap: { [element: string]: ClientAppInfo } = {
+    const appDetailsMap: { [element: string]: ClientAppDetails } = {
       [ElementName.ClientRed]: {
         name: 'Angular Sample A',
         description: 'Example Angular Client',
@@ -163,11 +163,10 @@ export class MfeClientsController {
       },
     };
 
-    Object.keys(appInfoMap).forEach((name: ElementName) => {
+    Object.keys(appDetailsMap).forEach((name: ElementName) => {
       const app: ClientAppElement = getApp(name);
-      const info: ClientAppInfo = appInfoMap[name];
-      app.appInfo = info;
-      console.log('appInfo set on client:', name, app.appInfo);
+      const data: ClientAppDetails = appDetailsMap[name];
+      app.appDetails = data;
     });
   }
 

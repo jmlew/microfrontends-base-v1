@@ -456,33 +456,6 @@
         }
       }
     },
-    "shared-model": {
-      "root": "libs/shared/model",
-      "sourceRoot": "libs/shared/model/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:lint",
-          "options": {
-            "linter": "eslint",
-            "config": "libs/shared/model/.eslintrc",
-            "tsConfig": [
-              "libs/shared/model/tsconfig.lib.json",
-              "libs/shared/model/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/model/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/shared/model/jest.config.js",
-            "tsConfig": "libs/shared/model/tsconfig.spec.json"
-          }
-        }
-      }
-    },
     "shared-ui-react": {
       "root": "libs/shared/ui-react",
       "sourceRoot": "libs/shared/ui-react/src",
