@@ -1,1 +1,3 @@
-<app-comm-type-menu></app-comm-type-menu>
+<app-comm-type-menu
+  [commType]="commType$ | async"
+  (selectCommType)="onSetCommType($event)"></app-comm-type-menu>

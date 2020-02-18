@@ -55,6 +55,9 @@
     },
     "mfe-client-orange": {
       "tags": []
+    },
+    "shared-model-common": {
+      "tags": []
     }
   }
 }

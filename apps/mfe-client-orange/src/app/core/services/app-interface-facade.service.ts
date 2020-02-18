@@ -2,9 +2,9 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { OrangeAppMessage } from '@microfr/shared/model/app-interface';
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
-import { OrangeAppMessage } from '../../features/main/containers/comm-from-app/node_modules/@microfr/shared/model/app-interface';
 import { appConfig } from '../constants';
 import { EvtBusDomService } from './evt-bus-dom.service';
 import { EvtBusObservablesService } from './evt-bus-obs.service';

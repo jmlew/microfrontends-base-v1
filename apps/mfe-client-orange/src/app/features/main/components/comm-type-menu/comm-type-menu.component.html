@@ -1,7 +1,17 @@
 <mat-card class="mt-4">
-  <h2>Choose your communication type</h2>
-
+  <h2>
+    How will you communicate messages to other apps
+  </h2>
   <mat-divider class="mt-4 mb-4 pos-rel"></mat-divider>
-  <div>Menu here...</div>
+  <div class="p-2">
+    <mat-radio-group (change)="onSelectCommType($event)">
+      <mat-radio-button
+        class="mr-6"
+        *ngFor="let type of commTypes"
+        [value]="type">
+        {{commTypeLabelsMap[type]}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
 
 </mat-card>

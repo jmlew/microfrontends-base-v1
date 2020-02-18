@@ -11,11 +11,11 @@ export const menuItems: MenuItem[] = [
   {
     name: MenuName.CommunicationTo,
     label: 'To Apps',
-    icon: IconMat.Apps,
+    icon: IconMat.ArrowUp,
   },
   {
     name: MenuName.CommunicationFrom,
     label: 'From Apps',
-    icon: IconMat.Apps,
+    icon: IconMat.ArrowDown,
   },
 ];

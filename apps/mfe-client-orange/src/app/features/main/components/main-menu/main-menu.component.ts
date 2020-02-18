@@ -2,14 +2,14 @@ import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angul
 
 import * as fromConstants from '../../constants';
 import {
-  CommFromAppComponent,
-  CommToAppComponent,
+  CommFromAppsComponent,
+  CommToAppsComponent,
   CommTypeComponent,
 } from '../../containers';
 import { MenuName } from '../../enums/menu.enum';
 import { MenuItem } from '../../models/menu.model';
 
-type contentTemplate = CommTypeComponent | CommFromAppComponent | CommToAppComponent;
+type contentTemplate = CommTypeComponent | CommFromAppsComponent | CommToAppsComponent;
 
 @Component({
   selector: 'app-menu',
@@ -22,9 +22,9 @@ export class MainMenuComponent implements OnInit, AfterViewInit {
   @ViewChild('commType', { static: false })
   commType: TemplateRef<CommTypeComponent>;
   @ViewChild('commFrom', { static: false })
-  commFrom: TemplateRef<CommFromAppComponent>;
+  commFrom: TemplateRef<CommFromAppsComponent>;
   @ViewChild('commTo', { static: false })
-  commTo: TemplateRef<CommToAppComponent>;
+  commTo: TemplateRef<CommToAppsComponent>;
 
   constructor() {}
 

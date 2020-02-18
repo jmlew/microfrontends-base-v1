@@ -30,7 +30,8 @@
       ],
       "@microfr/shared/model/app-interface": [
         "libs/shared/model/app-interface/src/index.ts"
-      ]
+      ],
+      "@microfr/shared/model/common": ["libs/shared/model/common/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp", ".gitignore"]
