@@ -11,4 +11,4 @@ const EXPORTED_DECLARATIONS: any[] = [...fromComps.exports, ...fromContainers.ex
   exports: [EXPORTED_DECLARATIONS],
   declarations: [EXPORTED_DECLARATIONS],
 })
-export class DetailsModule {}
+export class MainModule {}

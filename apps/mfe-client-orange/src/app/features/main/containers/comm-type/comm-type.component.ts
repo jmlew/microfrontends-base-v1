@@ -5,10 +5,10 @@ import { OrangeAppMessage } from '@microfr/shared/model/app-interface';
 import { AppInterfaceFacadeService } from '../../../../core/services';
 
 @Component({
-  selector: 'app-details',
-  templateUrl: './details.component.html',
+  selector: 'app-comm-type',
+  templateUrl: './comm-type.component.html',
 })
-export class AppDetailsComponent {
+export class CommTypeComponent {
   appMessage$: Observable<OrangeAppMessage>;
 
   constructor(private readonly appInterface: AppInterfaceFacadeService) {

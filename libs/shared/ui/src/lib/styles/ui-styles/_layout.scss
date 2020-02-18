@@ -1,5 +1,25 @@
 @import '../ui-variables/layout';
 
+
+// Display.
+.disp-block {
+  display: block !important;
+}
+.disp-none {
+  display: none !important;
+}
+
+// Positioning.
+.pos-rel {
+  position: relative !important;
+}
+.pos-abs {
+  position: absolute !important;
+}
+.pos-static {
+  position: static !important;
+}
+
 // TODO: create loop to auto-generate classes.
 
 // Dimensions.

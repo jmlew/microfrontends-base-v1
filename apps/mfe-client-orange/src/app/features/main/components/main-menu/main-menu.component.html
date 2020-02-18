@@ -1,0 +1,21 @@
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab *ngFor="let item of menuItems">
+    <ng-template mat-tab-label>
+      <mat-icon class="mr-4">{{item.icon}}</mat-icon>
+      {{item.label}}
+    </ng-template>
+    <div class="client-app-section">
+      <ng-container *ngTemplateOutlet="item.content"></ng-container>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<ng-template #commType>
+  <app-comm-type></app-comm-type>
+</ng-template>
+<ng-template #commFrom>
+  <app-comm-from-apps></app-comm-from-apps>
+</ng-template>
+<ng-template #commTo>
+  <app-comm-to-apps></app-comm-to-apps>
+</ng-template>
