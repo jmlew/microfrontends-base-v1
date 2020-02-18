@@ -31,6 +31,10 @@ export class AppInterfaceFacadeService implements OnDestroy {
     return this.appMessage.asObservable();
   }
 
+  get appMessageValue(): OrangeAppMessage {
+    return this.appMessage.getValue();
+  }
+
   /**
    * Updates state on subscription to Observables Event Bus actions.
    */
@@ -49,7 +53,7 @@ export class AppInterfaceFacadeService implements OnDestroy {
           default:
             break;
         }
-        console.log(`Action to ${appConfig.label}:`, action);
+        console.log(`Action received by ${appConfig.label}:`, action);
       });
   }
 
@@ -62,7 +66,7 @@ export class AppInterfaceFacadeService implements OnDestroy {
         type: EvtBusEventType.SendClientOrangeMessage,
         listener: (event: CustomEvent) => {
           this.appMessage.next(event.detail);
-          console.log(`Event to ${appConfig.label}:`, event.detail);
+          console.log(`Event received by ${appConfig.label}:`, event.detail);
         },
       },
       this.evtBusDomItems

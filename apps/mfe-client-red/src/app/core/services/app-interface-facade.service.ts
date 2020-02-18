@@ -36,6 +36,10 @@ export class AppInterfaceFacadeService implements OnDestroy {
     return this.appDetails.asObservable();
   }
 
+  get appDetailsValue(): ClientAppDetails {
+    return this.appDetails.getValue();
+  }
+
   /**
    * Updates state on changes on the app root element input property / attribute.
    */
@@ -46,7 +50,7 @@ export class AppInterfaceFacadeService implements OnDestroy {
     ) {
       this.appDetails.next(changes.appDetails.currentValue);
     }
-    console.log(`app input changes on ${appConfig.label}: `, changes);
+    console.log(`App input changes on ${appConfig.label}: `, changes);
   }
 
   /**
@@ -67,7 +71,7 @@ export class AppInterfaceFacadeService implements OnDestroy {
           default:
             break;
         }
-        console.log(`Action to ${appConfig.label}:`, action);
+        console.log(`Action received by ${appConfig.label}:`, action);
       });
   }
 
@@ -82,7 +86,7 @@ export class AppInterfaceFacadeService implements OnDestroy {
           if (!this.appVisibility.isHidden) {
             this.appDetails.next(event.detail);
 
-            console.log(`Event to ${appConfig.label}:`, event.detail);
+            console.log(`Event received by ${appConfig.label}:`, event.detail);
           }
         },
       },

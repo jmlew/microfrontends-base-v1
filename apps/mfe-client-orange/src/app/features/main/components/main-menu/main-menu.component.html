@@ -1,4 +1,7 @@
-<mat-tab-group mat-stretch-tabs>
+<mat-tab-group
+  mat-stretch-tabs
+  [selectedIndex]="currentIndex$ | async"
+  (selectedIndexChange)="onSelectedIndexChanged($event)">
   <mat-tab *ngFor="let item of menuItems">
     <ng-template mat-tab-label>
       <mat-icon class="mr-4">{{item.icon}}</mat-icon>

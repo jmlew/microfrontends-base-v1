@@ -22,6 +22,10 @@ export class AppCommState implements OnDestroy {
     return this.commType.asObservable().pipe(takeUntil(this.unsubscribe));
   }
 
+  get commTypeValue(): CommType {
+    return this.commType.getValue();
+  }
+
   setCommType(type: CommType) {
     this.commType.next(type);
   }

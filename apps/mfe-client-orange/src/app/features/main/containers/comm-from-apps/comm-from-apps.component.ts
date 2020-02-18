@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 
 import { OrangeAppMessage } from '@microfr/shared/model/app-interface';
 import { AppInterfaceFacadeService } from '../../../../core/services';
+import { CommType } from '../../enums/comm-type.enum';
+import { AppCommState } from '../../services';
 
 @Component({
   selector: 'app-comm-from-apps',
@@ -10,8 +12,13 @@ import { AppInterfaceFacadeService } from '../../../../core/services';
 })
 export class CommFromAppsComponent {
   appMessage$: Observable<OrangeAppMessage>;
+  commType$: Observable<CommType>;
 
-  constructor(private readonly appInterface: AppInterfaceFacadeService) {
+  constructor(
+    private readonly appInterface: AppInterfaceFacadeService,
+    private readonly commState: AppCommState
+  ) {
     this.appMessage$ = this.appInterface.appMessage$;
+    this.commType$ = this.commState.commType$;
   }
 }

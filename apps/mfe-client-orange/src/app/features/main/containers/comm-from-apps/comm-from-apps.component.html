@@ -1,1 +1,3 @@
-<app-comm-from-apps-details></app-comm-from-apps-details>
+<app-comm-from-apps-details
+  [commType]="commType$ | async"
+  [appMessage]="appMessage$ | async"></app-comm-from-apps-details>

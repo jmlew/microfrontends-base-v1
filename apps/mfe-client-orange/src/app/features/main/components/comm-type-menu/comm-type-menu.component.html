@@ -4,9 +4,11 @@
   </h2>
   <mat-divider class="mt-4 mb-4 pos-rel"></mat-divider>
   <div class="p-2">
-    <mat-radio-group (change)="onSelectCommType($event)">
+    <mat-radio-group
+      (change)="onSelectCommType($event)"
+      [value]="commType">
       <mat-radio-button
-        class="mr-6"
+        class="mr-6 mb-4"
         *ngFor="let type of commTypes"
         [value]="type">
         {{commTypeLabelsMap[type]}}

@@ -1,1 +1,3 @@
-<app-comm-to-apps-form [commType]="commType$ | async"></app-comm-to-apps-form>
+<app-comm-to-apps-form
+  [commType]="commType$ | async"
+  (sendMessageToRedApp)="onMessageToRed($event)"></app-comm-to-apps-form>

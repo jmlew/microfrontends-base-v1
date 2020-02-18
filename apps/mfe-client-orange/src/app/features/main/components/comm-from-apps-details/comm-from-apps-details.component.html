@@ -1,7 +1,27 @@
 <mat-card class="mt-4">
-  <h2>Communication from apps</h2>
+  <h2>Communication from other apps</h2>
 
   <mat-divider class="mt-4 mb-4 pos-rel"></mat-divider>
-  <div>Details here...</div>
+  <h4 class="no-spacing">
+    Messagees sent via
+    <span class="font-weight-heavy">{{commTypeLabelsMap[commType]}}</span>
+    <button
+      mat-icon-button
+      color="primary"
+      (click)="onGoToMenuItem(MenuName.CommunicationType)">
+      <mat-icon class="md-20">{{IconMat.Edit}}</mat-icon>
+    </button>
+  </h4>
+
+  <div class="mt-4">
+    <div *ngIf="appMessage; else noMessages">
+      <span>From App: {{appMessage.fromApp}}</span>
+      <span>Message: {{appMessage.message}}</span>
+    </div>
+  </div>
 
 </mat-card>
+
+<ng-template #noMessages>
+  No {{commTypeLabelsMap[commType]}} messages have been sent yet.
+</ng-template>

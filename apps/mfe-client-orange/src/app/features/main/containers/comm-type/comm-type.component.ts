@@ -20,6 +20,8 @@ export class CommTypeComponent {
   ) {
     this.appMessage$ = this.appInterface.appMessage$;
     this.commType$ = this.commState.commType$;
+
+    this.onSetCommType(CommType.EvtBusObs);
   }
 
   onSetCommType(type: CommType) {

@@ -1,9 +1,31 @@
 <mat-card class="mt-4">
-  <h2>Communication To apps</h2>
+  <h2>Communication to other apps</h2>
   <mat-divider class="mt-4 mb-4 pos-rel"></mat-divider>
-  <div>
-    Current communication type: {{commTypeLabelsMap[commType]}}
-    (commType: {{commType}})
+  <h4 class="no-spacing">
+    Send a message via
+    <span class="font-weight-heavy">{{commTypeLabelsMap[commType]}}</span>
+    <button
+      mat-icon-button
+      color="primary"
+      (click)="onGoToMenuItem(MenuName.CommunicationType)">
+      <mat-icon class="md-20">{{IconMat.Edit}}</mat-icon>
+    </button>
+  </h4>
+  <div class="p-5">
+    <mat-form-field class="w-50">
+      <input
+        matInput
+        type="text"
+        [formControl]="appRedMessage"
+        placeholder="Message for Red App">
+    </mat-form-field>
+    <button
+      class="ml-4"
+      mat-flat-button
+      color="primary"
+      (click)="onSendToRedApp()">
+      Send
+    </button>
   </div>
 
 </mat-card>

@@ -40,7 +40,7 @@ export class AppRoot extends React.Component {
       {
         type: EvtBusEventType.SampleEvent,
         listener: (event: CustomEvent) => {
-          console.log(`Event to ${appConfig.label}:`, event.detail);
+          console.log(`Event received by ${appConfig.label}:`, event.detail);
         },
       },
       this.evtBusDomItems
@@ -52,7 +52,7 @@ export class AppRoot extends React.Component {
       .pipe(takeUntil(this.evtBusObsDestroy))
       .subscribe((action: EvtBusAction) => {
         if (action) {
-          console.log(`Action to ${appConfig.label}:`, action);
+          console.log(`Action received by ${appConfig.label}:`, action);
         }
       });
   }
