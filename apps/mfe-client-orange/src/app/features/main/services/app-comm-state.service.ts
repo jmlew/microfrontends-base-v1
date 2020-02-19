@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { destroy } from '@microfr/shared/util/common';
+import { AppInterfaceFacadeService } from '../../../core/services';
 import { CommType } from '../enums/comm-type.enum';
 
 @Injectable()
@@ -13,6 +14,16 @@ export class AppCommState implements OnDestroy {
   private commType: BehaviorSubject<CommType> = new BehaviorSubject(
     CommType.ComponentProp
   );
+
+  constructor(private readonly appInterface: AppInterfaceFacadeService) {
+    this.syncCommTypeToAppInterface();
+  }
+
+  private syncCommTypeToAppInterface() {
+    this.commType$.subscribe((commType: CommType) => {
+      this.appInterface.setCommType(commType);
+    });
+  }
 
   ngOnDestroy() {
     destroy(this.unsubscribe);
