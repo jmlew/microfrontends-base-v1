@@ -2,7 +2,11 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { OrangeAppMessage } from '@microfr/shared/model/app-interface';
+import {
+  ClientApp,
+  ClientAppMessage,
+  OrangeAppMessage,
+} from '@microfr/shared/model/app-interface';
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import { CommType } from '../../features/main/enums/comm-type.enum';
@@ -50,7 +54,7 @@ export class AppInterfaceFacadeService implements OnDestroy {
     this.evtBusObs.actions$
       .pipe(
         takeUntil(this.evtBusObsDestroy),
-        filter(() => this.commType == null || this.commType === CommType.EvtBusObs)
+        filter(() => this.isCommTypeValid(CommType.EvtBusObs))
       )
       .subscribe((action: EvtBusAction) => {
         if (!action) {
@@ -58,13 +62,16 @@ export class AppInterfaceFacadeService implements OnDestroy {
         }
         switch (action.type) {
           case EvtBusActionType.SendClientOrangeMessage:
-            this.appMessage.next(action.payload);
+            const data: OrangeAppMessage = action.payload;
+            if (this.isSourceAppValid(data)) {
+              this.appMessage.next(action.payload);
+              console.log(`Action received by ${appConfig.label}:`, action);
+            }
             break;
 
           default:
             break;
         }
-        console.log(`Action received by ${appConfig.label}:`, action);
       });
   }
 
@@ -76,13 +83,26 @@ export class AppInterfaceFacadeService implements OnDestroy {
       {
         type: EvtBusEventType.SendClientOrangeMessage,
         listener: (event: CustomEvent) => {
-          if (this.commType == null || this.commType === CommType.EvtBusDom) {
-            this.appMessage.next(event.detail);
-            console.log(`Event received by ${appConfig.label}:`, event.detail);
+          if (!this.isCommTypeValid(CommType.EvtBusDom)) {
+            return;
           }
+          const data: OrangeAppMessage = event.detail;
+          if (!this.isSourceAppValid(data)) {
+            return;
+          }
+          this.appMessage.next(event.detail);
+          console.log(`Event received by ${appConfig.label}:`, event.detail);
         },
       },
       this.evtBusDomItems
     );
+  }
+
+  private isCommTypeValid(commType: CommType): boolean {
+    return this.commType == null || this.commType === commType;
+  }
+
+  private isSourceAppValid(data: ClientAppMessage): boolean {
+    return data.fromApp !== ClientApp.Orange;
   }
 }

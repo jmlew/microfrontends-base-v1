@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { fooRoutes } from '../features/foo/foo.routes';
-import { DetailsView } from '../views/details/details.view';
 import { EmptyView } from '../views/empty/empty.view';
 import { ShellView } from '../views/shell/shell.view';
 import { appRouteConfig } from './app-route-config.constant';
@@ -23,12 +22,6 @@ const appRoutes: Routes = [
   {
     path: '**',
     component: ShellView,
-    children: [
-      {
-        path: '',
-        component: DetailsView,
-      },
-    ],
   },
 
   // Detach this app through an empty component for paths which exclude this app's prefix.

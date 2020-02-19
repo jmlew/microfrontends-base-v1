@@ -1,7 +1,11 @@
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { ClientAppDetails, ClientAppElement } from '@microfr/shared/model/app-interface';
+import {
+  ClientApp,
+  ClientAppDetails,
+  ClientAppElement,
+} from '@microfr/shared/model/app-interface';
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import {
@@ -9,7 +13,7 @@ import {
   ElementName,
   ElementRoute,
   embedElement,
-  getApp,
+  getAppByElementName,
   hideApp,
   isCustomElementDefined,
   loadClient,
@@ -48,18 +52,12 @@ export class MfeClientsController {
       {
         type: EvtBusEventType.ChangeRoute,
         listener: (event: CustomEvent) => {
-          console.log('Event to Shell:', EvtBusEventType.ChangeRoute, event.detail);
+          console.log(
+            'Event received by Shell:',
+            EvtBusEventType.ChangeRoute,
+            event.detail
+          );
           this.handleRouteChange(event.detail as ElementRoute);
-        },
-      },
-      this.evtBusDomItems
-    );
-    evtBusDom.addEventItem(
-      {
-        type: EvtBusEventType.SelectClient,
-        listener: (event: CustomEvent) => {
-          // Handle event.
-          console.log('Event to Shell:', EvtBusEventType.SelectClient, event.detail);
         },
       },
       this.evtBusDomItems
@@ -76,12 +74,8 @@ export class MfeClientsController {
         if (action) {
           switch (action.type) {
             case EvtBusActionType.ChangeRoute:
-              console.log('Action to Shell:', action);
+              console.log('Action received by Shell:', action);
               this.handleRouteChange(action.payload as ElementRoute);
-              break;
-            case EvtBusActionType.SelectClient:
-              // Handle event.
-              console.log('Action to Shell:', action);
               break;
 
             default:
@@ -150,21 +144,24 @@ export class MfeClientsController {
   private updateClientInputs() {
     const appDetailsMap: { [element: string]: ClientAppDetails } = {
       [ElementName.ClientRed]: {
+        toApp: ClientApp.Red,
         name: 'Angular Sample A',
         description: 'Example Angular Client',
       },
       [ElementName.ClientBlue]: {
+        toApp: ClientApp.Blue,
         name: 'React Sample',
         description: 'Example React Client',
       },
       [ElementName.ClientOrange]: {
+        toApp: ClientApp.Orange,
         name: 'Angular Sample B',
         description: 'Example Angular Client',
       },
     };
 
     Object.keys(appDetailsMap).forEach((name: ElementName) => {
-      const app: ClientAppElement = getApp(name);
+      const app: ClientAppElement = getAppByElementName(name);
       const data: ClientAppDetails = appDetailsMap[name];
       app.appDetails = data;
     });

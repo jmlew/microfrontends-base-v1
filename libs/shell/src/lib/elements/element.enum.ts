@@ -5,6 +5,7 @@ export enum ElementName {
   ClientOrange = 'mfe-client-orange',
 }
 
+// TODO: Move to shared/model/app-interface
 export enum ElementLabel {
   Shell = 'Shell',
   ClientRed = 'Red: Angular App',

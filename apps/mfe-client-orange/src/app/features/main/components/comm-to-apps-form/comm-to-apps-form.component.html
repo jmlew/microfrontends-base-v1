@@ -1,8 +1,8 @@
 <mat-card class="mt-4">
   <h2>Communication to other apps</h2>
   <mat-divider class="mt-4 mb-4 pos-rel"></mat-divider>
-  <h4 class="no-spacing">
-    Send a message via
+  <h4 class="no-spacing2">
+    Update other app details via
     <span class="font-weight-heavy">{{commTypeLabelsMap[commType]}}</span>
     <button
       mat-icon-button
@@ -11,21 +11,37 @@
       <mat-icon class="md-20">{{IconMat.Edit}}</mat-icon>
     </button>
   </h4>
-  <div class="p-5">
-    <mat-form-field class="w-50">
+  <div class="d-flex w-100">
+    <mat-form-field class="w-33">
       <input
         matInput
         type="text"
-        [formControl]="appRedMessage"
-        placeholder="Message for Red App">
+        [formControl]="appName"
+        placeholder="App Name">
     </mat-form-field>
-    <button
-      class="ml-4"
-      mat-flat-button
-      color="primary"
-      (click)="onSendToRedApp()">
-      Send
-    </button>
+    <mat-form-field class="ml-4 w-33">
+      <input
+        matInput
+        type="text"
+        [formControl]="appDescription"
+        placeholder="App Description">
+    </mat-form-field>
+    <div class="d-flex j-e a-i-c w-33">
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!appName.value && !appDescription.value"
+        (click)="onSendToApp(ClientApp.Red)">
+        Red App
+      </button>
+      <button
+        class="ml-4"
+        mat-flat-button
+        color="primary"
+        [disabled]="!appName.value && !appDescription.value"
+        (click)="onSendToApp(ClientApp.Blue)">
+        Blue App
+      </button>
+    </div>
   </div>
-
 </mat-card>

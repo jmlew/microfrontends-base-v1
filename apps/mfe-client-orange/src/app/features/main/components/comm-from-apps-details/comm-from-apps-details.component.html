@@ -1,6 +1,5 @@
 <mat-card class="mt-4">
   <h2>Communication from other apps</h2>
-
   <mat-divider class="mt-4 mb-4 pos-rel"></mat-divider>
   <h4 class="no-spacing">
     Messagees sent via
@@ -12,14 +11,18 @@
       <mat-icon class="md-20">{{IconMat.Edit}}</mat-icon>
     </button>
   </h4>
-
-  <div class="mt-4">
+  <div class="mt-4 mb-4">
     <div *ngIf="appMessage; else noMessages">
-      <span>From App: {{appMessage.fromApp}}</span>
-      <span>Message: {{appMessage.message}}</span>
+      <div>
+        <span class="font-weight-heavy">From:</span>
+        {{appMessage.fromApp}} App
+      </div>
+      <div>
+        <span class="font-weight-heavy">Message:</span>
+        {{appMessage.message}}
+      </div>
     </div>
   </div>
-
 </mat-card>
 
 <ng-template #noMessages>

@@ -29,6 +29,7 @@ export class AppRootComponent implements OnInit, OnDestroy, OnChanges {
   private nativeElement: ClientAppElement;
   private observer: MutationObserver;
 
+  // Custom element properties as inputs.
   @Input() appDetails: ClientAppDetails;
 
   constructor(

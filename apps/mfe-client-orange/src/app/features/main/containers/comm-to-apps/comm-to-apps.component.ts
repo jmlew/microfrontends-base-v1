@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { OrangeAppMessage } from '@microfr/shared/model/app-interface';
+import { ClientAppDetails, OrangeAppMessage } from '@microfr/shared/model/app-interface';
 import { EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import {
@@ -30,22 +30,18 @@ export class CommToAppsComponent {
     this.commType$ = this.commState.commType$;
   }
 
-  onMessageToRed(message: string) {
-    const data: OrangeAppMessage = {
-      fromApp: 'orange',
-      message,
-    };
+  onSendMessage(data: ClientAppDetails) {
     const commType: CommType = this.commState.commTypeValue;
     switch (commType) {
       case CommType.ComponentProp:
         console.log('CommType.ComponentProp WIP...');
         break;
       case CommType.EvtBusDom:
-        this.evtBusDom.dispatch(EvtBusEventType.SendClientOrangeMessage, data);
+        this.evtBusDom.dispatch(EvtBusEventType.ChangeClientInfo, data);
         break;
       case CommType.EvtBusObs:
         this.evtBusObs.dispatch({
-          type: EvtBusActionType.SendClientOrangeMessage,
+          type: EvtBusActionType.ChangeClientInfo,
           payload: data,
         });
         break;

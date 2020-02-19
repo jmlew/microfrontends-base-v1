@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
+import {
+  ClientApp,
+  ClientAppDetails,
+  OrangeAppMessage,
+} from '@microfr/shared/model/app-interface';
 import { PropStringMap } from '@microfr/shared/model/common';
 import { IconMat } from '@microfr/shared/ui';
 import * as fromConstants from '../../constants';
@@ -15,23 +20,27 @@ import { CommType } from './../../enums/comm-type.enum';
 })
 export class CommToAppsFormComponent {
   @Input() commType: CommType;
-  @Output() sendMessageToRedApp = new EventEmitter<string>();
+  @Output() sendMessage = new EventEmitter<ClientAppDetails>();
   commTypeLabelsMap: PropStringMap = fromConstants.commTypeLabelsMap;
 
-  appRedMessage: FormControl;
-  // appBlueMessage: FormControl;
+  appName: FormControl = new FormControl(null);
+  appDescription: FormControl = new FormControl(null);
 
   // Const and enums exposed to view.
   IconMat = IconMat;
   MenuName = MenuName;
+  ClientApp = ClientApp;
 
-  constructor(private readonly menuState: AppMenuStateService) {
-    // this.appBlueMessage = new FormControl(null);
-    this.appRedMessage = new FormControl(null);
-  }
+  constructor(private readonly menuState: AppMenuStateService) {}
 
-  onSendToRedApp() {
-    this.sendMessageToRedApp.emit(this.appRedMessage.value);
+  onSendToApp(toApp: ClientApp) {
+    const data: ClientAppDetails = {
+      toApp,
+      fromApp: ClientApp.Orange,
+      name: this.appName.value,
+      description: this.appDescription.value,
+    };
+    this.sendMessage.emit(data);
   }
   // onSendToBlueApp() {}
 

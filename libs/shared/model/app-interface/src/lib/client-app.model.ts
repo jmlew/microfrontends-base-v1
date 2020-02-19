@@ -1,8 +1,17 @@
+import { ClientApp } from './client-app.enum';
+
+/**
+ * Base interface for message objects sent between apps.
+ */
+export interface ClientAppMessage {
+  toApp: ClientApp;
+  fromApp?: ClientApp;
+}
+
 /**
  * Sample models defining the I/O interface between apps.
  */
-
-export interface ClientAppDetails {
+export interface ClientAppDetails extends ClientAppMessage {
   name: string;
   description: string;
 }

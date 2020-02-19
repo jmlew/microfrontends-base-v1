@@ -2,7 +2,11 @@ import { Injectable, OnDestroy, SimpleChanges } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { ClientAppDetails } from '@microfr/shared/model/app-interface';
+import {
+  ClientApp,
+  ClientAppDetails,
+  ClientAppMessage,
+} from '@microfr/shared/model/app-interface';
 import * as fromCommonUtils from '@microfr/shared/util/common';
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
@@ -64,8 +68,11 @@ export class AppInterfaceFacadeService implements OnDestroy {
           return;
         }
         switch (action.type) {
-          case EvtBusActionType.ChangeClientRedInfo:
-            this.appDetails.next(action.payload);
+          case EvtBusActionType.ChangeClientInfo:
+            const data: ClientAppDetails = action.payload;
+            if (this.isDestinationAppValid(data)) {
+              this.appDetails.next(data);
+            }
             break;
 
           default:
@@ -81,16 +88,24 @@ export class AppInterfaceFacadeService implements OnDestroy {
   initEvtBusDom() {
     this.evtBusDom.addEventItem(
       {
-        type: EvtBusEventType.ChangeClientRedInfo,
+        type: EvtBusEventType.ChangeClientInfo,
         listener: (event: CustomEvent) => {
-          if (!this.appVisibility.isHidden) {
-            this.appDetails.next(event.detail);
-
+          const data: ClientAppDetails = event.detail;
+          if (!this.appVisibility.isHidden && this.isDestinationAppValid(data)) {
+            this.appDetails.next(data);
             console.log(`Event received by ${appConfig.label}:`, event.detail);
           }
         },
       },
       this.evtBusDomItems
     );
+  }
+
+  private isSourceAppValid(data: ClientAppMessage): boolean {
+    return data.fromApp !== ClientApp.Red;
+  }
+
+  private isDestinationAppValid(data: ClientAppMessage): boolean {
+    return data.toApp === ClientApp.Red;
   }
 }

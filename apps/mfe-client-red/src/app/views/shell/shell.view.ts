@@ -1,9 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { ClientAppDetails } from '@microfr/shared/model/app-interface';
-import * as fromCommonUtils from '@microfr/shared/util/common';
-import { takeUntil } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { AppInterfaceFacadeService } from '../../core/services';
 
 /**
@@ -16,25 +15,18 @@ import { AppInterfaceFacadeService } from '../../core/services';
   templateUrl: './shell.view.html',
   styleUrls: ['./shell.view.scss'],
 })
-export class ShellView implements OnDestroy {
-  private stateStreamDestroy: Subject<unknown> = new Subject();
-  appName: string;
+export class ShellView {
+  appName$: Observable<string>;
+  appDescription$: Observable<string>;
 
   constructor(private readonly appInterface: AppInterfaceFacadeService) {
-    this.initStateChanges();
-  }
-
-  ngOnDestroy() {
-    fromCommonUtils.destroy(this.stateStreamDestroy);
-  }
-
-  private initStateChanges() {
-    this.appInterface.appDetails$
-      .pipe(takeUntil(this.stateStreamDestroy))
-      .subscribe((appDetails: ClientAppDetails) => {
-        if (appDetails) {
-          this.appName = appDetails.name;
-        }
-      });
+    this.appName$ = this.appInterface.appDetails$.pipe(
+      filter((details: ClientAppDetails) => details != null),
+      map((details: ClientAppDetails) => details.name)
+    );
+    this.appDescription$ = this.appInterface.appDetails$.pipe(
+      filter((details: ClientAppDetails) => details != null),
+      map((details: ClientAppDetails) => details.description)
+    );
   }
 }

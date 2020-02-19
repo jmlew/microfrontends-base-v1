@@ -9,9 +9,7 @@ export enum EvtBusActionType {
   ClientIsLoaded = 'Client is Loaded',
   AllClientsAreLoaded = 'All Clients are Loaded',
   ChangeRoute = 'Change Route',
-  SelectClient = 'Select Client',
-  ChangeClientRedInfo = 'Change Client Red Info',
-  ChangeClientBlueInfo = 'Change Client Blue Info',
+  ChangeClientInfo = 'Change Client Info',
   SendClientOrangeMessage = 'Send Client Orange Message',
   SampleAction = 'Sample Action',
 }

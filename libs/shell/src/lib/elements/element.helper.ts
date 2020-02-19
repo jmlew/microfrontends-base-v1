@@ -39,7 +39,7 @@ export function isCustomElementDefined(name: ElementName): Promise<void> {
   return customElements.whenDefined(name);
 }
 
-export function getApp(name: ElementName): ClientAppElement {
+export function getAppByElementName(name: ElementName): ClientAppElement {
   return document.querySelector(name);
 }
 
