@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { CommType, OrangeAppMessage } from '@microfr/shared/model/app-interface';
@@ -8,6 +8,7 @@ import { AppCommState } from '../../services/app-comm-state.service';
 @Component({
   selector: 'app-comm-type',
   templateUrl: './comm-type.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommTypeComponent {
   appMessage$: Observable<OrangeAppMessage>;

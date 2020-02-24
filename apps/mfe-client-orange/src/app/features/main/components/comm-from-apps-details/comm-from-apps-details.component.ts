@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 
 import {
   ClientApp,
@@ -15,6 +21,7 @@ import { AppMenuStateService } from '../../services';
   selector: 'app-comm-from-apps-details',
   templateUrl: './comm-from-apps-details.component.html',
   styleUrls: ['./comm-from-apps-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommFromAppsDetailsComponent implements OnChanges {
   @Input() commType: CommType;

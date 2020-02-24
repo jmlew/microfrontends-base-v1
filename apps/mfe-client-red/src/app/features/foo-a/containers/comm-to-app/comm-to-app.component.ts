@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { OrangeAppMessage } from '@microfr/shared/model/app-interface';
 import { EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
@@ -9,6 +9,7 @@ import { EvtBusObservablesService } from '../../../../core/services/evt-bus-obs.
 @Component({
   selector: 'app-comm-to-app',
   templateUrl: './comm-to-app.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooACommToAppComponent implements OnInit {
   constructor(

@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, TemplateRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 
 import {
@@ -16,6 +22,7 @@ type contentTemplate = CommTypeComponent | CommFromAppsComponent | CommToAppsCom
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
   styleUrls: ['./main-menu.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainMenuComponent implements AfterViewInit {
   menuItems: MenuItem[];

@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 import { CommType } from '@microfr/shared/model/app-interface';
 import { destroy } from '@microfr/shared/util/common';
@@ -30,7 +30,10 @@ export class AppCommState implements OnDestroy {
   }
 
   get commType$(): Observable<CommType> {
-    return this.commType.asObservable().pipe(takeUntil(this.unsubscribe));
+    return this.commType.asObservable().pipe(
+      takeUntil(this.unsubscribe),
+      distinctUntilChanged()
+    );
   }
 
   get commTypeValue(): CommType {

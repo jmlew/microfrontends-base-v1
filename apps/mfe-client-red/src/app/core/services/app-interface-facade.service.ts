@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy, SimpleChanges } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 import {
   ClientApp,
@@ -38,7 +38,7 @@ export class AppInterfaceFacadeService implements OnDestroy {
   }
 
   get appDetails$(): Observable<ClientAppDetails> {
-    return this.appDetails.asObservable();
+    return this.appDetails.asObservable().pipe(distinctUntilChanged());
   }
 
   get appDetailsValue(): ClientAppDetails {

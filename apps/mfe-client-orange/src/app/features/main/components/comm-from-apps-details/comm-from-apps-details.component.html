@@ -7,6 +7,7 @@
     <button
       mat-icon-button
       color="primary"
+      matTooltip="Change communication type"
       (click)="onGoToMenuItem(MenuName.CommunicationType)">
       <mat-icon class="md-20">{{IconMat.Edit}}</mat-icon>
     </button>
@@ -26,5 +27,9 @@
 </mat-card>
 
 <ng-template #noMessages>
-  No {{commTypeLabelsMap[commType]}} messages have been sent yet.
+  <span class="color-grey-600">
+    <i>
+      Waiting for messages to be sent from other apps...
+    </i>
+  </span>
 </ng-template>

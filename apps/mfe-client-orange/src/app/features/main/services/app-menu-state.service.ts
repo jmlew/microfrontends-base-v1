@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 import { destroy } from '@microfr/shared/util/common';
-import { map, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 import * as fromConstants from '../constants';
 import { MenuName } from '../enums/menu.enum';
 import { MenuItem } from '../models/menu.model';
@@ -24,7 +24,10 @@ export class AppMenuStateService implements OnDestroy {
   }
 
   get menuIndex$(): Observable<number> {
-    return this.menuIndex.asObservable().pipe(takeUntil(this.unsubscribe));
+    return this.menuIndex.asObservable().pipe(
+      takeUntil(this.unsubscribe),
+      distinctUntilChanged()
+    );
   }
 
   get menuIndexValue(): number {

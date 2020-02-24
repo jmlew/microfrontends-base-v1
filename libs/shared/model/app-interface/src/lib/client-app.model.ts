@@ -5,7 +5,7 @@ import { ClientApp } from './client-app.enum';
  */
 export interface ClientAppMessage {
   toApp: ClientApp;
-  fromApp?: ClientApp;
+  fromApp: ClientApp;
 }
 
 /**

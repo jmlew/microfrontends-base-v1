@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
 
 import {
   ClientApp,
@@ -36,11 +36,15 @@ export class AppInterfaceFacadeService implements OnDestroy {
   }
 
   setCommType(commType: CommType) {
-    this.commType = commType;
+    if (this.commType !== commType) {
+      this.commType = commType;
+      // Clear message on changes to commType.
+      this.appMessage.next(null);
+    }
   }
 
   get appMessage$(): Observable<OrangeAppMessage> {
-    return this.appMessage.asObservable();
+    return this.appMessage.asObservable().pipe(distinctUntilChanged());
   }
 
   get appMessageValue(): OrangeAppMessage {

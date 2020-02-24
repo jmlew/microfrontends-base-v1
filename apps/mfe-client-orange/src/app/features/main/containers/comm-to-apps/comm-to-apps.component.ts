@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import {
@@ -18,6 +18,7 @@ import { AppCommState } from '../../services/app-comm-state.service';
 @Component({
   selector: 'app-comm-to-apps',
   templateUrl: './comm-to-apps.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommToAppsComponent {
   appMessage$: Observable<OrangeAppMessage>;

@@ -1,4 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { ClientApp, OrangeAppMessage } from '@microfr/shared/model/app-interface';
@@ -7,6 +13,7 @@ import { ClientApp, OrangeAppMessage } from '@microfr/shared/model/app-interface
   selector: 'app-comm-to-app-form',
   templateUrl: './comm-to-app-form.component.html',
   styleUrls: ['./comm-to-app-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooACommToAppFormComponent implements OnInit {
   @Output() sendMessage = new EventEmitter<OrangeAppMessage>();

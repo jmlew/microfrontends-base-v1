@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import {
@@ -16,6 +22,7 @@ import { AppMenuStateService } from '../../services';
   selector: 'app-comm-to-apps-form',
   templateUrl: './comm-to-apps-form.component.html',
   styleUrls: ['./comm-to-apps-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommToAppsFormComponent {
   @Input() commType: CommType;

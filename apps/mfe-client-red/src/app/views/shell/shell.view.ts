@@ -24,6 +24,7 @@ export class ShellView {
       filter((details: ClientAppDetails) => details != null),
       map((details: ClientAppDetails) => details.name)
     );
+
     this.appDescription$ = this.appInterface.appDetails$.pipe(
       filter((details: ClientAppDetails) => details != null),
       map((details: ClientAppDetails) => details.description)
