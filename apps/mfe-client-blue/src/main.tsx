@@ -7,8 +7,8 @@ import {
   isAppShown,
   isMutationAttributeHidden,
 } from '@microfr/shell';
-import { AppRoot } from './app/core/components';
-import { appConfig } from './app/shared/constants';
+import { appConfig } from './app/core/constants';
+import { AppRoot } from './app/root/AppRoot';
 import { appVisibility } from './app/shared/helpers';
 
 class AppElement extends HTMLElement implements ClientAppElement {

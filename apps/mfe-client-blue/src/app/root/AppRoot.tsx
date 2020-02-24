@@ -1,25 +1,19 @@
-import Button from '@material-ui/core/Button';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import styled from 'styled-components';
+import './styles.scss';
 
-import { themeColours } from '@microfr/shared/ui';
 import { theme } from '@microfr/shared/ui-react';
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
-import { appConfig } from '../../shared/constants';
-import { evtBusDom, evtBusObs } from '../../shared/helpers';
+import { appConfig } from '../core/constants';
+import { evtBusDom, evtBusObs } from '../shared/helpers';
+import { ShellView } from '../views/Shell';
 
-const StyledAppRoot = styled.div`
-  main {
-    padding: 20px;
-    background-color: ${themeColours.grey300};
-    text-align: center;
-  }
-`;
+// TODO: implement styled components alongside SASS.
+// import { themeColours } from '@microfr/shared/ui';
+// import styled from 'styled-components';
 
 export class AppRoot extends React.Component {
   private evtBusObsDestroy: Subject<unknown> = new Subject();
@@ -69,18 +63,11 @@ export class AppRoot extends React.Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <StyledAppRoot>
-          <main>
-            <img
-              src="/assets/images/react.png"
-              alt="React Logo"
-              className="framework-logo"
-            />
-            <Button variant="contained" color="primary" onClick={this.handleFooClick}>
-              Test global state action
-            </Button>
-          </main>
-        </StyledAppRoot>
+        {/* TODO: Provide view through router */}
+        {/* TODO: Apply root styles to main container custom component if possible */}
+        <div className="app-root">
+          <ShellView />
+        </div>
       </MuiThemeProvider>
     );
   }

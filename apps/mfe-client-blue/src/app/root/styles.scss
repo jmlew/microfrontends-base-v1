@@ -1,0 +1,7 @@
+// From base path defined in workspace (stylePreprocessorOptions:includePaths)
+@import 'ui-mixins/clients';
+@import 'ui-variables/clients';
+
+.app-root {
+  @include client-app-root();
+}
