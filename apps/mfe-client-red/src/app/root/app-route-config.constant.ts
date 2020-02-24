@@ -19,16 +19,15 @@ export const appRouteConfig: RouteConfig = {
   featureFoo: {
     name: appSpecificRoute,
     label: 'Feature Foo',
-    icon: IconMat.Person,
   },
   featureFooA: {
     name: 'foo-a',
     label: 'Feature Foo A',
-    icon: IconMat.Person,
+    icon: IconMat.RandomA,
   },
   featureFooB: {
     name: 'foo-b',
     label: 'Feature Foo B',
-    icon: IconMat.Person,
+    icon: IconMat.RandomB,
   },
 };

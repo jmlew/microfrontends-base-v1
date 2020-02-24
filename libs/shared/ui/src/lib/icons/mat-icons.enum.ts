@@ -30,4 +30,9 @@ export enum IconMat {
   Person = 'person',
   PersonOutline = 'person_outline',
   Refresh = 'refresh',
+
+  // Random icons to use as referene to example features.
+  RandomA = 'face',
+  RandomB = 'pets',
+  RandomC = 'eco',
 }

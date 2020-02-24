@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../../shared/shared.module';
-import { FooAModule } from './foo-a/foo-a.module';
-import { FooBModule } from './foo-b/foo-b.module';
+import { FooAModule } from '../foo-a/foo-a.module';
+import { FooBModule } from '../foo-b/foo-b.module';
 
 import * as fromComps from './components';
 import * as fromViews from './views';

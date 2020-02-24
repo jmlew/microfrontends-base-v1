@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ClientAppDetails, OrangeAppMessage } from '@microfr/shared/model/app-interface';
+import {
+  ClientAppDetails,
+  CommType,
+  OrangeAppMessage,
+} from '@microfr/shared/model/app-interface';
 import { EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import {
@@ -10,7 +14,6 @@ import {
   EvtBusObservablesService,
 } from '../../../../core/services';
 import { AppCommState } from '../../services/app-comm-state.service';
-import { CommType } from './../../enums/comm-type.enum';
 
 @Component({
   selector: 'app-comm-to-apps',

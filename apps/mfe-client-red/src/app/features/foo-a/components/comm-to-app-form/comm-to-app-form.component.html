@@ -1,0 +1,19 @@
+<div class="d-flex a-i-c w-100">
+  <mat-form-field class="w-50">
+    <input
+      matInput
+      type="text"
+      id="orange-app-message-from-red"
+      [formControl]="message"
+      placeholder="Message to Orange App">
+  </mat-form-field>
+  <div class="ml-4">
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!message.value"
+      (click)="onSendMessage(message.value)">
+      Send Message
+    </button>
+  </div>
+</div>

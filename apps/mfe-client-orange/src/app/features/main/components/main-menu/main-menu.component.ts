@@ -13,7 +13,7 @@ import { AppMenuStateService } from '../../services';
 type contentTemplate = CommTypeComponent | CommFromAppsComponent | CommToAppsComponent;
 
 @Component({
-  selector: 'app-menu',
+  selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
   styleUrls: ['./main-menu.component.scss'],
 })

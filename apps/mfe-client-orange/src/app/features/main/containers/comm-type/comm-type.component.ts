@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { OrangeAppMessage } from '@microfr/shared/model/app-interface';
+import { CommType, OrangeAppMessage } from '@microfr/shared/model/app-interface';
 import { AppInterfaceFacadeService } from '../../../../core/services';
 import { AppCommState } from '../../services/app-comm-state.service';
-import { CommType } from './../../enums/comm-type.enum';
 
 @Component({
   selector: 'app-comm-type',

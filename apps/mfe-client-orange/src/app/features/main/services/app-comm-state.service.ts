@@ -2,9 +2,9 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { CommType } from '@microfr/shared/model/app-interface';
 import { destroy } from '@microfr/shared/util/common';
 import { AppInterfaceFacadeService } from '../../../core/services';
-import { CommType } from '../enums/comm-type.enum';
 
 @Injectable()
 export class AppCommState implements OnDestroy {

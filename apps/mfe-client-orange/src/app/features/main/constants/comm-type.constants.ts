@@ -1,5 +1,5 @@
+import { CommType } from '@microfr/shared/model/app-interface';
 import { PropStringMap } from '@microfr/shared/model/common';
-import { CommType } from '../enums/comm-type.enum';
 
 export const commTypeLabelsMap: PropStringMap = {
   [CommType.ComponentProp]: 'Native Web Component Properties',

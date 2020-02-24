@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   templateUrl: './main.view.html',
-  styleUrls: ['./main.view.scss'],
 })
 export class FooBMainView {
   /*

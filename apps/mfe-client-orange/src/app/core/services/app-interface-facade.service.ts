@@ -5,11 +5,11 @@ import { filter, takeUntil } from 'rxjs/operators';
 import {
   ClientApp,
   ClientAppMessage,
+  CommType,
   OrangeAppMessage,
 } from '@microfr/shared/model/app-interface';
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
-import { CommType } from '../../features/main/enums/comm-type.enum';
 import { appConfig } from '../constants';
 import { EvtBusDomService } from './evt-bus-dom.service';
 import { EvtBusObservablesService } from './evt-bus-obs.service';
@@ -65,7 +65,7 @@ export class AppInterfaceFacadeService implements OnDestroy {
             const data: OrangeAppMessage = action.payload;
             if (this.isSourceAppValid(data)) {
               this.appMessage.next(action.payload);
-              console.log(`Action received by ${appConfig.label}:`, action);
+              this.logData(CommType.EvtBusObs, data);
             }
             break;
 
@@ -91,7 +91,7 @@ export class AppInterfaceFacadeService implements OnDestroy {
             return;
           }
           this.appMessage.next(event.detail);
-          console.log(`Event received by ${appConfig.label}:`, event.detail);
+          this.logData(CommType.EvtBusDom, data);
         },
       },
       this.evtBusDomItems
@@ -104,5 +104,19 @@ export class AppInterfaceFacadeService implements OnDestroy {
 
   private isSourceAppValid(data: ClientAppMessage): boolean {
     return data.fromApp !== ClientApp.Orange;
+  }
+
+  private logData(commType: CommType, data: any) {
+    switch (commType) {
+      case CommType.EvtBusObs:
+        console.log(`Action received by ${appConfig.label}:`, data);
+        break;
+      case CommType.EvtBusDom:
+        console.log(`Event received by ${appConfig.label}:`, data);
+        break;
+      case CommType.ComponentProp:
+        console.log(`App input changes on ${appConfig.label}: `, data);
+        break;
+    }
   }
 }

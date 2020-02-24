@@ -1,7 +1,7 @@
 <mat-card class="mt-4">
   <h2>Communication to other apps</h2>
   <mat-divider class="mt-4 mb-4 pos-rel"></mat-divider>
-  <h4 class="no-spacing2">
+  <h4 class="no-spacing">
     Update other app details via
     <span class="font-weight-heavy">{{commTypeLabelsMap[commType]}}</span>
     <button
@@ -16,6 +16,7 @@
       <input
         matInput
         type="text"
+        id="app-name-from-orange"
         [formControl]="appName"
         placeholder="App Name">
     </mat-form-field>
@@ -23,6 +24,7 @@
       <input
         matInput
         type="text"
+        id="app-desc-from-orange"
         [formControl]="appDescription"
         placeholder="App Description">
     </mat-form-field>

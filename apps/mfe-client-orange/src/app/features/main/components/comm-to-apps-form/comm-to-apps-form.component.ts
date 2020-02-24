@@ -4,14 +4,13 @@ import { FormControl } from '@angular/forms';
 import {
   ClientApp,
   ClientAppDetails,
-  OrangeAppMessage,
+  CommType,
 } from '@microfr/shared/model/app-interface';
 import { PropStringMap } from '@microfr/shared/model/common';
 import { IconMat } from '@microfr/shared/ui';
 import * as fromConstants from '../../constants';
 import { MenuName } from '../../enums/menu.enum';
 import { AppMenuStateService } from '../../services';
-import { CommType } from './../../enums/comm-type.enum';
 
 @Component({
   selector: 'app-comm-to-apps-form',
@@ -42,7 +41,6 @@ export class CommToAppsFormComponent {
     };
     this.sendMessage.emit(data);
   }
-  // onSendToBlueApp() {}
 
   onGoToMenuItem(name: MenuName) {
     this.menuState.setMenuByName(name);

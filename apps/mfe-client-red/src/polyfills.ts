@@ -55,7 +55,7 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js/dist/zone'; // Included with Angular CLI. Also included in the shell build.
+// import 'zone.js/dist/zone'; // Included with Angular CLI. Add to shell build for prod and app index.html for dev-previews.
 
 /***************************************************************************************************
  * APPLICATION IMPORTS

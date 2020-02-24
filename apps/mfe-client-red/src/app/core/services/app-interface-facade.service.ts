@@ -6,6 +6,7 @@ import {
   ClientApp,
   ClientAppDetails,
   ClientAppMessage,
+  CommType,
 } from '@microfr/shared/model/app-interface';
 import * as fromCommonUtils from '@microfr/shared/util/common';
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
@@ -53,8 +54,8 @@ export class AppInterfaceFacadeService implements OnDestroy {
       changes.appDetails.currentValue !== changes.appDetails.previousValue
     ) {
       this.appDetails.next(changes.appDetails.currentValue);
+      this.logData(CommType.ComponentProp, changes);
     }
-    console.log(`App input changes on ${appConfig.label}: `, changes);
   }
 
   /**
@@ -72,13 +73,13 @@ export class AppInterfaceFacadeService implements OnDestroy {
             const data: ClientAppDetails = action.payload;
             if (this.isDestinationAppValid(data)) {
               this.appDetails.next(data);
+              this.logData(CommType.EvtBusObs, data);
             }
             break;
 
           default:
             break;
         }
-        console.log(`Action received by ${appConfig.label}:`, action);
       });
   }
 
@@ -93,7 +94,7 @@ export class AppInterfaceFacadeService implements OnDestroy {
           const data: ClientAppDetails = event.detail;
           if (!this.appVisibility.isHidden && this.isDestinationAppValid(data)) {
             this.appDetails.next(data);
-            console.log(`Event received by ${appConfig.label}:`, event.detail);
+            this.logData(CommType.EvtBusDom, event.detail);
           }
         },
       },
@@ -107,5 +108,19 @@ export class AppInterfaceFacadeService implements OnDestroy {
 
   private isDestinationAppValid(data: ClientAppMessage): boolean {
     return data.toApp === ClientApp.Red;
+  }
+
+  private logData(commType: CommType, data: any) {
+    switch (commType) {
+      case CommType.EvtBusObs:
+        console.log(`Action received by ${appConfig.label}:`, data);
+        break;
+      case CommType.EvtBusDom:
+        console.log(`Event received by ${appConfig.label}:`, data);
+        break;
+      case CommType.ComponentProp:
+        console.log(`App input changes on ${appConfig.label}: `, data);
+        break;
+    }
   }
 }

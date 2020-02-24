@@ -1,10 +1,13 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
-import { ClientApp, OrangeAppMessage } from '@microfr/shared/model/app-interface';
+import {
+  ClientApp,
+  CommType,
+  OrangeAppMessage,
+} from '@microfr/shared/model/app-interface';
 import { PropStringMap } from '@microfr/shared/model/common';
 import { IconMat } from '@microfr/shared/ui';
 import * as fromConstants from '../../constants';
-import { CommType } from '../../enums/comm-type.enum';
 import { MenuName } from '../../enums/menu.enum';
 import { AppMenuStateService } from '../../services';
 
