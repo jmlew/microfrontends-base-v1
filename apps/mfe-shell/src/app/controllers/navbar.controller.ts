@@ -2,7 +2,7 @@ import { Subject } from 'rxjs';
 
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
-import { ClientConfig, ElementRoute } from '@microfr/shell';
+import { ClientConfig, ElementName, ElementRoute } from '@microfr/shell';
 import { NavButton } from '../components';
 import { evtBusDom, evtBusObs } from '../helpers';
 
@@ -36,7 +36,7 @@ export class MfeNavbarController {
 
   private handleButtonClick(button: HTMLButtonElement) {
     // Update button styles.
-    const activeClassName = 'active';
+    const activeClassName = 'is-active';
     button.classList.add(activeClassName);
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.buttons.length; i++) {
@@ -60,7 +60,9 @@ export class MfeNavbarController {
   }
 
   private getCustomElementNavButtons(configs: ClientConfig[]): string {
-    const appButtons: string[] = configs.map((config: ClientConfig) => NavButton(config));
+    const appButtons: string[] = configs
+      .filter((config: ClientConfig) => config.name !== ElementName.ClientOrange)
+      .map((config: ClientConfig) => NavButton(config));
     return appButtons.join('');
   }
 }

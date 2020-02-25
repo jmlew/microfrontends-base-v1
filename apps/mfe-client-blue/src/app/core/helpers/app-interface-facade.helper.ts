@@ -43,7 +43,6 @@ class AppInterfaceFacadeHelper {
    * Updates state on changes on the app root element input property / attribute.
    */
   handleInputProperyChanges(nextProps: AppRootProps, prevProps: AppRootProps) {
-    console.log('nextProps, prevProps :', nextProps, prevProps);
     if (
       nextProps.appDetails &&
       (prevProps == null || nextProps.appDetails !== prevProps.appDetails)

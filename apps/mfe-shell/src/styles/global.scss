@@ -5,7 +5,6 @@
 @import 'ui-variables/clients';
 
 .shell-container {
-  background-color: $color-grey-100;
   position: relative;
   min-height: 100%;
 
@@ -27,9 +26,9 @@
     button {
       font-size: 12px;
       font-weight: $font-weight-med;
-      color: $color-grey-600;
+      color: $color-grey-500;
 
-      &:hover, &.active {
+      &:hover, &.is-active {
         color: $color-grey-900;
       }
     }
@@ -42,4 +41,8 @@
 
 .client-app-root {
   @include client-app-root();
+
+  &.is-active {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  }
 }

@@ -169,27 +169,36 @@ export class MfeClientsController {
 
   private handleRouteChange(route: ElementRoute) {
     this.goToRoute(route);
-    // this.updateClientVisibilityOnRouteChange(route);
+    this.updateClientOnRouteChange(route);
   }
 
-  private updateClientVisibilityOnRouteChange(route: ElementRoute) {
+  private updateClientOnRouteChange(route: ElementRoute) {
     const currentConfig: ClientConfig = this.clientConfigs.find(
       (item: ClientConfig) => item.route === route
     );
-    // Show the client which matches the route while hiding the others if the route
-    // correspnds to a client, otherwise show all clients.
 
     // TODO: add multiple routes per client config and only hide apps which don't match
     // any of the route path.
     if (currentConfig) {
       this.clients.forEach((item: { name: ElementName; element: ClientAppElement }) => {
         const { name, element } = item;
-        name === currentConfig.name ? showApp(element) : hideApp(element);
+        name === currentConfig.name
+          ? this.setElementActive(element, true)
+          : this.setElementActive(element, false);
       });
     } else {
       this.clients.forEach((item: { name: ElementName; element: ClientAppElement }) =>
-        showApp(item.element)
+        this.setElementActive(item.element, true)
       );
+    }
+  }
+
+  private setElementActive(element: ClientAppElement, isActive: boolean) {
+    const activeClassName = 'is-active';
+    if (isActive) {
+      element.classList.add(activeClassName);
+    } else {
+      element.classList.remove(activeClassName);
     }
   }
 }

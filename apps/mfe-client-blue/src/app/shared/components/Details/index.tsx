@@ -1,9 +1,34 @@
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import { Box, Card, CardContent, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { themeColours } from '@microfr/shared/ui';
 import React from 'react';
 
-export const Details = ({ appDescription }) => (
-  <Card>
-    <CardContent>{appDescription || 'App description to go here...'}</CardContent>
-  </Card>
-);
+const useStyles = makeStyles({
+  card: {
+    marginBottom: 20,
+  },
+  cardContent: {
+    '&:last-child': {
+      paddingBottom: 16,
+    },
+  },
+  description: {
+    fontSize: 16,
+    color: themeColours.grey800,
+  },
+});
+
+export const Details = ({ appDescription }) => {
+  const classes = useStyles();
+  return (
+    <Card className={classes.card}>
+      <CardContent className={classes.cardContent}>
+        <Box display="flex" justifyContent="center">
+          <Typography className={classes.description}>
+            {appDescription || 'App description to go here...'}
+          </Typography>
+        </Box>
+      </CardContent>
+    </Card>
+  );
+};

@@ -8,10 +8,6 @@ import { usePrevious } from '@microfr/shared/util-react';
 import { appInterface } from '../core/helpers';
 import ShellView from '../views/Shell';
 
-// TODO: implement styled components alongside SASS.
-// import { themeColours } from '@microfr/shared/ui';
-// import styled from 'styled-components';
-
 export interface AppRootProps {
   appDetails: ClientAppDetails;
 }
