@@ -721,6 +721,33 @@
           }
         }
       }
+    },
+    "shared-util-react": {
+      "root": "libs/shared/util-react",
+      "sourceRoot": "libs/shared/util-react/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/util-react/.eslintrc",
+            "tsConfig": [
+              "libs/shared/util-react/tsconfig.lib.json",
+              "libs/shared/util-react/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/util-react/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/util-react/jest.config.js",
+            "tsConfig": "libs/shared/util-react/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "schematics": {

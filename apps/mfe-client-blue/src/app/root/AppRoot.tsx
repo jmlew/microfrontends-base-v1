@@ -1,9 +1,10 @@
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import React, { MutableRefObject, useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import './styles.scss';
 
 import { ClientAppDetails } from '@microfr/shared/model/app-interface';
 import { theme } from '@microfr/shared/ui-react';
+import { usePrevious } from '@microfr/shared/util-react';
 import { appInterface } from '../core/helpers';
 import ShellView from '../views/Shell';
 
@@ -14,15 +15,6 @@ import ShellView from '../views/Shell';
 export interface AppRootProps {
   appDetails: ClientAppDetails;
 }
-
-// TODO: Move to custom util-react lib.
-const usePrevious = <T extends {}>(value: T) => {
-  const ref: MutableRefObject<T | undefined> = useRef<T>();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-};
 
 export default function AppRoot(props: AppRootProps) {
   /**

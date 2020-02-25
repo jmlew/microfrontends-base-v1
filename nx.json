@@ -58,6 +58,9 @@
     },
     "shared-model-common": {
       "tags": []
+    },
+    "shared-util-react": {
+      "tags": []
     }
   }
 }
