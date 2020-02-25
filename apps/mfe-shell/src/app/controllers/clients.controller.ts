@@ -96,17 +96,13 @@ export class MfeClientsController {
 
       // Create element and append to container.
       const element: ClientAppElement = embedElement(config.name, container);
+      element.className = 'client-app-root';
 
       // Init client once loaded.
       const isClientLoaded: Promise<void> = isCustomElementDefined(name);
       isClientLoaded.then(() => {
         // Add app element to local collection.
         this.clients.push({ name, element });
-
-        // Hide all but the first client app.
-        if (index > 0) {
-          // hideApp(element);
-        }
         this.handleClientLoaded(config);
       });
     });
@@ -132,8 +128,6 @@ export class MfeClientsController {
     evtBusObs.dispatch({
       type: EvtBusActionType.AllClientsAreLoaded,
     });
-
-    // Example interaction between shell and apps through a shared interface.
     this.updateClientInputs();
   }
 
@@ -145,16 +139,19 @@ export class MfeClientsController {
     const appDetailsMap: { [element: string]: ClientAppDetails } = {
       [ElementName.ClientRed]: {
         toApp: ClientApp.Red,
+        fromApp: ClientApp.Any,
         name: 'Angular Sample A',
         description: 'Example Angular Client',
       },
       [ElementName.ClientBlue]: {
         toApp: ClientApp.Blue,
-        name: 'React Sample',
+        fromApp: ClientApp.Any,
+        name: 'React Sample App A',
         description: 'Example React Client',
       },
       [ElementName.ClientOrange]: {
         toApp: ClientApp.Orange,
+        fromApp: ClientApp.Any,
         name: 'Angular Sample B',
         description: 'Example Angular Client',
       },
@@ -162,8 +159,7 @@ export class MfeClientsController {
 
     Object.keys(appDetailsMap).forEach((name: ElementName) => {
       const app: ClientAppElement = getAppByElementName(name);
-      const data: ClientAppDetails = appDetailsMap[name];
-      app.appDetails = data;
+      app.appDetails = appDetailsMap[name];
     });
   }
 

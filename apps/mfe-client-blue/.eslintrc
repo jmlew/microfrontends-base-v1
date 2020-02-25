@@ -156,6 +156,7 @@
     ],
     "no-with": "warn",
     "no-whitespace-before-property": "warn",
+    "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "require-yield": "warn",
     "rest-spread-spacing": ["warn", "never"],
@@ -198,10 +199,7 @@
     "jsx-a11y/accessible-emoji": "warn",
     "jsx-a11y/alt-text": "warn",
     "jsx-a11y/anchor-has-content": "warn",
-    "jsx-a11y/anchor-is-valid": [
-      "warn",
-      { "aspects": ["noHref", "invalidHref"] }
-    ],
+    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["noHref", "invalidHref"] }],
     "jsx-a11y/aria-activedescendant-has-tabindex": "warn",
     "jsx-a11y/aria-props": "warn",
     "jsx-a11y/aria-proptypes": "warn",
@@ -216,7 +214,6 @@
     "jsx-a11y/role-has-required-aria-props": "warn",
     "jsx-a11y/role-supports-aria-props": "warn",
     "jsx-a11y/scope": "warn",
-    "react-hooks/rules-of-hooks": "error",
     "default-case": "off",
     "no-dupe-class-members": "off",
     "no-undef": "off",

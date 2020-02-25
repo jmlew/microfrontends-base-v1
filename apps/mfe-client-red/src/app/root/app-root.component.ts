@@ -23,7 +23,6 @@ import { AppInterfaceFacadeService, AppVisibilityService } from '../core/service
   template: `
     <router-outlet></router-outlet>
   `,
-  styleUrls: ['./app-root.component.scss'],
 })
 export class AppRootComponent implements OnInit, OnDestroy, OnChanges {
   private nativeElement: ClientAppElement;

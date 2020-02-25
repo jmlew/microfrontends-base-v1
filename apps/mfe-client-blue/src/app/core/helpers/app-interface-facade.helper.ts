@@ -1,4 +1,3 @@
-import { Injectable, OnDestroy, SimpleChanges } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
@@ -11,13 +10,14 @@ import {
 import * as fromCommonUtils from '@microfr/shared/util/common';
 import { EvtBusEventItem, EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusAction, EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
-import { appConfig } from '../constants';
-import { AppVisibilityService } from './app-visibility.service';
-import { EvtBusDomService } from './evt-bus-dom.service';
-import { EvtBusObservablesService } from './evt-bus-obs.service';
 
-@Injectable()
-export class AppInterfaceFacadeService implements OnDestroy {
+import { AppRootProps } from '../../root/AppRoot';
+import { appConfig } from '../constants';
+import { appVisibility } from './app-visibility.helper';
+import { evtBusDom } from './evt-bus-dom.helper';
+import { evtBusObs } from './evt-bus-obs.helper';
+
+class AppInterfaceFacadeHelper {
   private appInputObsDestroy: Subject<unknown> = new Subject();
   private evtBusObsDestroy: Subject<unknown> = new Subject();
   private evtBusDomItems: EvtBusEventItem[] = [];
@@ -25,16 +25,10 @@ export class AppInterfaceFacadeService implements OnDestroy {
   // App state property streams.
   private appDetails: BehaviorSubject<ClientAppDetails> = new BehaviorSubject(null);
 
-  constructor(
-    private readonly appVisibility: AppVisibilityService,
-    private readonly evtBusObs: EvtBusObservablesService,
-    private readonly evtBusDom: EvtBusDomService
-  ) {}
-
-  ngOnDestroy() {
+  destroy() {
     fromCommonUtils.destroy(this.appInputObsDestroy);
-    this.evtBusObs.destroy(this.evtBusObsDestroy);
-    this.evtBusDom.destroy(this.evtBusDomItems);
+    evtBusObs.destroy(this.evtBusObsDestroy);
+    evtBusDom.destroy(this.evtBusDomItems);
   }
 
   get appDetails$(): Observable<ClientAppDetails> {
@@ -48,13 +42,14 @@ export class AppInterfaceFacadeService implements OnDestroy {
   /**
    * Updates state on changes on the app root element input property / attribute.
    */
-  handleInputProperyChanges(changes: SimpleChanges) {
+  handleInputProperyChanges(nextProps: AppRootProps, prevProps: AppRootProps) {
+    console.log('nextProps, prevProps :', nextProps, prevProps);
     if (
-      changes.appDetails &&
-      changes.appDetails.currentValue !== changes.appDetails.previousValue
+      nextProps.appDetails &&
+      (prevProps == null || nextProps.appDetails !== prevProps.appDetails)
     ) {
-      this.appDetails.next(changes.appDetails.currentValue);
-      this.logData(CommType.ComponentProp, changes);
+      this.appDetails.next(nextProps.appDetails);
+      this.logData(CommType.ComponentProp, nextProps.appDetails);
     }
   }
 
@@ -62,7 +57,7 @@ export class AppInterfaceFacadeService implements OnDestroy {
    * Updates state on subscription to Observables Event Bus actions.
    */
   initEvtBusObs() {
-    this.evtBusObs.actions$
+    evtBusObs.actions$
       .pipe(takeUntil(this.evtBusObsDestroy))
       .subscribe((action: EvtBusAction) => {
         if (!action) {
@@ -84,12 +79,12 @@ export class AppInterfaceFacadeService implements OnDestroy {
    * Updates state on DOM API Event Bus Custom Events.
    */
   initEvtBusDom() {
-    this.evtBusDom.addEventItem(
+    evtBusDom.addEventItem(
       {
         type: EvtBusEventType.ChangeClientInfo,
         listener: (event: CustomEvent) => {
           const data: ClientAppDetails = event.detail;
-          if (!this.appVisibility.isHidden && this.isDestinationAppValid(data)) {
+          if (!appVisibility.isHidden && this.isDestinationAppValid(data)) {
             this.appDetails.next(data);
             this.logData(CommType.EvtBusDom, event.detail);
           }
@@ -100,11 +95,11 @@ export class AppInterfaceFacadeService implements OnDestroy {
   }
 
   private isSourceAppValid(data: ClientAppMessage): boolean {
-    return data.fromApp !== ClientApp.Red;
+    return data.fromApp !== ClientApp.Blue;
   }
 
   private isDestinationAppValid(data: ClientAppMessage): boolean {
-    return data.toApp === ClientApp.Red;
+    return data.toApp === ClientApp.Blue;
   }
 
   private logData(commType: CommType, data: any) {
@@ -121,3 +116,6 @@ export class AppInterfaceFacadeService implements OnDestroy {
     }
   }
 }
+
+const appInterface = new AppInterfaceFacadeHelper();
+export { appInterface };

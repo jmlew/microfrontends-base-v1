@@ -2,6 +2,7 @@
 @import 'ui-colors/index';
 @import 'ui-mixins/clients';
 @import 'ui-variables/typography';
+@import 'ui-variables/clients';
 
 .shell-container {
   background-color: $color-grey-100;
@@ -37,4 +38,8 @@
 
 .client-container {
   @include client-container();
+}
+
+.client-app-root {
+  @include client-app-root();
 }

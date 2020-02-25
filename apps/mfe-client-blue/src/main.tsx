@@ -8,8 +8,8 @@ import {
   isMutationAttributeHidden,
 } from '@microfr/shell';
 import { appConfig } from './app/core/constants';
-import { AppRoot } from './app/root/AppRoot';
-import { appVisibility } from './app/shared/helpers';
+import { appVisibility } from './app/core/helpers';
+import AppRoot from './app/root/AppRoot';
 
 class AppElement extends HTMLElement implements ClientAppElement {
   private observer: MutationObserver;
@@ -44,6 +44,11 @@ class AppElement extends HTMLElement implements ClientAppElement {
   set appDetails(data: ClientAppDetails) {
     console.log(`set appDetails on ${appConfig.label}:`, data);
     this._appDetails = data;
+
+    // TODO: ensure approot props are updated with main property changes.
+    if (!appVisibility.isHidden) {
+      this.mountElement();
+    }
   }
 
   /**
@@ -79,15 +84,16 @@ class AppElement extends HTMLElement implements ClientAppElement {
       const isShown: boolean = isAppShown(this);
       appVisibility.isHidden = !isShown;
       console.log(`isShown ${appConfig.label}: `, isShown);
-      this.unmountElement();
       if (isShown) {
         this.mountElement();
+      } else {
+        this.unmountElement();
       }
     }
   }
 
   private mountElement() {
-    render(<AppRoot />, this);
+    render(<AppRoot appDetails={this.appDetails} />, this);
   }
 
   private unmountElement() {
