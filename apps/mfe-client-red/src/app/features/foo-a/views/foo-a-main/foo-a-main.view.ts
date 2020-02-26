@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: './main.view.html',
+  templateUrl: './foo-a-main.view.html',
 })
 export class FooAMainView {}

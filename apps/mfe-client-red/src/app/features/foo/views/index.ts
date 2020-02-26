@@ -1,5 +1,5 @@
-import { FooMainView } from './main/main.view';
+import { FooMainView } from './foo-main/foo-main.view';
 
 export const exports: any[] = [FooMainView];
 
-export * from './main/main.view';
+export * from './foo-main/foo-main.view';
