@@ -3,7 +3,11 @@ import './styles.scss';
 
 import { HeaderLogo } from './HeaderLogo';
 
-export const AppHeader = ({ appName }) => {
+interface AppHeaderProps {
+  appName: string;
+}
+
+export default function AppHeader({ appName }: AppHeaderProps) {
   const appNamePrefix = 'Blue Client App';
   return (
     <div className="app-header">
@@ -12,4 +16,4 @@ export const AppHeader = ({ appName }) => {
       <HeaderLogo />
     </div>
   );
-};
+}

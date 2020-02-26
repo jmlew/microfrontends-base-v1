@@ -1,15 +1,21 @@
+import { Container } from '@material-ui/core';
 import React, { Fragment, useEffect, useState } from 'react';
 import { Subject } from 'rxjs';
-import { filter, map, takeUntil, tap } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import './styles.scss';
 
 import { ClientAppDetails } from '@microfr/shared/model/app-interface';
 import * as fromCommonUtils from '@microfr/shared/util/common';
+import { Route } from 'react-router-dom';
 import { appInterface } from '../../core/helpers';
-import { AppHeader } from '../../layout/AppHeader/Header';
-import { Details } from '../../shared/components/Details';
+import FooMain from '../../features/foo/views/FooMain';
+import AppHeader from '../../layout/AppHeader/Header';
+import { appRouteConfig } from '../../root/app-route-config.constant';
+import Details from '../../shared/components/Details';
 
-export default function ShellView() {
+interface ShellViewProps {}
+
+export default function ShellView(props: ShellViewProps) {
   const unsubscriber: Subject<unknown> = new Subject();
   const [appName, setAppName] = useState(null);
   const [appDescription, setAppDescription] = useState(null);
@@ -40,12 +46,15 @@ export default function ShellView() {
     fromCommonUtils.destroy(unsubscriber);
   }
 
+  const featureFooRoutePath: string = appRouteConfig.featureFoo.name;
   return (
     <Fragment>
       <AppHeader appName={appName} />
       <div className="app-content">
         <Details appDescription={appDescription} />
-        {/* <router-outlet/>*/}
+        <Route path={featureFooRoutePath}>
+          <FooMain />
+        </Route>
       </div>
     </Fragment>
   );

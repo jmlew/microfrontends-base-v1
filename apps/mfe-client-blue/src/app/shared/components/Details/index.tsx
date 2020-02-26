@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Details = ({ appDescription }) => {
+export default function Details({ appDescription }) {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
@@ -31,4 +31,4 @@ export const Details = ({ appDescription }) => {
       </CardContent>
     </Card>
   );
-};
+}

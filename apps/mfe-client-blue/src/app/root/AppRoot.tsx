@@ -1,5 +1,6 @@
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import React, { useEffect } from 'react';
+import { HashRouter, Route, Router, Switch } from 'react-router-dom';
 import './styles.scss';
 
 import { ClientAppDetails } from '@microfr/shared/model/app-interface';
@@ -31,12 +32,16 @@ export default function AppRoot(props: AppRootProps) {
   useEffect(() => appInterface.handleInputProperyChanges(props, prevProps), [props]);
 
   return (
-    <MuiThemeProvider theme={theme}>
-      {/* TODO: Provide view through router */}
-      {/* TODO: Apply root styles to main container custom component if possible */}
-      <div className="app-root">
-        <ShellView />
-      </div>
-    </MuiThemeProvider>
+    <HashRouter>
+      <MuiThemeProvider theme={theme}>
+        <div className="app-root">
+          <Switch>
+            <Route path="/">
+              <ShellView />
+            </Route>
+          </Switch>
+        </div>
+      </MuiThemeProvider>
+    </HashRouter>
   );
 }
