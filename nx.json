@@ -14,19 +14,10 @@
     "mfe-shell": {
       "tags": []
     },
-    "mfe-shell-e2e": {
-      "tags": []
-    },
     "mfe-client-red": {
       "tags": []
     },
-    "mfe-client-red-e2e": {
-      "tags": []
-    },
     "mfe-client-blue": {
-      "tags": []
-    },
-    "mfe-client-blue-e2e": {
       "tags": []
     },
     "shared-ui": {

@@ -107,35 +107,6 @@
         }
       }
     },
-    "mfe-shell-e2e": {
-      "root": "apps/mfe-shell-e2e",
-      "sourceRoot": "apps/mfe-shell-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/mfe-shell-e2e/cypress.json",
-            "tsConfig": "apps/mfe-shell-e2e/tsconfig.e2e.json",
-            "devServerTarget": "mfe-shell:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "mfe-shell:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:lint",
-          "options": {
-            "linter": "eslint",
-            "config": "apps/mfe-shell-e2e/.eslintrc",
-            "tsConfig": ["apps/mfe-shell-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/mfe-shell-e2e/**"]
-          }
-        }
-      }
-    },
     "shared-ui": {
       "root": "libs/shared/ui",
       "sourceRoot": "libs/shared/ui/src",
@@ -263,33 +234,6 @@
         }
       }
     },
-    "mfe-client-red-e2e": {
-      "root": "apps/mfe-client-red-e2e",
-      "sourceRoot": "apps/mfe-client-red-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/mfe-client-red-e2e/cypress.json",
-            "tsConfig": "apps/mfe-client-red-e2e/tsconfig.e2e.json",
-            "devServerTarget": "mfe-client-red:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "mfe-client-red:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["apps/mfe-client-red-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/mfe-client-red-e2e/**"]
-          }
-        }
-      }
-    },
     "mfe-client-blue": {
       "root": "apps/mfe-client-blue",
       "sourceRoot": "apps/mfe-client-blue/src",
@@ -371,35 +315,6 @@
           "options": {
             "jestConfig": "apps/mfe-client-blue/jest.config.js",
             "tsConfig": "apps/mfe-client-blue/tsconfig.spec.json"
-          }
-        }
-      }
-    },
-    "mfe-client-blue-e2e": {
-      "root": "apps/mfe-client-blue-e2e",
-      "sourceRoot": "apps/mfe-client-blue-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/mfe-client-blue-e2e/cypress.json",
-            "tsConfig": "apps/mfe-client-blue-e2e/tsconfig.e2e.json",
-            "devServerTarget": "mfe-client-blue:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "mfe-client-blue:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:lint",
-          "options": {
-            "linter": "eslint",
-            "config": "apps/mfe-client-blue-e2e/.eslintrc",
-            "tsConfig": ["apps/mfe-client-blue-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/mfe-client-blue-e2e/**"]
           }
         }
       }
