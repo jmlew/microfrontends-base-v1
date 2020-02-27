@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Details({ appDescription }) {
+export default function AppDetails({ appDescription }) {
   const classes = useStyles();
   return (
     <Card className={classes.card}>

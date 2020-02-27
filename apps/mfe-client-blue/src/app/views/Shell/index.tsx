@@ -11,7 +11,7 @@ import { appInterface } from '../../core/helpers';
 import FooMain from '../../features/foo/views/FooMain';
 import AppHeader from '../../layout/AppHeader/Header';
 import { appRouteConfig } from '../../root/app-route-config.constant';
-import Details from '../../shared/components/Details';
+import AppDetails from '../../shared/components/AppDetails';
 
 interface ShellViewProps {}
 
@@ -51,7 +51,7 @@ export default function ShellView(props: ShellViewProps) {
     <Fragment>
       <AppHeader appName={appName} />
       <div className="app-content">
-        <Details appDescription={appDescription} />
+        <AppDetails appDescription={appDescription} />
         <Route path={featureFooRoutePath}>
           <FooMain />
         </Route>

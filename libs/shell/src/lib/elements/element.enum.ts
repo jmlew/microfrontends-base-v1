@@ -8,9 +8,9 @@ export enum ElementName {
 // TODO: Move to shared/model/app-interface
 export enum ElementLabel {
   Shell = 'Shell',
-  ClientRed = 'Red: Angular App',
-  ClientBlue = 'Blue: React App',
-  ClientOrange = 'Orange: Angular App',
+  ClientRed = 'RED: Angular App',
+  ClientBlue = 'BLUE: React App',
+  ClientOrange = 'ORANGE: Angular App',
 }
 
 export enum ElementRoute {

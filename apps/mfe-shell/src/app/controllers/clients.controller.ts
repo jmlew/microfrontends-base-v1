@@ -14,10 +14,8 @@ import {
   ElementRoute,
   embedElement,
   getAppByElementName,
-  hideApp,
   isCustomElementDefined,
   loadClient,
-  showApp,
 } from '@microfr/shell';
 
 import { evtBusDom, evtBusObs } from '../helpers';
