@@ -41,8 +41,9 @@
 
 .client-app-root {
   @include client-app-root();
+  transition: 0.2s ease all;
 
   &.is-active {
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
   }
 }

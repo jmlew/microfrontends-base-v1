@@ -1,8 +1,8 @@
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import { Box, makeStyles, Theme, Typography } from '@material-ui/core';
 import { themeColours } from '@microfr/shared/ui';
 import React from 'react';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontSize: 16,
     color: themeColours.grey800,

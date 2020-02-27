@@ -7,9 +7,6 @@
 
 // Defines the styles of the client container within the shell.
 @mixin client-container() {
-  background-color: $color-grey-50;
-  border: 1px solid $color-grey-400;
-  border-radius: 4px;
   margin: $spacing-4 $spacing-2 0 $spacing-2;
 }
 
@@ -17,6 +14,9 @@
 @mixin client-app-root() {
   display: block;
   width: 100%;
+  border: 1px solid $color-grey-400;
+  border-radius: 4px;
+  background-color: $color-grey-50;
 }
 
 @mixin client-header() {

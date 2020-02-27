@@ -13,14 +13,16 @@ function FooMain() {
   return (
     <Fragment>
       <FooNav routes={routes} relativeUrl={url} />
-      <Switch>
-        <Route path={path + appRouteConfig.featureFooA.name}>
-          <FooAMainView />
-        </Route>
-        <Route path={path + appRouteConfig.featureFooB.name}>
-          <FooBMainView />
-        </Route>
-      </Switch>
+      <div className="client-app-section">
+        <Switch>
+          <Route path={path + appRouteConfig.featureFooA.name}>
+            <FooAMainView />
+          </Route>
+          <Route path={path + appRouteConfig.featureFooB.name}>
+            <FooBMainView />
+          </Route>
+        </Switch>
+      </div>
     </Fragment>
   );
 }

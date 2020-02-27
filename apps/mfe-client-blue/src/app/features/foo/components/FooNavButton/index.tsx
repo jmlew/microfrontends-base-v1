@@ -1,9 +1,9 @@
-import { Button, makeStyles } from '@material-ui/core';
+import { Button, makeStyles, Theme } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 import React from 'react';
 import { RouteItem } from '../../../../shared/models';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   button: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),

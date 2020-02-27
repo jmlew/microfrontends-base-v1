@@ -35,7 +35,6 @@
         color="primary"
         [disabled]="!appName.value && !appDescription.value"
         (click)="onSendToApp(ClientApp.Red)">
-        <mat-icon class="mr-2">{{ IconMat.ArrowDown }}</mat-icon>
         <span>To Red App</span>
       </button>
       <button
@@ -44,7 +43,6 @@
         color="primary"
         [disabled]="!appName.value && !appDescription.value"
         (click)="onSendToApp(ClientApp.Blue)">
-        <mat-icon class="mr-2">{{ IconMat.ArrowDown }}</mat-icon>
         <span>To Blue App</span>
       </button>
     </div>

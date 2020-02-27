@@ -7,8 +7,6 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { ClientApp, OrangeAppMessage } from '@microfr/shared/model/app-interface';
-
 @Component({
   selector: 'app-comm-to-app-form',
   templateUrl: './comm-to-app-form.component.html',
@@ -16,7 +14,7 @@ import { ClientApp, OrangeAppMessage } from '@microfr/shared/model/app-interface
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooACommToAppFormComponent implements OnInit {
-  @Output() sendMessage = new EventEmitter<OrangeAppMessage>();
+  @Output() sendMessage = new EventEmitter<string>();
 
   message: FormControl = new FormControl(null);
 
@@ -25,11 +23,6 @@ export class FooACommToAppFormComponent implements OnInit {
   ngOnInit() {}
 
   onSendMessage(message: string) {
-    const data: OrangeAppMessage = {
-      fromApp: ClientApp.Red,
-      toApp: ClientApp.Orange,
-      message,
-    };
-    this.sendMessage.emit(data);
+    this.sendMessage.emit(message);
   }
 }

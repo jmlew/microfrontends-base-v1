@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { OrangeAppMessage } from '@microfr/shared/model/app-interface';
+import { ClientApp, OrangeAppMessage } from '@microfr/shared/model/app-interface';
 import { EvtBusEventType } from '@microfr/shared/util/event-bus-dom';
 import { EvtBusActionType } from '@microfr/shared/util/event-bus-obs';
 import { EvtBusDomService } from '../../../../core/services/evt-bus-dom.service';
@@ -19,7 +19,13 @@ export class FooACommToAppComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSendMessage(data: OrangeAppMessage) {
+  onSendMessage(message: string) {
+    const data: OrangeAppMessage = {
+      fromApp: ClientApp.Red,
+      toApp: ClientApp.Orange,
+      message,
+    };
+
     this.evtBusObs.dispatch({
       type: EvtBusActionType.SendClientOrangeMessage,
       payload: data,
