@@ -4,12 +4,12 @@ import React from 'react';
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
-    fontSize: 16,
+    ...theme.typography.body2,
     color: themeColours.grey800,
   },
   caption: {
+    ...theme.typography.caption,
     paddingLeft: theme.spacing(1),
-    fontSize: 16,
     color: themeColours.grey600,
   },
 }));
@@ -22,7 +22,7 @@ interface FeatureDetailsProps {
 export default function FeatureDetails({ title, caption }: FeatureDetailsProps) {
   const classes = useStyles();
   return (
-    <Box display="flex">
+    <Box display="flex" alignItems="flex-end">
       <Typography className={classes.title}>{title}</Typography>
       <Typography className={classes.caption}>{caption}</Typography>
     </Box>

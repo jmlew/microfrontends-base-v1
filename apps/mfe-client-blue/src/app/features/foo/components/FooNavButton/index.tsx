@@ -5,8 +5,8 @@ import { RouteItem } from '../../../../shared/models';
 
 const useStyles = makeStyles((theme: Theme) => ({
   button: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
     textTransform: 'inherit',
   },
   icon: {

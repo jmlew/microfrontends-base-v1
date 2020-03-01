@@ -1,10 +1,12 @@
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider } from '@material-ui/core/styles';
+
 import React, { useEffect } from 'react';
-import { HashRouter, Route, Router, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import './styles.scss';
 
 import { ClientAppDetails } from '@microfr/shared/model/app-interface';
-import { theme } from '@microfr/shared/ui-react';
+import { muiTheme } from '@microfr/shared/ui-react';
 import { usePrevious } from '@microfr/shared/util-react';
 import { appInterface } from '../core/helpers';
 import ShellView from '../views/Shell';
@@ -33,14 +35,16 @@ export default function AppRoot(props: AppRootProps) {
 
   return (
     <HashRouter>
-      <MuiThemeProvider theme={theme}>
-        <div className="app-root">
-          <Switch>
-            <Route path="/">
-              <ShellView />
-            </Route>
-          </Switch>
-        </div>
+      <MuiThemeProvider theme={muiTheme}>
+        <CssBaseline>
+          <div className="app-root">
+            <Switch>
+              <Route path="/">
+                <ShellView />
+              </Route>
+            </Switch>
+          </div>
+        </CssBaseline>
       </MuiThemeProvider>
     </HashRouter>
   );

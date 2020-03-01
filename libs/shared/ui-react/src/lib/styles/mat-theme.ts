@@ -3,7 +3,8 @@ import red from '@material-ui/core/colors/red';
 import { createMuiTheme, Theme } from '@material-ui/core/styles';
 import { themeColours } from '@microfr/shared/ui';
 
-const theme: Theme = createMuiTheme({
+const muiTheme: Theme = createMuiTheme({
+  spacing: (value) => `${0.25 * value}rem`, // Match ui-variables/_layout.scss.
   palette: {
     primary: {
       main: themeColours.primary,
@@ -17,6 +18,11 @@ const theme: Theme = createMuiTheme({
     },
     error: red,
   },
+  props: {
+    /* MuiTypography: {
+      // Add overrides.
+    }, */
+  },
 });
 
-export { theme };
+export { muiTheme };
