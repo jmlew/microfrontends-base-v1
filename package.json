@@ -78,6 +78,7 @@
     "react-router-dom": "5.1.2",
     "rxjs": "~6.4.0",
     "styled-components": "4.4.1",
+    "tslib": "^1.14.1",
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
@@ -120,6 +121,6 @@
     "tslint": "~5.11.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.2.0",
-    "typescript": "^4.4.3"
+    "typescript": "~3.5.3"
   }
 }
