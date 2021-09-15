@@ -69,7 +69,6 @@
     "@nrwl/nx": "^7.8.7",
     "core-js": "^2.6.12",
     "document-register-element": "1.13.1",
-    "elements-zone-strategy": "^9.0.0",
     "hammerjs": "^2.0.8",
     "material-design-icons": "^3.0.1",
     "react": "16.12.0",
